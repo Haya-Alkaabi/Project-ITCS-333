@@ -1,12 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<title>Events Calender</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Calendar</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link href="universalsheet.css" rel="stylesheet">
 </head>
+<body>
 
+<main class="grid-container"> <!--main is a grid container-->
+    <h1>Students' Hub</h1>
+   
 
+    <!-- Content calendar section -->
+    <section class=" content-calendar " >
+        <h1>Events Calendar</h1>
+        <form action="/search" method="GET" id="s">
+            <label for="search" placeholder="WHAT NANI" >Search:</label>
+            <input type="search" id="search">
+            <button type="submit"> <Strong>Enter</Strong></button>
+        </form>
+        <div class="flexcontainer">
+            <div class="flex-item " id="AI" >
+                
+            </div>
+            <div class="flex-item ">
+               <h2 id="AIS">Artifical Intelligence Seminar</h2>
+               <p id="AIS" > In <time>2025-4-5</time>, at 10 O'clock,
+                there will be held a seminar by <em>MR.Ali Hasan Alsaffar.</em>
+                
+               </p>
+            </div>
+         
+        </div>
+        
 
+    </section>
+   <aside class="aside"></aside>
+   
+   
+   
+  
+</main>
 
+</body>
 </html>
