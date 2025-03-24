@@ -21,33 +21,3 @@ article {
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgb(0, 0,0, 0.1);
 }
-.rating {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-.rating span {
-    margin-right: 0.25rem;
-}
-footer {
-    background-color: #cc9c5d; /* brown */
-    color: white;
-    padding: 1rem;
-    text-align: center;
-}
-aside {
-    background-color: white;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgb(0, 0,0, 0.1);
-    margin-bottom: 1rem;
-}
-input[type="text"], select {
-    background-color: white; /* Change to white */
-    color: black;
-    border: 1px solid #ccc;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    width: 100%;
-    margin-bottom: 0.5rem;
-}
