@@ -75,13 +75,13 @@ footer {
 }
 /* Full-width stretched image */
 #images {
-    background-image: url(uob.jpg);
+    background-image: url(../Images/smileg2.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     width: 100vw ;
     height: 100vh; /* Full viewport height */
-    margin-top: -8em; /* Pull up to go behind header */
+    margin-top: -6.5em; /* Pull up to go behind header */
 }
 
 #mainc{
@@ -94,7 +94,7 @@ footer {
 
 .nav-buttons {
     position: absolute;
-    bottom: 3.5em;
+    bottom: 2em;
     left: 108.55em;
  
 }
