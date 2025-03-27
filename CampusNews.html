@@ -3,9 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Campus Hub | Campus News</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+   <!--Header-->
+   <header>
+    <img src="photos/uob.png" alt="University of Bahrain Logo" title="UOB" id="logo">
+
+    <!--Nanigations Links-->
+    <nav>
+        <ul class="nav-links">
+            <!--put students' module links here-->
+            <li><a href="#">Events Calendar</a></li>
+            <li><a href="#">Study Group Finder</a></li>
+            <li><a href="#">Course Reviews</a></li>
+            <li><a href="#">Course Notes</a></li>
+            <li><a href="reviews.html" class="active">Campus News</a></li>
+            <li><a href="#">Club Activities</a></li>
+            <li><a href="#">Student Marketplace</a></li>
+        </ul>
+    </nav>
+   </header> 
+
+   <!--Control(search, filter, sorting)-->
+   <section id="news-control">
+    <!--Search bar-->
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search news..." aria-label="Search news">
+        <button id="search-button">Search</button>
+    </div>
+    <!--Filter-->
+    <select id="filter-category" aria-label="Filter by category">
+        <option value="all">All Categories</option>
+        <option value="events">Events</option>
+        <option value="sports">Sports</option>
+        <opttion value="general">General</opttion>
+    </select>
+    <!--sorting-->
+    <select id="sort-news" arial label="Sort News">
+        <option value="latest">Sort by Latest</option>
+        <option value="oldest">Sort by Oldest</option>
+    </select>
+   </section>
+
+   <!--Main Listin Page-->
+   <main id="news-listing">
+    <section id="news-grid">
+        <!--first article-->
+        <article>
+            <img src="photos/Rankings.png" alt="University Rankings" title="UOB Advances 93 Ranks in Global University Rankings">
+            <h3>University of Bahrain Advances 93 Ranks in Global University Rankings</h3>
+            <p>
+                The University of Bahrain has introduced a new Bachelor’s program in Artificial Intelligence, starting in the Fall 2023 semester. 
+                The program aims to equip students with cutting-edge skills in AI, machine learning, and data analytics, preparing them for careers in the rapidly growing tech industry.
+            </p>
+            <div class="article-date-author">
+                <time datetime="2025-02-25" class="publish-date">Published: February 25, 2025</time>
+                <br>
+                <span class="author">By: <em>Khaled Al-Najjar</em></span>
+              </div>
+              <a href="https://www.uob.edu.bh/distinguished-in-areas-of-education-research-waste-management-and-infrastructure-uob-advances-93-ranks-in-the-world-global-university-ranking-for-sustainability-green-metric-for-2024/">Read more</a>
+         </article>
+
+        <!--second article-->
+        <article>
+            <img src="photos/uob_research_innovation.png" alt="uob_research_innovation" title="UOB Hosts Annual Research and Innovation Conference 2025">
+            <h3>UOB Hosts Annual Research and Innovation Conference</h3>
+            <p>
+                The University of Bahrain (UOB) successfully hosted its Annual Research and Innovation Conference, bringing together scholars, 
+                researchers, and industry experts to discuss the latest advancements in science, technology, and business. 
+                The conference featured keynote speeches, panel discussions, and interactive workshops.
+            </p>          
+            <div class="article-date-author">
+                <time datetime="2023-06-02" class="publish-date">Published: June 2, 2023</time>
+                <br>
+                <span class="author">By: <em>Academic Office</em></span>
+              </div>
+            <a href="">Read more</a>
+        </article>
+
+        <!--third article-->
+        <article>
+            <img src="photos/uob_badminton_championship.png" alt="National Charter University Badminton Championship at UOB">
+            <h3>UOB Hosts First National Charter University Badminton Championship</h3>
+            <p>
+                The University of Bahrain successfully hosted the inaugural National Charter University Badminton Championship, showcasing talent from students, faculty, and staff. 
+                The event, organized by the College of Health and Sports Sciences, celebrated the Kingdom of Bahrain’s 23rd anniversary of the National Action Charter.
+            </p>
+            <div class="article-date-author">
+                <time datetime="2025-02-15" class="publish-date">Published: February 15, 2025</time>
+                <br>
+                <span class="author">By: <em>Khalid Al-Hassan</em></span>
+              </div>
+              <a href="">Read more</a>
+        </article>
+    </section>
+
+    <!-- Pagination -->
+     <div id="Pagination">
+        <a href="#" class="prev">« Prev</a>
+        <a href="#" class="page-number">1</a>
+        <a href="#" class="page-number">2</a>
+        <a href="#" class="page-number">3</a>
+        <a href="#" class="next">Next »</a>
+     </div>
     
+     <!-- Add News Button-->
+      <button id="add-news"><a=href=#>Add News</a></button>
+   </main>
+
+   <!--Footer-->
+   <footer>
+    <p>&copy; 2025 Campus Hub. All rights reserved. </p>
+    <ul class="footer-links">
+        <li><a href="">Privacy Policy</a></li>
+        <li><a href="">Terms of Services</a></li>
+        <li><a href="">Contact Us</a></li>
+    </ul>
+   </footer>
 </body>
 </html>
