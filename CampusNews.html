@@ -5,26 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus Hub | Campus News</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-   <!--Header-->
-   <header>
-    <img src="photos/uob.png" alt="University of Bahrain Logo" title="UOB" id="logo">
+    <!--Header-->
+    <header class="flex items-center justify-between sticky top-0 z-50 px-4 py-2 shadow-sm"> 
+        <div class="flex items-center">
+            <!-- Logo Image -->
+            <img src="photos/uob.png" alt="UOB Logo"class="w-14 h-14 object-contain mr-3">
+            <h1 class="text-xl font-bold ">UoB Students' Hub</h1>
+        </div>
 
-    <!--Nanigations Links-->
-    <nav>
-        <ul class="nav-links">
-            <!--put students' module links here-->
-            <li><a href="#">Events Calendar</a></li>
-            <li><a href="#">Study Group Finder</a></li>
-            <li><a href="#">Course Reviews</a></li>
-            <li><a href="#">Course Notes</a></li>
-            <li><a href="reviews.html" class="active">Campus News</a></li>
-            <li><a href="#">Club Activities</a></li>
-            <li><a href="#">Student Marketplace</a></li>
-        </ul>
-    </nav>
-   </header> 
+    <div class="hidden md:block flex-1 px-10">
+        <nav class="md:relative">
+            <div class="max-w-4xl">
+                <div class="flex gap-6 ">
+                    <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
+                        <!-- Text Content  -->
+                        <span class="text-sm relative z-10 text-[#ffffff]  font-bold " >Home</span>
+                        
+                        <!-- Red Square Background -->
+                        <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
+                                    opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
+                                    transition-all duration-300 z-0"></div>
+                        
+                        <!-- Bottom Line Indicator -->
+                        <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
+                        transform -translate-x-1/2
+                        transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+
+                    <div class="relative group"> <!-- Parent container must be relative -->
+                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden cursor-pointer">
+                        <span class="text-sm relative z-10 text-[#ffffff] font-bold">Menu</span>
+                        <div class="absolute inset-0 bg-[#170908] transform -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-0"></div>
+                        <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] transform -translate-x-1/2 transition-all duration-300 group-hover:w-3/4"></span>
+                        </a>
+                            
+                            <!-- Dropdown Menu (positioned below button) -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 mt-3 w-48 bg-[#170908] text-white z-10 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Events Calendar</a>
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Study Group Finder</a>
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Course Reviews</a>
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Course Notes</a>
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Campus News</a>
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Club Activities</a>
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors">Student Marketplace</a>
+                        </div>
+                        </div>
+
+                    <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
+                        <!-- Text Content (above the square) -->
+                        <span class="text-sm relative z-10 text-[#ffffff] font-bold ">Profile</span>
+                        
+                        <!-- Red Square Background -->
+                        <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
+                                    opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
+                                    transition-all duration-300 z-0"></div>
+                        
+                        <!-- Bottom Line Indicator -->
+                        <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
+                        transform -translate-x-1/2
+                        transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                    
+                    
+                    <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
+                        <!-- Text Content (above the square) -->
+                        <span class="text-sm relative z-10 text-[#ffffff] font-bold  ">Help</span>
+                        
+                        <!-- Red Square Background -->
+                        <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
+                                    opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
+                                    transition-all duration-300 z-0"></div>
+                        
+                        <!-- Bottom Line Indicator -->
+                        <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
+                        transform -translate-x-1/2
+                        transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="pb-16 md:pb-0"></div>
+    </header>
+
+    <!--The Title-->
+    <div class="title-banner">
+        <h1>Campus News</h1>
+        <p>Stay updated with the latest university announcements and events</p>
+    </div>
 
    <!--Control(search, filter, sorting)-->
    <section id="news-control">
@@ -49,78 +120,161 @@
 
    <!--Main Listin Page-->
    <main id="news-listing">
-    <section id="news-grid">
-        <!--first article-->
-        <article>
-            <img src="photos/Rankings.png" alt="University Rankings" title="UOB Advances 93 Ranks in Global University Rankings">
-            <h3>University of Bahrain Advances 93 Ranks in Global University Rankings</h3>
-            <p>
-                The University of Bahrain has introduced a new Bachelor’s program in Artificial Intelligence, starting in the Fall 2023 semester. 
-                The program aims to equip students with cutting-edge skills in AI, machine learning, and data analytics, preparing them for careers in the rapidly growing tech industry.
-            </p>
-            <div class="article-date-author">
-                <time datetime="2025-02-25" class="publish-date">Published: February 25, 2025</time>
-                <br>
-                <span class="author">By: <em>Khaled Al-Najjar</em></span>
-              </div>
-              <a href="https://www.uob.edu.bh/distinguished-in-areas-of-education-research-waste-management-and-infrastructure-uob-advances-93-ranks-in-the-world-global-university-ranking-for-sustainability-green-metric-for-2024/">Read more</a>
-         </article>
-
-        <!--second article-->
-        <article>
-            <img src="photos/uob_research_innovation.png" alt="uob_research_innovation" title="UOB Hosts Annual Research and Innovation Conference 2025">
-            <h3>UOB Hosts Annual Research and Innovation Conference</h3>
-            <p>
-                The University of Bahrain (UOB) successfully hosted its Annual Research and Innovation Conference, bringing together scholars, 
-                researchers, and industry experts to discuss the latest advancements in science, technology, and business. 
-                The conference featured keynote speeches, panel discussions, and interactive workshops.
-            </p>          
-            <div class="article-date-author">
-                <time datetime="2023-06-02" class="publish-date">Published: June 2, 2023</time>
-                <br>
-                <span class="author">By: <em>Academic Office</em></span>
-              </div>
-            <a href="">Read more</a>
-        </article>
-
-        <!--third article-->
-        <article>
-            <img src="photos/uob_badminton_championship.png" alt="National Charter University Badminton Championship at UOB">
-            <h3>UOB Hosts First National Charter University Badminton Championship</h3>
-            <p>
-                The University of Bahrain successfully hosted the inaugural National Charter University Badminton Championship, showcasing talent from students, faculty, and staff. 
-                The event, organized by the College of Health and Sports Sciences, celebrated the Kingdom of Bahrain’s 23rd anniversary of the National Action Charter.
-            </p>
-            <div class="article-date-author">
-                <time datetime="2025-02-15" class="publish-date">Published: February 15, 2025</time>
-                <br>
-                <span class="author">By: <em>Khalid Al-Hassan</em></span>
-              </div>
-              <a href="">Read more</a>
-        </article>
+    <!--Recommended News Section-->
+    <section id="recommended-news">
+        <h2><i class="fa-solid fa-star"></i> Recommended News</h2>
+        <div class="news-grid">
+            <!--First Recommended Article-->
+            <article>
+                 <img src="photos/Training Program .png" alt="Training Program " title="Training Program ">
+                <h3>UOB Shines in Sixth Arab Youth Leaders Training Program</h3>
+                <p>
+                    UOB Excellent Participation in Sixth Training Program for Preparing Arab Youth Leaders.
+                </p>          
+                <div class="article-date-author">
+                    <time datetime="2025-03-16" class="publish-date">Published: March 16, 2025</time>
+                    <br>
+                    <span class="author">By: <em>University of Bahrain.</em></span>
+                  </div>
+                <a href="">Read more</a>
+            </article>
+            <!--Second Recommended Article-->
+            <article>
+                 <img src="photos/Emirati astronauts .png" alt="Emirati astronauts" title="Emirati astronauts">
+                 <h3>UoB Hosts Astronauts for Satellite Launch</h3>
+                <p>
+                    University of Bahrain Hosts Emirati Astronauts to Mark the Launch of Bahrain’s “Al Munther” Satellite.
+                </p>
+                <div class="article-date-author">
+                    <time datetime="2025-03-05" class="publish-date">Published: March 5, 2025</time>
+                    <br>
+                    <span class="author">By: <em>University of Bahrain.</em></span>
+                </div>
+                <a href="">Read more</a>
+             </article> 
+            <!--Third Recommnended Article-->
+            <article>
+                <img src="photos/uob_badminton_championship.png" alt="National Charter University Badminton Championship at UOB">
+                <h3>National Charter University Badminton Championship</h3>
+                <p>
+                    UOB hosted the first National Charter University Badminton Championship.
+                </p>
+                <div class="article-date-author">
+                    <time datetime="2024-02-15" class="publish-date">Published: February 15, 2024</time>
+                    <br>
+                    <span class="author">By: <em>University of Bahrain.</em></span>
+                  </div>
+                  <a href="">Read more</a>
+            </article>
+        </div>
     </section>
+   </main>
 
+   <!--Regular News Section-->
+   <section id="regular-news">
+    <h2><i class="fa-solid fa-newspaper"></i> More Campus News</h2>
+    <div class="news-list">
+        <!--Regular Article 1-->
+        <article class="list-item">
+            <div class="list-content">
+                <h3>UOB Professors and Students Explore Text Generation Models</h3>
+                <div class="regular-article-date-author">
+                    <time datetime="2025-02-25">Feb 25, 2025</time>
+                    <span class="author">By: KUniversity of Bahrain.</span>
+                </div>
+                <p>Professors and Students at UOB Practice Developing Text Generation Models</p>
+            </div>
+            <did class="img-read">
+                
+            </did>
+                <img src="photos/Text Generation Models.png" alt="Professors and Students at UOB Practice Developing Text Generation Models" 
+                title="Professors and Students at UOB Practice Developing Text Generation Models">
+            <a href="" class="read-more">Read</a>
+        </article>
+            <!--Regular Article 2-->
+            <article class="list-item">
+                <div class="list-content">
+                    <h3>UOB President Highlights Digital Learning Transformation at Huawei Seminar in China</h3>
+                    <div class="regular-article-date-author">
+                        <time datetime="2024-06-09">June 9, 2024</time>
+                        <span class="author">By: University of Bahrain.</span>
+                    </div>
+                    <p>Within His Participation in Huawei’s Seminar in China President of UOB Reviews the University’s Efforts in Strategic Transformation Towards Digital Learning</p>
+                </div>
+                <img src="photos/Bahraini Women's Day.png" alt="Huawei's seminar" title="Huawei's seminar">
+                <a href="" class="read-more">Read</a>
+            </article>
+            <!--Regular Article 3-->
+            <article class="list-item">
+                <div class="list-content">
+                    <h3>UoB Wins First Place at Bahrain International Garden Show</h3>
+                    <div class="regular-article-date-author">
+                        <time datetime="2025-02-23">Feb 23, 2025</time>
+                        <span class="author">By: University of Bahrain.</span>
+                    </div>
+                    <p>The University of Bahrain secured first place at the Bahrain International Garden Show for its plant sustainability project, supporting Bahrain’s carbon neutrality goals.</p>
+                </div>
+                <img src="photos/International Garden Show.png" alt=" International Garden Show" title=" International Garden Show">
+                <a href="" class="read-more">Read</a>
+            </article>
+            <!--Regular Article 4-->
+            <article class="list-item">
+                <div class="list-content">
+                    <h3>Symposium at BTC reviews Evolution of Education</h3>
+                    <div class="regular-article-date-author">
+                        <time datetime="1015-02-12">Feb 12, 2025</time>
+                        <span class="author">By: University of Bahrain.</span>
+                    </div>
+                    <p>Bahrain Teachers College at UoB held its first symposium on educational innovation, featuring Dr. Hanin Anwar Bukamal's keynote on inclusive education and 15 sessions on reform and sustainability.</p>
+                </div>
+                <img src="photos/BTC .png" alt="Symposium at BTC reviews Evolution of Education" title="Symposium at BTC reviews Evolution of Education">
+                <a href="" class="read-more">Read</a>
+            </article>
+        </div>
+   </section>
+   
     <!-- Pagination -->
      <div id="Pagination">
         <a href="#" class="prev">« Prev</a>
-        <a href="#" class="page-number">1</a>
+        <a href="#" class="page-number active">1</a>
         <a href="#" class="page-number">2</a>
         <a href="#" class="page-number">3</a>
         <a href="#" class="next">Next »</a>
      </div>
     
      <!-- Add News Button-->
-      <button id="add-news"><a=href=#>Add News</a></button>
+      <a id="add-news" href="">+ Add News</a>    
    </main>
 
-   <!--Footer-->
-   <footer>
-    <p>&copy; 2025 Campus Hub. All rights reserved. </p>
-    <ul class="footer-links">
-        <li><a href="">Privacy Policy</a></li>
-        <li><a href="">Terms of Services</a></li>
-        <li><a href="">Contact Us</a></li>
-    </ul>
-   </footer>
+ <!--Footer-->
+ <footer>
+    <div class="footer-contnet">
+        <div class="footer-section">
+            <img src="photos/uob.png" alt="UOB logo" class="footer-logo">
+            <p>Campus Hub - Connecting Students</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="layout.html" class="active">Home</a></li>
+                <li><a href="https://www.uob.edu.bh/admission-requirements/" target="_blank">Join UOB</a></li>
+                <li><a href="https://www.uob.edu.bh/current-students/" target="_blank">Current Students</a></li>
+                <li><a href="https://www.uob.edu.bh/future-students/" target="_blank">Future Students</a></li>
+                <li><a href="https://ucs.uob.edu.bh/" target="_blank">Course Schedule</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="https://www.uob.edu.bh/students-service-center/" target="_blank">Help Center</a></li>
+                <li><a href="https://www.uob.edu.bh/contact/" target="_blank">Contact Us</a></li>
+                <li><a href="https://www.uob.edu.bh/privacy-policy/" target="_blank">Privacy Policy</li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy;2025 Campus Hub. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
