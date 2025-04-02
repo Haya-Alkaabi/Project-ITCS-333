@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="itemform.css">
+
+   <title>Item adding Form </title>
+</head>
+<body>
+    <div class="container">
+        <header>Add Item</header>
+        <form action="#">
+            <div class="form item">
+                <div class="details personal">
+                    <span class="title">Personal Data</span>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Enter your name" required>
+                        </div>
+                        <div class="input-field">
+                            <label>ID</label>
+                            <input type="number" placeholder="Enter your ID" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="text" placeholder="Enter your email" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Mobile Number</label>
+                            <input type="number" placeholder="Enter mobile number" required>
+                        </div>
+                        <div class="input-field">
+                            <label>
+                                college
+                            </label>
+                            <select required>
+                                <option disabled selected>Select College</option>
+                                <option>Information Technology</option>
+                                <option>Science</option>
+                                <option>Law</option>
+                                <option>Engineering</option>
+                                <option>Business</option>
+                                <option>health & Sports Science</option>
+                                <option>Arts</option>
+                                <option>Applied studies</option>
+                                <option>Law</option>
+                                <option>Bahrain Teachers College</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label>Major</label>
+                            <input type="text" placeholder="Enter your Major" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="Item details">
+                    <span class="title">Item Details</span>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Item Name</label>
+                            <input type="text" placeholder="Enter Item name" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Type</label>
+                            <input type="text" placeholder="Enter type of the item" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Upload an image of the item</label>
+                            <input type="image" placeholder="Enter item image" required src="img\image_icon.png" alt = "submit"width="50" height="50">
+                        </div>
+                        <div class="input-field">
+                            <label>Brief</label>
+                            <input type="text" placeholder="Enter a brief discruption" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Price</label>
+                            <input type="number" placeholder="Enter items' price" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Avaliable Quantity</label>
+                            <input type="Number" placeholder="Enter the avaliable Quantity" required>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="SubmitBtn">
+                            <span class="btnText">Submit</span>
+                        </button>
+                        <button class="CancelBtn">
+                            <span class="btnText">Cancel</span>
+                        </button>
+                    </div>
+                </div> 
+            </div>
+        </form>
+    </div>
+</body>
+</html>
