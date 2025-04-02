@@ -22,32 +22,110 @@ header {
     top: 0;
     z-index: 100;
 }
-
+ 
 .main_container{
     background-color: #fbf9f1;
 }
 
+/*greeting part*/
 #greeting_container{
     background-color: #FBF9F8;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem ;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+    align-items: center
 }
 
+#greeting_h1{
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #002E5D;
+    margin-bottom: 1rem;
+}
+
+#greeting_p{
+    color: #4B5563;
+    max-width: 28rem;
+    margin-bottom: 1rem;
+}
+
+.greeting_button_group{
+    display: flex;
+    gap: 0.75rem;
+}
+
+.greeting_buttons{
+    padding: 0.5rem 1rem;
+    background-color: #dec8a4;
+    border-radius: 0.375rem;
+}
+
+.greeting_buttons:hover{
+    color: #c8102e;
+}
+
+.greeting_button:disabled {
+    opacity: 0.5;
+}
+
+
+/*item gallery part*/
+
+/*control gallery "need some fix all of it is in tailwind"*/
+
+/*cards*/
 #cards-container{
     display: flex;
     flex-wrap: wrap;
+    gap: 1.5rem;
     justify-content: center;
     margin-bottom: 2rem;    
     background-color: white; 
     border-radius: 0.5rem;
 }
 
+.card{
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease;
+    overflow: hidden;   
+}
+
+.card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
 /*for itemscards*/
 #card1{
     background-color: white;
     overflow: hidden;
+}
+
+/*pagination control*/
+.Pagination a{
+    color: #002E5D;
+    text-decoration: none;
+    padding: 0.5rem;
+    display: inline-block;
+}
+
+.Pagination a.active{
+    background-color: #dec8a467;
+    text-decoration:underline;
+    border-radius: 0.5rem;
+    font-weight: bold;
+}
+
+.Pagination a:hover:not(.active){
+    background-color: #dec8a425;
+    border-radius: 0.5rem;
 }
 
 /*Footer*/
