@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>campus hub | student Marketplace</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="itemDetail.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <header class="flex items-center justify-between sticky top-0 z-50 px-4 py-2 shadow-sm"> 
+            <div class="flex items-center">
+                <!-- Logo Image -->
+                <img src="\img\uob-logo.png" 
+                        alt="UOB Logo"
+                        class="w-14 h-14 object-contain mr-3">
+                <h1 class="text-xl font-bold ">UoB Students' Hub</h1>
+            </div>
+
+        <div class="hidden md:block flex-1 px-10">
+            <nav class="md:relative">
+                <div class="max-w-4xl">
+                    <div class="flex gap-6 ">
+                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
+                            <!-- Text Content  -->
+                            <span class="text-sm relative z-10 text-[#ffffff]  font-bold " >Home</span>
+                            
+                            <!-- Red Square Background -->
+                            <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
+                                        opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
+                                        transition-all duration-300 z-0"></div>
+                            
+                            <!-- Bottom Line Indicator -->
+                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
+                            transform -translate-x-1/2
+                            transition-all duration-300 group-hover:w-3/4"></span>
+                        </a>
+
+                        <div class="relative group"> <!-- Parent container must be relative -->
+                            <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden cursor-pointer">
+                            <span class="text-sm relative z-10 text-[#ffffff] font-bold">Menu</span>
+                            <div class="absolute inset-0 bg-[#170908] transform -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-0"></div>
+                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] transform -translate-x-1/2 transition-all duration-300 group-hover:w-3/4"></span>
+                            </a>
+                                
+                                <!-- Dropdown Menu (positioned below button) -->
+                            <div class="absolute left-1/2 transform -translate-x-1/2 mt-3 w-48 bg-[#170908] text-white z-10 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Events Calendar</a>
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Study Group Finder</a>
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Course Reviews</a>
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Course Notes</a>
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Campus News</a>
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Club Activities</a>
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors">Student Marketplace</a>
+                            </div>
+                            </div>
+
+                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
+                            <!-- Text Content (above the square) -->
+                            <span class="text-sm relative z-10 text-[#ffffff] font-bold ">Profile</span>
+                            
+                            <!-- Red Square Background -->
+                            <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
+                                        opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
+                                        transition-all duration-300 z-0"></div>
+                            
+                            <!-- Bottom Line Indicator -->
+                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
+                            transform -translate-x-1/2
+                            transition-all duration-300 group-hover:w-3/4"></span>
+                        </a>
+                        
+                        
+                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
+                            <!-- Text Content (above the square) -->
+                            <span class="text-sm relative z-10 text-[#ffffff] font-bold  ">Help</span>
+                            
+                            <!-- Red Square Background -->
+                            <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
+                                        opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
+                                        transition-all duration-300 z-0"></div>
+                            
+                            <!-- Bottom Line Indicator -->
+                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
+                            transform -translate-x-1/2
+                            transition-all duration-300 group-hover:w-3/4"></span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <div class="pb-16 md:pb-0"></div>
+        </header>
+
+        <main>
+            <!-- greetings and back -->
+            <div class="upper my-3 mx-3" >
+                <button class="Back_button ">back to gallery</button>
+            </div>
+
+            <!-- item main details -->
+            <div class=" flex  bg-white rounded-lg shadow-md my-3">
+                <!--Image item-->
+                <div class="gap-6 bg-white rounded-lg shadow-md">
+                    <img src="img\NE341.png" class="w-20 h-30">
+                </div>
+
+                <!-- middle -->
+                <div class="gap-6 bg-white rounded-lg shadow-md">
+                    <h1>ITNE341 COURSE NOTES</h1>
+                    <h1>By Israa</h1>
+                    <a href="#">Customer Reviews</a>
+                    <div class="gap-6 bg-white rounded-lg shadow-md">
+                        <h1>OverView:</h1>
+                        <p>
+                            ITNE341 Network Security Course Notes – Quick Overview 
+
+                            These concise and focused notes cover "all key topics from the ITNE341 Network Security course", including:  
+                            
+                            - Network threats & attacks - (e.g., DDoS, malware, phishing)  
+                            - Cryptography fundamentals - (symmetric/asymmetric encryption, hashing)  
+                            - Security protocols - (SSL/TLS, IPsec, VPNs)  
+                            - Firewalls, IDS/IPS, and access control  
+                            - Wireless & cloud security risks
+                            - Best practices for secure network design
+                            
+                            Perfect for "exam prep, assignments, and quick revision"—aligned with the ITNE341 curriculum to help you master core concepts efficiently.  
+                            </p>
+                    </div>
+
+                </div>
+
+                <!-- right -->
+                <div class="bg-white rounded-lg shadow-md">
+                    <h1>Format : pdf</h1>
+                    <h1>Price : 5.00 BD</h1>
+                    <h1>Contact No: +973 3333 3333</h1>
+                </div>
+
+            </div>
+
+            <!-- customer reviews -->
+            <div class="gap-6 bg-white rounded-lg shadow-md">
+                <!-- horizontal cards for reviews-->
+                 <div>
+                    <P>
+                        "Barely passed my midterms until I got these notes! Everything from crypto to firewalls is explained so clearly—no textbook jargon. The attack examples saved me on the exam. 10/10!"
+                    </P>
+                 </div>
+
+                 <div>
+                    <P>
+                        "I use these notes alongside lectures—they’re like a cheat sheet for ITNE341. Perfect for last-minute review, especially wireless security and VPNs. Wish they had more practice questions though."
+                    </P>
+                 </div>
+
+                 <div>
+                    <P>
+                        "Crushed the final thanks to these. Skipped half the lectures but the summaries on DDoS and IDS were gold. Short, to the point, and no fluff. Lifesaver!"
+                    </P>
+                 </div>
+
+            </div>
+        </main>
+
+        <!--Footer-->
+        <footer>
+                <div class="footer-contnet">
+                    <div class="footer-section">
+                        <img src="\img\uob-logo.png" alt="UOB logo" class="footer-logo">
+                        <p>Campus Hub - Connecting Students</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="layout.html" class="active">Home</a></li>
+                            <li><a href="https://www.uob.edu.bh/admission-requirements/" target="_blank">Join UOB</a></li>
+                            <li><a href="https://www.uob.edu.bh/current-students/" target="_blank">Current Students</a></li>
+                            <li><a href="https://www.uob.edu.bh/future-students/" target="_blank">Future Students</a></li>
+                            <li><a href="https://ucs.uob.edu.bh/" target="_blank">Course Schedule</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="https://www.uob.edu.bh/students-service-center/" target="_blank">Help Center</a></li>
+                            <li><a href="https://www.uob.edu.bh/contact/" target="_blank">Contact Us</a></li>
+                            <li><a href="https://www.uob.edu.bh/privacy-policy/" target="_blank">Privacy Policy</li>
+                        </ul>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy;2025 Campus Hub. All rights reserved.</p>
+                    </div>
+                </div>
+        </footer>
+    </body>
