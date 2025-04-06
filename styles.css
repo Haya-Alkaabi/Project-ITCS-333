@@ -230,10 +230,18 @@ body {
   }
 
   /*Regular News List*/
+  #regula-news{
+    margin-bottom: 0;
+  }
+  .list-content {
+    flex: 1;
+    min-width: 0;
+  }
   .news-list{
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-bottom: 0;
   }  
 
   #regula-news h2{
@@ -248,6 +256,7 @@ body {
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     gap: 20px;
+    font-weight: bold;
   }
 
   .list-item:hover{
@@ -260,14 +269,7 @@ body {
     min-width: 0;
   }
 
-  .list-item img{
-    width: 120px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 4px;
-    flex-shrink: 0;
-    float: right;
-  }
+
 
   .list-item h3{
     color: #002E5D;
@@ -293,23 +295,39 @@ body {
     display: flex;
     overflow: hidden;
   }
+                                                          
+  .list-item p{
+    max-width: 900px;
+  }
+  .regular-article-img-read-section img{
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    position: relative;
+    left: 990px;
+    bottom: 70px;
+  }
 
-  .list-item .read-more{
+  .regular-article-img-read-section a{
     padding: 6px 12px;
     background-color: #DBC26D;
     color: white;
     border-radius: 4px;
     font-size: 0.9rem;
     white-space: nowrap;
+    position: relative;
+    /* left: 1110px; */
+    bottom: 120px;
+    float: right;
   }
-                                                          
-  .list-item .read-more:hover{
+
+  .regular-article-img-read-section .read-more:hover{
     background-color: #C8102E;
   }
 
-  .img-read{
-    align-items: center;
-  }
+
+
   /* Pagination */
   #Pagination{
     display: flex;
@@ -421,20 +439,103 @@ footer{
   border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-  /*Responsive Design*/
+/*AddNews Page*/
+.new-news{
+  background-color: #FBF9F1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
-  @media (max-width: 768px) {
-    .nav-links {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    #news-grid {
-      grid-template-columns: 1fr;
-    }
-  
-    #news-controls {
-      flex-direction: column;
-      gap: 10px;
-    }
-  }
+.new-news h1{
+  color: #002E5D;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.new-news h2::after{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 3px;
+  background-color: #DBC26D;
+}
+
+label{
+  font-weight: bold;
+  color: #002E5D;
+  margin-bottom: 0.5rem;
+  display:block;
+  font-size: 1.1rem;
+}
+
+input[type="text"],
+input[type="file"],
+textarea,
+select{
+  width: 100%;
+  padding: 0.9rem;
+  border: 1px solid #dec8a4;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus,
+textarea:focus,
+select:focus{
+  border-color: #DBC26D; /* Gold */
+  box-shadow: 0px 0px 4px rgba(219, 194, 109, 0.9);
+  outline: none;
+}
+
+textarea{
+  min-height: 150px;
+  resize: vertical;
+}
+
+
+/* Button Styles */
+button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"] {
+  background-color: #DBC26D;
+  color: white;
+}
+
+button[type="submit"]:hover {
+  background-color: #C8102E;
+}
+
+button.cancel {
+  background-color: #f1f1f1;
+  color: #002E5D;
+  margin-left: 1rem;
+}
+
+button.cancel:hover {
+  background-color: #e1e1e1;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}

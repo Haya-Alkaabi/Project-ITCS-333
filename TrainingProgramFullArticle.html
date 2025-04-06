@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UOB Wins Sustainability Award - Campus Hub</title>
+    <!-- Using Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles extending Tailwind */
+        .bg-uob-navy { background-color: #002E5D; }
+        .text-uob-navy { color: #002E5D; }
+        .bg-uob-gold { background-color: #DBC26D; }
+        .text-uob-gold { color: #DBC26D; }
+        .bg-uob-red { background-color: #C8102E; }
+        .text-uob-red { color: #C8102E; }
+        .bg-uob-cream { background-color: #FBF9F1; }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 2rem auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="bg-uob-cream">
+    <!-- Header (same as main page) -->
+    
+    <!--Header-->
+    <header class="flex items-center justify-between sticky top-0 z-50 px-4 py-2 shadow-sm"> 
+        <div class="flex items-center">
+            <!-- Logo Image -->
+            <img src="photos/uob.png" alt="UOB Logo"class="w-14 h-14 object-contain mr-3">
+            <h1 class="text-xl font-bold ">UoB Students' Hub</h1>
+        </div>
+
+    <div class="hidden md:block flex-1 px-10">
+        <nav class="md:relative">
+            <div class="max-w-4xl">
+                <div class="flex gap-6 " bg-uob-navy>
+                    <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
+                        <!-- Text Content  -->
+                        <span class="text-sm relative z-10 text-[#ffffff]  font-bold " >Home</span>
+                        
+                        <!-- Red Square Background -->
+                        <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
+                                    opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
+                                    transition-all duration-300 z-0"></div>
+                        
+                        <!-- Bottom Line Indicator -->
+                        <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
+                        transform -translate-x-1/2
+                        transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+
+                    <div class="relative group"> <!-- Parent container must be relative -->
+                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden cursor-pointer">
+                        <span class="text-sm relative z-10 text-[#ffffff] font-bold">Menu</span>
+                        <div class="absolute inset-0 bg-[#170908] transform -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-0"></div>
+                        <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] transform -translate-x-1/2 transition-all duration-300 group-hover:w-3/4"></span>
+                        </a>
+                            
+                            <!-- Dropdown Menu (positioned below button) -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 mt-3 w-48 bg-[#170908] text-white z-10 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Events Calendar</a>
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Study Group Finder</a>
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Course Reviews</a>
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Course Notes</a>
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Campus News</a>
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Club Activities</a>
+                        <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors">Student Marketplace</a>
+                        </div>
+                        </div>
+
+                    <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
+                        <!-- Text Content (above the square) -->
+                        <span class="text-sm relative z-10 text-[#ffffff] font-bold ">Profile</span>
+                        
+                        <!-- Red Square Background -->
+                        <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
+                                    opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
+                                    transition-all duration-300 z-0"></div>
+                        
+                        <!-- Bottom Line Indicator -->
+                        <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
+                        transform -translate-x-1/2
+                        transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                    
+                    
+                    <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
+                        <!-- Text Content (above the square) -->
+                        <span class="text-sm relative z-10 text-[#ffffff] font-bold  ">Help</span>
+                        
+                        <!-- Red Square Background -->
+                        <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
+                                    opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
+                                    transition-all duration-300 z-0"></div>
+                        
+                        <!-- Bottom Line Indicator -->
+                        <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
+                        transform -translate-x-1/2
+                        transition-all duration-300 group-hover:w-3/4"></span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="pb-16 md:pb-0"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Back Navigation -->
+        <nav class="mb-6">
+            <a href="../news.html" class="inline-flex items-center text-uob-gold hover:text-uob-red transition">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Campus News
+            </a>
+        </nav>
+
+        <!-- Article Container -->
+        <article class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <!-- Featured Image -->
+            <img src="../photos/sustainability-award.jpg" alt="UOB sustainability team with award" class="w-full h-96 object-cover">
+
+            <!-- Article Header -->
+            <div class="p-6 md:p-8">
+                <div class="flex justify-between items-start flex-wrap gap-4 mb-4">
+                    <div>
+                        <span class="inline-block bg-uob-gold text-uob-navy px-3 py-1 rounded-full text-sm font-semibold mb-3">Sustainability</span>
+                        <h1 class="text-3xl font-bold text-uob-navy">UOB Wins Prestigious Green Campus Initiative Award</h1>
+                    </div>
+                    <!-- Edit/Delete buttons (visible to admins) -->
+                    <div class="flex space-x-2">
+                        <a href="edit-news.html?id=123" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition flex items-center">
+                            <i class="fas fa-edit mr-2"></i> Edit
+                        </a>
+                        <button class="bg-uob-red text-white px-4 py-2 rounded-lg hover:bg-red-700 transition flex items-center">
+                            <i class="fas fa-trash-alt mr-2"></i> Delete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Meta Information -->
+                <div class="flex items-center text-sm text-gray-500 mb-6 space-x-4">
+                    <span class="flex items-center">
+                        <i class="fas fa-user mr-1 text-uob-gold"></i> By: University of Bahrain
+                    </span>
+                    <span class="flex items-center">
+                        <i class="fas fa-calendar-alt mr-1 text-uob-gold"></i>
+                        <time datetime="2023-11-15">Published: November 15, 2023</time>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Article Content -->
+            <div class="article-content px-6 md:px-8 pb-8">
+                <p class="lead">The University of Bahrain has been awarded the prestigious Green Campus Initiative award for its outstanding contributions to environmental sustainability through innovative campus projects.</p>
+                
+                <p>This recognition comes after UOB successfully implemented a comprehensive solar energy program that has reduced the university's carbon footprint by 40% in the past year alone. The award was presented during the International Green Universities Summit held in Singapore.</p>
+                
+                <img src="../photos/solar-panels.jpg" alt="Solar panels on UOB campus" class="border border-gray-200">
+                
+                <h2 class="text-2xl font-bold text-uob-navy mt-8 mb-4">Key Achievements</h2>
+                
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li>Installation of 5,000 solar panels across campus buildings</li>
+                    <li>Water conservation systems saving 2 million gallons annually</li>
+                    <li>Zero-waste initiatives in all cafeterias and food outlets</li>
+                    <li>EV charging stations for electric vehicles</li>
+                </ul>
+                
+                <p>"This award reflects our commitment to sustainable development and environmental stewardship," said Dr. Mohammed Al-Ansari, UOB's Sustainability Officer. "We're proud to lead by example in Bahrain's higher education sector."</p>
+            </div>
+        </article>
+
+        <!-- Comments Section -->
+        <section class="mt-12 bg-white rounded-xl shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-uob-navy mb-6 flex items-center">
+                <i class="fas fa-comments text-uob-gold mr-3"></i> Student Comments (4)
+            </h2>
+            
+            <!-- Comment Form -->
+            <form class="mb-8">
+                <div class="mb-4">
+                    <label for="comment" class="block text-sm font-medium text-gray-700 mb-2">Add your comment</label>
+                    <textarea id="comment" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-uob-gold focus:border-transparent" placeholder="Share your thoughts..."></textarea>
+                </div>
+                <button type="submit" class="bg-uob-gold text-white px-6 py-2 rounded-lg hover:bg-uob-red transition flex items-center">
+                    <i class="fas fa-paper-plane mr-2"></i> Post Comment
+                </button>
+            </form>
+            
+            <!-- Comments List -->
+            <div class="space-y-6">
+                <!-- Comment 1 -->
+                <div class="border-b pb-6 last:border-0 last:pb-0">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-uob-navy">Ahmed Khalid</span>
+                        <time class="text-sm text-gray-500">2 days ago</time>
+                    </div>
+                    <p class="text-gray-700">This is amazing news! Proud to be part of a university that prioritizes sustainability. The solar panels near the engineering building are particularly impressive.</p>
+                </div>
+                
+                <!-- Comment 2 -->
+                <div class="border-b pb-6 last:border-0 last:pb-0">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-uob-navy">Layla Al-Mansoori</span>
+                        <time class="text-sm text-gray-500">1 week ago</time>
+                    </div>
+                    <p class="text
