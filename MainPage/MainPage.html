@@ -5,28 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events Calendar</title>
     <script src="https://cdn.tailwindcss.com"></script>
-        <link href="C:\Users\202203297\Desktop\333\ITCS333 PROJECT\Project-ITCS-333\Events Calendar\universalsheet.css" rel="stylesheet">
+        <link href="C:\Users\202203297\Desktop\333\ITCS333 PROJECT\Project-ITCS-333\MainPage\universalsheet.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
-
-
 </head>
-<body >
-    <header class="flex items-center justify-between sticky top-0"> 
-        <div class="flex items-center">
+<body class="overflow-x-hidden">
+ 
+    <header class="flex items-center ustify-between sticky top-0 z-50 px-4 py-2 shadow-sm"> 
+        <div class="flex items-center ">
             <!-- Logo Image (using img tag for better control) -->
             <img src="../Images/uobp.png" 
                  alt="UOB Logo"
-                 class="w-14 h-14 object-contain mr-3">  <!-- Adjust width/height as needed -->
-            
-         
-            <h1 class="text-xl font-bold ">UoB Students' Hub</h1>
-          </div>
+                 class="w-10 h-10 md:w-14 md:h-14 object-contain mr-2">  <!-- Adjust width/height as needed -->
+            <h1 class="text-lg md:text-xl font-bold ">UoB Students' Hub</h1>
+          </div> 
+          <button class="md:hidden p-2 rounded-md focus:outline-none">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
 
-        <div class="navg flex-1">
-            <nav class="md:relative">
+        <div class="hidden md:block flex-1 px-10">
                 <div class="max-w-4xl">
-                    <div class="flex gap-6 ">
+                    <div class="flex gap-6">
                         <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
                           <!-- Text Content (above the square) -->
                           <span class="text-sm relative z-10 text-[#E80101]  font-bold " >Home</span>
@@ -42,20 +41,24 @@
                           transition-all duration-300 group-hover:w-3/4"></span>
                         </a>
                         
-                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
-                          <!-- Text Content (above the square) -->
-                          <span class="text-sm relative z-10 text-[#ffffff] font-bold ">Settings</span>
-                          
-                          <!-- Red Square Background -->
-                          <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
-                                      opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
-                                      transition-all duration-300 z-0"></div>
-                          
-                          <!-- Bottom Line Indicator -->
-                          <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
-                          transform -translate-x-1/2
-                          transition-all duration-300 group-hover:w-3/4"></span>
-                        </a>
+                        <div class="relative group"> <!-- Parent container must be relative -->
+                          <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden cursor-pointer">
+                            <span class="text-sm relative z-10 text-[#ffffff] font-bold">Menu</span>
+                            <div class="absolute inset-0 bg-[#170908] transform -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-0"></div>
+                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] transform -translate-x-1/2 transition-all duration-300 group-hover:w-3/4"></span>
+                          </a>
+                        
+                          <!-- Dropdown Menu (positioned below button) -->
+                          <div class="absolute left-1/2 transform -translate-x-1/2 mt-3 w-48 bg-[#170908] text-white z-10 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Events Calendar</a>
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Study Group Finder</a>
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Course Reviews</a>
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Course Notes</a>
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Campus News</a>
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Club Activities</a>
+                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors">Student Marketplace</a>
+                          </div>
+                        </div>
                         <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
                           <!-- Text Content (above the square) -->
                           <span class="text-sm relative z-10 text-[#E80101] font-bold ">Profile</span>
@@ -87,15 +90,13 @@
                           transition-all duration-300 group-hover:w-3/4"></span>
                         </a>
                       </div>
-                </div>
+               
               </nav>
-              
               <div class="pb-16 md:pb-0"></div>
         </header>
-
 <main>
 
-    <section >
+    <section>
         <div id="images">
             <!-- Navigation buttons positioned inside the image -->
           
@@ -128,30 +129,38 @@
                     </div>
             </article>
 
-            <div class="nav-buttons">
-                <div class="flex ">
-                    <button class=" relative p-4 group overflow-hidden bg-white w-20 h-20 flex items-center justify-center  hover:bg-blue-100 transition">
-                      <div class="absolute inset-0 bg-[#f80000] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"></div>
-                        <span class="font-bold text-xl"><img   class="w-4 h-4 object-contain mr-3  transition-all duration-300 transform hover:-translate-x-1 
-                            active:translate-x-0" src="../Images/leftr.png" ></span>
-                    </button>
-                    <button id="right" class=" relative p-4 group overflow-hidden bg-white w-20 h-20 flex items-center justify-center  hover:bg-blue-100 transition">
-                      <div class="absolute inset-0 bg-[#f80000] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"></div>
-                    <span class="font-bold text-xl ">
-                    <span class="font-bold text-xl"><img class="w-4 h-4 object-contain mr-3transition-all duration-300 transform hover:translate-x-1 
-                        active:translate-x-0  " src="../Images/right-arrow.png"></span>
-                     
-                    </button>
-                </div>
-            </div>
+            
            
+            <i class="fas fa-users"></i>
 
             
         </div>
         
         <div id="mainc">
-       
-         
+          <article class="flex flex-col space-y-9 p-8 items-start mx-4 mt-8 md:mx-16 md:mt-16 lg:ml-35 lg:mr-auto lg:mt-24 xl:ml-64 max-w-2xl"> 
+                        <h3 class="text-lg font-semibold text-[#CC9C5D] uppercase tracking-wider text-left">
+              WHAT WE DO
+            </h3>
+            <h1 class="text-5xl font-bold text-left">
+              SERVICES WE OFFER
+              <span class="block mt-1 text-5xl">FOR STUDENTS</span>
+            </h1>
+            <div class="relative max-w-xs">
+              
+              
+              <img src="../Images/fatoom.png" class="rounded-lg relative z-10 transform hover:scale-105 transition duration-300">
+            </div>
+
+
+
+          </article>
+          
+
+
+
+
+
+
     </section>
 
 </main>
