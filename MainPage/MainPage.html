@@ -3,221 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events Calendar</title>
+    <title>Campus Hub | Home</title>
+    <link href="universalsheet.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-        <link href="C:\Users\202203297\Desktop\333\ITCS333 PROJECT\Project-ITCS-333\MainPage\universalsheet.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
-<body class="overflow-x-hidden">
- 
-    <header class="flex items-center ustify-between sticky top-0 z-50 px-4 py-2 shadow-sm"> 
-        <div class="flex items-center ">
-            <!-- Logo Image (using img tag for better control) -->
-            <img src="../Images/uobp.png" 
-                 alt="UOB Logo"
-                 class="w-10 h-10 md:w-14 md:h-14 object-contain mr-2">  <!-- Adjust width/height as needed -->
-            <h1 class="text-lg md:text-xl font-bold ">UoB Students' Hub</h1>
-          </div> 
-          <button class="md:hidden p-2 rounded-md focus:outline-none">
-            <i class="fas fa-bars text-xl"></i>
-        </button>
-
-        <div class="hidden md:block flex-1 px-10">
-                <div class="max-w-4xl">
-                    <div class="flex gap-6">
-                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
-                          <!-- Text Content (above the square) -->
-                          <span class="text-sm relative z-10 text-[#E80101]  font-bold " >Home</span>
-                          
-                          <!-- Red Square Background -->
-                          <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
-                                      opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
-                                      transition-all duration-300 z-0"></div>
-                          
-                          <!-- Bottom Line Indicator -->
-                          <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
-                          transform -translate-x-1/2
-                          transition-all duration-300 group-hover:w-3/4"></span>
-                        </a>
-                        
-                        <div class="relative group"> <!-- Parent container must be relative -->
-                          <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden cursor-pointer">
-                            <span class="text-sm relative z-10 text-[#ffffff] font-bold">Menu</span>
-                            <div class="absolute inset-0 bg-[#170908] transform -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-0"></div>
-                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] transform -translate-x-1/2 transition-all duration-300 group-hover:w-3/4"></span>
-                          </a>
-                        
-                          <!-- Dropdown Menu (positioned below button) -->
-                          <div class="absolute left-1/2 transform -translate-x-1/2 mt-3 w-48 bg-[#170908] text-white z-10 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Events Calendar</a>
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Study Group Finder</a>
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Course Reviews</a>
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Course Notes</a>
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Campus News</a>
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Club Activities</a>
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors">Student Marketplace</a>
-                          </div>
-                        </div>
-                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
-                          <!-- Text Content (above the square) -->
-                          <span class="text-sm relative z-10 text-[#E80101] font-bold ">Profile</span>
-                          
-                          <!-- Red Square Background -->
-                          <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
-                                      opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
-                                      transition-all duration-300 z-0"></div>
-                          
-                          <!-- Bottom Line Indicator -->
-                          <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
-                          transform -translate-x-1/2
-                          transition-all duration-300 group-hover:w-3/4"></span>
-                        </a>
-                        
-                        
-                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
-                          <!-- Text Content (above the square) -->
-                          <span class="text-sm relative z-10 text-[#ffffff] font-bold  ">Help</span>
-                          
-                          <!-- Red Square Background -->
-                          <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
-                                      opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
-                                      transition-all duration-300 z-0"></div>
-                          
-                          <!-- Bottom Line Indicator -->
-                          <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
-                          transform -translate-x-1/2
-                          transition-all duration-300 group-hover:w-3/4"></span>
-                        </a>
+<body>
+     <header > 
+            <div>
+                <img src="../Images/uobp.png" 
+                        alt="UOB Logo">
+                        <h1 ID="LOG" class="mt-1">UoB  | Students Hub</h1>
                       </div>
-               
-              </nav>
-              <div class="pb-16 md:pb-0"></div>
-        </header>
-<main>
 
-    <section>
-        <div id="images">
-            <!-- Navigation buttons positioned inside the image -->
-          
-            <article class="absolute right-10 md:right-80 top-1/2 transform -translate-y-1/2 w-[90%] sm:w-[60%] md:w-[40%] max-w-md text-right p-4 md:p-6 ">
-              <div class="flex items-baseline flex-wrap">
-                <h1 class="whitespace-nowrap text-xl sm:text-2xl md:text-4xl lg:text-6xl font-bold text-white">
-                  University of Bahrain
-                </h1>
-                <h1 class="text-xl sm:text-2xl md:text-4xl font-bold text-white ml-2">
-                  Students' Hub
-                </h1>
-              
-              </div>
-              <br>
-                  <p class="text-sm sm:text-base text-[#f7eedb] text-justify">
-                Offers you numerous integrated services, so hurry and 
-                register with your university Academic ID to become one of
-                our family members!
-              </p>
-              <br>
-
-                    <!-- BUTTONS HERE -->
-                    <div class="flex gap-4 mt-4">
-                        <button  class="bg-[#f80000] text-white px-6 py-2 hover:bg-[#d10000] transition-colors rounded-none">
-                            Sign Up
-                        </button>
-                        <button  class="bg-[#f80000] text-white px-6 py-2 hover:bg-[#d10000] transition-colors rounded-none">
-                            Login
-                        </button>
-                    </div>
-            </article>
-
-            
-           
-            <i class="fas fa-users"></i>
-
-            
-        </div>
+            <div class="mobile-menu-button md:hidden">
+                <button class="menu-icon">
+                  <svg stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round"  stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                  </svg> 
+                </button>
+            </div>
         
-        <div id="mainc">
-          <article class="flex flex-col space-y-9 p-8 items-start mx-4 mt-8 md:mx-16 md:mt-16 lg:ml-35 lg:mr-auto lg:mt-24 xl:ml-64 max-w-2xl"> 
-                        <h3 class="text-lg font-semibold text-[#CC9C5D] uppercase tracking-wider text-left">
-              WHAT WE DO
-            </h3>
-            <h1 class="text-5xl font-bold text-left">
-              SERVICES WE OFFER
-              <span class="block mt-1 text-5xl">FOR STUDENTS</span>
-            </h1>
-            <div class="relative max-w-xs">
-              
-              
-              <img src="../Images/fatoom.png" class="rounded-lg relative z-10 transform hover:scale-105 transition duration-300">
+            <div class="hidden md:block flex-1 px-10 "> 
+                <nav >
+                    <div >  
+                        <div class="flex gap-3 mr-auto">  
+                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span >Home</span>
+                                <div ></div>
+                                <span ></span>
+                            </a>
+        
+                            <div class="relative group">
+                                <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                    <span >Menu</span>
+                                    <div ></div>
+                                    <span ></span>
+                                </a>
+                                
+                                <!-- Dropdown Menu -->
+                                <div id="MN" >
+                                    <a href="#">Events Calendar</a>
+                                    <a href="#">Study Group Finder</a>
+                                    <a href="#">Course Reviews</a>
+                                    <a href="#">Course Notes</a>
+                                    <a href="#">Campus News</a>
+                                    <a href="#">Club Activities</a>
+                                    <a href="#">Student Marketplace</a>
+                                </div>
+                            </div>
+        
+                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span >Profile</span>
+                                <div ></div>
+                                <span ></span>
+                            </a>
+                            
+                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span>Help</span>
+                                <div ></div>
+                                <span ></span>
+                            </a>
+                        </div>
+                     
+                    </div>
+                </nav>
             </div>
+        </header>
 
+    <!--main content-->
+    <main id="home-main">
+        <!--layout section-->
+        <section class="layout">
+            <div class="layout-content">
+                <!-- <img src="UOBCampus.jpg" alt="UOB Campus"> -->
+                <h1>Welcome to UOB Students' Hub</h1>
+                <p>Your gateway to university resources and student services</p>
+                <div class="search-container">
+                    <input type="text" placeholder="Search campus resources...">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+        </section>
 
+        <!--Qiuck Access links-->
+        <section class="quick-links">
+            <h2 class="section-title">Quick Access</h2>
+            <div class="links-grid">
+                <!--Events Calendar-->
+                <a href="" class="module-card">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <h3>Events Calendar</h3>
+                    <p>View & register for upcoming campus events</p>
+                </a>
+                <!--Study Group Finders-->
+                <a href="" class="module-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Study Group Finder</h3>
+                    <p>Find or create study groups for your courses</p>
+                </a>
+                <!--Course Review-->
+                <a href="" class="module-card">
+                    <i class="fa-solid fa-star"></i>
+                    <h3>Course Reviews</h3>
+                    <p>Read and share course experiences</p>
+                </a>
+                <!--Course Notes-->
+                <a href="" class="module-card">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h3>Course Notes</h3>
+                    <p>Access and share study materials</p>
+                </a>
+                <!--Campus News-->
+                <a href="" class="module-card">
+                    <i class="fa-solid fa-newspaper"></i>
+                    <h3>Campus News</h3>
+                    <p>Stay updated with university announcements</p>
+                </a>
+                <!--Club Activities-->
+                <a href="" class="module-card">
+                    <i class="fa-solid fa-person-running"></i>
+                    <h3>Club Activities</h3>
+                    <p>Explore student clubs and organizations</p>
+                </a>
+                <!--Student Marketplace-->
+                <a href="" class="module-card">
+                    <i class="fa-solid fa-shop"></i>
+                    <h3>Student Marketplace</h3>
+                    <p>Buy, sell, or exchange student items</p>
+                </a>
+            </div>
+        </section>
 
-          </article>
+        <!--Recent Updates-->
+        <section class="recent-updates">
+            <div class="updates-container">
+                
+                <!--Latest News-->
+                <div class="updates-section">
+                    <h2><i class="fa-solid fa-newspaper"></i> Latest News</h2>
+                    <div class="news-item">
+                        <h3>UOB Advances in Global Rankings</h3>
+                        <p class="time">Posted on February 25, 2025</p>
+                        <p>The University of Bahrain has made significant progress in international university rankings...</p>
+                        <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="news-item">
+                        <h3>New AI Program Launch</h3>
+                        <p class="time">Posted on January 15, 2025</p>
+                        <p>The university is introducing a new Bachelor's program in Artificial Intelligence...</p>
+                        <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <a href="CampusNews.html" class="view-all">View all news </a>
+                </div>
+
+                <!--Upcoming Events-->
+                <div class="updates-section">
+                    <h2><i class="fa-solid fa-calendar-check"></i> Upcoming Events</h2>
+                    <div class="events-item">
+                        <div class="events-date">
+                            <span class="day">06</span>
+                            <span class="month">May</span>
+                        </div>
+                        <div class="events-details">
+                            <h3>Career Fair 2025</h3>
+                            <p>Main Campus Hall • 9:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="events-item">
+                        <div class="events-date">
+                            <span class="day">10</span>
+                            <span class="month">May</span>
+                        </div>
+                        <div class="events-details">
+                            <h3>Tech Innovation Workshop</h3>
+                            <p>Engineering Building • 2:00 PM - 5:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="events-item">
+                        <div class="events-date">
+                            <span class="day">18</span>
+                            <span class="month">May</span>
+                        </div>
+                        <div class="events-details">
+                            <h3>Finals Week Study Marathon</h3>
+                            <p>Library Hall • 8:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="events-item">
+                        <div class="events-date">
+                            <span class="day">22</span>
+                            <span class="month">May</span>
+                        </div>
+                        <div class="events-details">
+                            <h3>Web Development Bootcamp</h3>
+                            <p>Open Lab • 10:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                    <a href="" class="view-all">View all events</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--Footer-->
+    <footer class=" text-white p-6">
+
+      <div class="container mx-auto">
+          
+          <div class="flex flex-col md:flex-row gap-8 mb-6">
+
+          <div class="md:w-1/3" id="TTL">
+              <img src="../Images/uobp.png" alt="UOB logo" class="footer-logo">
+              <h2 class="text-xl font-bold mb-4">Campus Hub - Connecting Students</h2>
+          </div>
+      
+          <!-- Useful Links -->
+          <div class="md:w-1/3" id="TTL">
+              <h2 class="text-xl font-bold mb-4">Quick Links</h2>
+              <ul class="space-y-2">
+              <li><a href="#" class="hover:text-[#f80000]">Home</a></li>
+              <li><a href="https://www.uob.edu.bh/admission-requirements/" target="_blank" class="hover:text-[#f80000]">Join UOB</a></li>
+              <li><a href="https://www.uob.edu.bh/current-students/" target="_blank" class="hover:text-[#f80000]">Current Students</a></li>
+              <li><a href="https://www.uob.edu.bh/future-students/" target="_blank"class="hover:text-[#f80000]">Future Students</a></li>
+              <li><a href="https://ucs.uob.edu.bh/" target="_blank"class="hover:text-[#f80000]">Course Schedule</a></li>
+              </ul>
+          </div>
+      
+              <div class="md:w-1/3" id="TTL">
+                  <h2 class="text-xl font-bold mb-4">Resources</h2>
+                  <ul class="space-y-2">
+                      <li><a href="https://www.uob.edu.bh/students-service-center/" target="_blank"class="hover:text-[#f80000]">Help Center</a></li>
+                      <li><a href="https://www.uob.edu.bh/contact/" target="_blank"class="hover:text-[#f80000]">Contact Us</a></li>
+                      <li><a href="https://www.uob.edu.bh/privacy-policy/" target="_blank"class="hover:text-[#f80000]">Privacy Policy</a></li>
+                  </ul>
+              </div>
           
 
-
-
-
-
-
-    </section>
-
-</main>
-
-
-
-<footer class=" text-white p-6">
-    <div class="container mx-auto">
-      <!-- Main Footer Content -->
-      <div class="flex flex-col md:flex-row gap-8 mb-6">
-        <!-- Contact Info -->
-        <div class="md:w-1/3">
-          <h2 class="text-xl font-bold mb-4">Contact</h2>
-          <ul class="space-y-2">
-            <li>Sakheer Campus, Road No.2815</li>
-            <li>Postal code is 32038</li>
-            <li>Call us: +937-66630104</li>
-            <li>Email: Kuuudere@gmail.com</li>
-          </ul>
-        </div>
-  
-        <!-- Useful Links -->
-        <div class="md:w-1/3">
-          <h2 class="text-xl font-bold mb-4">Useful Links</h2>
-          <ul class="space-y-2">
-            <li><a href="#" class="hover:text-[#f80000]">Home</a></li>
-            <li><a href="#" class="hover:text-[#f80000]">Support</a></li>
-            <li><a href="#" class="hover:text-[#f80000]">Staff</a></li>
-            <li><a href="#" class="hover:text-[#f80000]">UoB Library</a></li>
-            <li><a href="#" class="hover:text-[#f80000]">Documentation</a></li>
-          </ul>
-        </div>
-  
-        <!-- Newsletter & Social -->
-        <div class="md:w-1/3">
-          <h2 class="text-xl font-bold mb-4">Newsletter</h2>
-          <form class="mb-4">
-            <div class="flex">
-              <input type="text" placeholder="Your email" class="px-4 py-2 rounded-l w-full">
-              <button type="submit" class="bg-blue-600 hover:bg-[#f80000] px-4 py-2 rounded-r">Search</button>
-            </div>
-          </form>
-  
-          <div class="flex space-x-4">
-            <a href="#" class="hover:text-[#f80000]">Facebook</a>
-            <a href="#" class="hover:text-[#f80000]">Twitter</a>
-            <a href="#" class="hover:text-[#f80000]">YouTube</a>
-            <a href="#" class="hover:text-[#f80000]">Instagram</a>
+          
           </div>
-        </div>
+      
+          <!-- Footer Bottom -->
+          <div class="border-t border-gray-700 pt-4 text-center text-sm">
+            <p>&copy;2025 Campus Hub. All rights reserved.</p>
+          </div>
+
       </div>
-  
-      <!-- Footer Bottom -->
-      <div class="border-t border-gray-700 pt-4 text-center text-sm">
-        <p>All rights reserved by &copy; Team2.co</p>
-      </div>
-    </div>
-  </footer>
+      </footer>
 </body>
 </html>
