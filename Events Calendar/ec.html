@@ -10,10 +10,8 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous"
          referrerpolicy="no-referrer" />  
-         <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Ibarra+Real+Nova:ital,wght@0,400..700;1,400..700&family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
-         
+         <link href="Responsiveness.css" rel="stylesheet">
+
  
          
     </head>
@@ -39,7 +37,7 @@
                 <nav >
                     <div >  
                         <div class="flex gap-3 mr-auto">  <!-- mr-auto means margin right auto, puses elemnt to right inside here -->
-                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden"><!-- py,x margins vertical and horizontal both t-b and r-l, relative makes the absolute items take it as reference and group makes us apply  effects on child elements -->
+                            <a href="#" class="flex  items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden"><!-- py,x margins vertical and horizontal both t-b and r-l, relative makes the absolute items take it as reference and group makes us apply  effects on child elements -->
                                 <span >Home</span>
                                 <!--Sliding square-->
                                 <div ></div>
@@ -47,8 +45,8 @@
                                 <span ></span>
                             </a>
        
-                            <div class="relative group">
-                                <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                            <div class="relative group Dropdown">
+                                <a href="#" class="flex items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
                                     <span >Menu</span>
                                     <div ></div>
                                     <span ></span>
@@ -66,7 +64,7 @@
                                 </div>
                             </div>
        
-                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                            <a href="#" class="flex  items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
                                 <span >Profile</span>
                                 <div ></div>
                                 <span ></span>
@@ -115,7 +113,7 @@
  
     <main class="content">
     <section class="content__left">
-     <section class="mx-7 my-2 ">
+     <section class="mx-7 my-2 mt-7 ">
         <div class="main-container ">
             <div class=' calendar-header text-sm md:text-base'>
                 <h4>T <em>25th</em> </h4>
@@ -352,7 +350,9 @@
    
  
     <section class="middle">
+      
       <div class="schedule-container">
+        
         <div class="schedule-header">
           <div class="month-navigation">
             <h2>March 2024</h2>
@@ -369,8 +369,33 @@
               </button>
             </div>
           </div>
-          <button class="design-btn">+ Add Event</button>
+          <section class="relative group b">
+            <button class="design-btn ml-6 " id="sb"><i class="fa-solid fa-sort mr-1"></i>Sort</button>
+            <div class="sort " >
+              <ul>
+                <li>Oldest Date</li>
+                <li>Newest Date</li>
+              </ul>
+          </div> 
+          </section>
+          <section class="relative group b mr-auto">
+            <button class="design-btn 	"><i class="fa-solid fa-filter mr-1"></i>Filter</button>
+            <div class="sort " >
+              <ul>
+                <li>Drop Due Date</li>
+                <li>Registeration Periods</li>
+                <li>Holidays</li>
+                <li>Workshops and Seminars</li>
+                <li>Lectures</li>
+              </ul>
+          </div> 
+          </section>
+            <button class="design-btn">+ Add Event</button>
+          
+         
+          
         </div>
+       
      
         <div class="date-header">
           <div class="mrg"></div>
@@ -427,7 +452,6 @@
         <div class="event-title">Team Meeting</div>
         <div class="event-time">10:30 AM - 11:30 AM</div>
         <button class="bbn">Details</button>
- 
       </div>
      
       <div class="event-cardlarge" style="grid-column: 3; grid-row: 10 / span 3;">
@@ -440,7 +464,6 @@
       <div class="event-cardlarge " style="grid-column: 4; grid-row: 4 / span 3;">
         <div class="event-title">Multiple Events</div>
           <div class="event-time">9:00 AM - 10:00 AM</div>
-       
         <button class="bbnlarge">Read More</button>
  
       </div>
