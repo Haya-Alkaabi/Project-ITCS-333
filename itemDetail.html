@@ -1,197 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>campus hub | student Marketplace</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link href="itemDetail.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    </head>
-    <body>
-        <header class="flex items-center justify-between sticky top-0 z-50 px-4 py-2 shadow-sm"> 
-            <div class="flex items-center">
-                <!-- Logo Image -->
-                <img src="\img\uob-logo.png" 
-                        alt="UOB Logo"
-                        class="w-14 h-14 object-contain mr-3">
-                <h1 class="text-xl font-bold ">UoB Students' Hub</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus hub| student MarketPlace </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="C:\Users\202203297\Desktop\333\ITCS333 PROJECT\Project-ITCS-333\layoutfinaldesign\layoutcss.css" rel="stylesheet">
+    <link href="itemDetail.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Ibarra+Real+Nova:ital,wght@0,400..700;1,400..700&family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
+</head>
+
+    <body class="overflow-x-hidden">
+        <header > 
+            <div>
+                <img src="img\uob-logo.png" 
+                        alt="UOB Logo">
+                <h1 >UoB Students' Hub</h1>
             </div>
 
-        <div class="hidden md:block flex-1 px-10">
-            <nav class="md:relative">
-                <div class="max-w-4xl">
-                    <div class="flex gap-6 ">
-                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
-                            <!-- Text Content  -->
-                            <span class="text-sm relative z-10 text-[#ffffff]  font-bold " >Home</span>
-                            
-                            <!-- Red Square Background -->
-                            <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
-                                        opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
-                                        transition-all duration-300 z-0"></div>
-                            
-                            <!-- Bottom Line Indicator -->
-                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
-                            transform -translate-x-1/2
-                            transition-all duration-300 group-hover:w-3/4"></span>
-                        </a>
-
-                        <div class="relative group"> <!-- Parent container must be relative -->
-                            <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden cursor-pointer">
-                            <span class="text-sm relative z-10 text-[#ffffff] font-bold">Menu</span>
-                            <div class="absolute inset-0 bg-[#170908] transform -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-0"></div>
-                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] transform -translate-x-1/2 transition-all duration-300 group-hover:w-3/4"></span>
+            <div class="mobile-menu-button md:hidden">
+                <button class="menu-icon">
+                  <svg stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round"  stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                  </svg> 
+                </button>
+            </div>
+        
+            <div class="hidden md:block flex-1 px-10 "> 
+                <nav >
+                    <div >  
+                        <div class="flex gap-3 mr-auto">  
+                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span >Home</span>
+                                <div ></div>
+                                <span ></span>
                             </a>
+        
+                            <div class="relative group">
+                                <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                    <span >Menu</span>
+                                    <div ></div>
+                                    <span ></span>
+                                </a>
                                 
-                                <!-- Dropdown Menu (positioned below button) -->
-                            <div class="absolute left-1/2 transform -translate-x-1/2 mt-3 w-48 bg-[#170908] text-white z-10 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Events Calendar</a>
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Study Group Finder</a>
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Course Reviews</a>
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Course Notes</a>
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Campus News</a>
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors border-b border-[#f7dbdb]/10">Club Activities</a>
-                            <a href="#" class="block py-2 px-4 hover:bg-[#f7dbdb] hover:text-[#170908] transition-colors">Student Marketplace</a>
+                                <!-- Dropdown Menu -->
+                                <div id="MN" >
+                                    <a href="#">Events Calendar</a>
+                                    <a href="#">Study Group Finder</a>
+                                    <a href="#">Course Reviews</a>
+                                    <a href="#">Course Notes</a>
+                                    <a href="#">Campus News</a>
+                                    <a href="#">Club Activities</a>
+                                    <a href="#">Student Marketplace</a>
+                                </div>
                             </div>
-                            </div>
+        
+                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span >Profile</span>
+                                <div ></div>
+                                <span ></span>
+                            </a>
+                            
+                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span>Help</span>
+                                <div ></div>
+                                <span ></span>
+                            </a>
+                        </div>
 
-                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
-                            <!-- Text Content (above the square) -->
-                            <span class="text-sm relative z-10 text-[#ffffff] font-bold ">Profile</span>
-                            
-                            <!-- Red Square Background -->
-                            <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
-                                        opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
-                                        transition-all duration-300 z-0"></div>
-                            
-                            <!-- Bottom Line Indicator -->
-                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
-                            transform -translate-x-1/2
-                            transition-all duration-300 group-hover:w-3/4"></span>
-                        </a>
-                        
-                        
-                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
-                            <!-- Text Content (above the square) -->
-                            <span class="text-sm relative z-10 text-[#ffffff] font-bold  ">Help</span>
-                            
-                            <!-- Red Square Background -->
-                            <div class="absolute inset-0 bg-[#170908] transform -translate-x-full 
-                                        opacity-0 group-hover:opacity-100 group-hover:translate-x-0 
-                                        transition-all duration-300 z-0"></div>
-                            
-                            <!-- Bottom Line Indicator -->
-                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-[#f7dbdb] 
-                            transform -translate-x-1/2
-                            transition-all duration-300 group-hover:w-3/4"></span>
-                        </a>
+                        <div class="flex items-center gap-4">
+                          
+                              
+                               <button class="btn">
+                                <svg class="icon" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12 2.5a5.5 5.5 0 0 1 3.096 10.047 9.005 9.005 0 0 1 5.9 8.181.75.75 0 1 1-1.499.044 7.5 7.5 0 0 0-14.993 0 .75.75 0 0 1-1.5-.045 9.005 9.005 0 0 1 5.9-8.18A5.5 5.5 0 0 1 12 2.5ZM8 8a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"
+                                  ></path>
+                                </svg>
+                              </button>
+                          </div>
                     </div>
-                </div>
-            </nav>
-            <div class="pb-16 md:pb-0"></div>
+                </nav>
+            </div>
         </header>
 
-        <main>
+        <main class="main_container">
             <!-- greetings and back -->
-            <div class="upper my-3 mx-3" >
-                <button class="Back_button ">back to gallery</button>
+            <div class="upper my-3 mx-8 text-black">
+                <button 
+                    class="Back_button hover:text-[#c8102e]"
+                    onclick="window.location.href='St_mkt_place.html'"
+                >
+                    back to gallery
+                </button>
             </div>
 
             <!-- item main details -->
-            <div class=" flex  bg-white rounded-lg shadow-md my-3">
-                <!--Image item-->
-                <div class="gap-6 bg-white rounded-lg shadow-md">
-                    <img src="img\NE341.png" class="w-20 h-30">
+            <div class="flex bg-white rounded-lg shadow-md mt-2 mb-8 p-4 gap-4 mx-8">
+                <!-- Left Section (Image) -->
+                <div class="w-1/6 flex items-center justify-center p-2">
+                    <img src="img/NE341.png" class="w-64 h-auto object-contain">
                 </div>
-
-                <!-- middle -->
-                <div class="gap-6 bg-white rounded-lg shadow-md">
-                    <h1>ITNE341 COURSE NOTES</h1>
-                    <h1>By Israa</h1>
-                    <a href="#">Customer Reviews</a>
-                    <div class="gap-6 bg-white rounded-lg shadow-md">
-                        <h1>OverView:</h1>
-                        <p>
-                            ITNE341 Network Security Course Notes – Quick Overview 
-
-                            These concise and focused notes cover "all key topics from the ITNE341 Network Security course", including:  
-                            
-                            - Network threats & attacks - (e.g., DDoS, malware, phishing)  
-                            - Cryptography fundamentals - (symmetric/asymmetric encryption, hashing)  
-                            - Security protocols - (SSL/TLS, IPsec, VPNs)  
-                            - Firewalls, IDS/IPS, and access control  
-                            - Wireless & cloud security risks
-                            - Best practices for secure network design
-                            
-                            Perfect for "exam prep, assignments, and quick revision"—aligned with the ITNE341 curriculum to help you master core concepts efficiently.  
-                            </p>
+            
+                <!-- Middle Section (Content) - Takes more space -->
+                <div class="w-4/6 p-4" id="detail-container">
+                    <h1 class="text-xl font-bold mb-2">ITNE341 COURSE NOTES</h1>
+                    <h2 class="text-lg text-gray-600 mb-4">By Israa</h2>
+                    <a href="#customer-review" class="text-[#c8102e] hover:underline mb-4 inline-block">Customer Reviews</a>
+                    
+                    <div class="mt-4">
+                        <h3 class="font-semibold text-lg mb-2">OverView:</h3>
+                        <p class="text-gray-700">
+                            ITNE341 Network Security Course Notes – Quick Overview<br><br>
+                            These concise and focused notes cover all key topics from the ITNE341 Network Security course, including:<br><br>
+                            - Network threats & attacks (e.g., DDoS, malware, phishing)<br>
+                            - Cryptography fundamentals (symmetric/asymmetric encryption, hashing)<br>
+                            - Security protocols (SSL/TLS, IPsec, VPNs)<br>
+                            - Firewalls, IDS/IPS, and access control<br>
+                            - Wireless & cloud security risks<br>
+                            - Best practices for secure network design<br><br>
+                            Perfect for exam prep, assignments, and quick revision—aligned with the ITNE341 curriculum to help you master core concepts efficiently.
+                        </p>
                     </div>
-
                 </div>
-
-                <!-- right -->
-                <div class="bg-white rounded-lg shadow-md">
-                    <h1>Format : pdf</h1>
-                    <h1>Price : 5.00 BD</h1>
-                    <h1>Contact No: +973 3333 3333</h1>
+            
+                <!-- Right Section (Details) -->
+                <div class="w-1/6 p-4 flex flex-col justify-between">
+                    <div>
+                        <h1 class="font-semibold">Format: pdf</h1>
+                        <h1 class="font-semibold mt-2">Price: 5.00 BD</h1>
+                    </div>
+                    <div class="mt-auto">
+                        <h1 class="font-semibold">Contact No: +973 3333 3333</h1>
+                    </div>
                 </div>
-
             </div>
 
             <!-- customer reviews -->
-            <div class="gap-6 bg-white rounded-lg shadow-md">
-                <!-- horizontal cards for reviews-->
-                 <div>
-                    <P>
-                        "Barely passed my midterms until I got these notes! Everything from crypto to firewalls is explained so clearly—no textbook jargon. The attack examples saved me on the exam. 10/10!"
-                    </P>
-                 </div>
-
-                 <div>
-                    <P>
-                        "I use these notes alongside lectures—they’re like a cheat sheet for ITNE341. Perfect for last-minute review, especially wireless security and VPNs. Wish they had more practice questions though."
-                    </P>
-                 </div>
-
-                 <div>
-                    <P>
-                        "Crushed the final thanks to these. Skipped half the lectures but the summaries on DDoS and IDS were gold. Short, to the point, and no fluff. Lifesaver!"
-                    </P>
-                 </div>
-
-            </div>
-        </main>
-
-        <!--Footer-->
-        <footer>
-                <div class="footer-contnet">
-                    <div class="footer-section">
-                        <img src="\img\uob-logo.png" alt="UOB logo" class="footer-logo">
-                        <p>Campus Hub - Connecting Students</p>
+            <div class="bg-white rounded-lg shadow-md mt-2 mb-8 p-4 mx-8" id="customer-review">
+                <!-- Centered heading at top -->
+                <div class="text-center mb-6">
+                    <h1 class="text-2xl font-bold text-blue-900">
+                        Our customer reviews:
+                    </h1>
+                </div>
+                
+                <!-- Horizontally centered review cards -->
+                <div class="flex flex-wrap justify-center gap-6">
+                    <div class="w-64 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <p class="text-gray-700 italic">
+                            "Barely passed my midterms until I got these notes! Everything from crypto to firewalls is explained so clearly—no textbook jargon. The attack examples saved me on the exam. 10/10!"
+                        </p>
                     </div>
-                    <div class="footer-section">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="layout.html" class="active">Home</a></li>
-                            <li><a href="https://www.uob.edu.bh/admission-requirements/" target="_blank">Join UOB</a></li>
-                            <li><a href="https://www.uob.edu.bh/current-students/" target="_blank">Current Students</a></li>
-                            <li><a href="https://www.uob.edu.bh/future-students/" target="_blank">Future Students</a></li>
-                            <li><a href="https://ucs.uob.edu.bh/" target="_blank">Course Schedule</a></li>
-                        </ul>
+            
+                    <div class="w-64 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <p class="text-gray-700 italic">
+                            "I use these notes alongside lectures—they're like a cheat sheet for ITNE341. Perfect for last-minute review, especially wireless security and VPNs. Wish they had more practice questions though."
+                        </p>
                     </div>
-                    <div class="footer-section">
-                        <h3>Resources</h3>
-                        <ul>
-                            <li><a href="https://www.uob.edu.bh/students-service-center/" target="_blank">Help Center</a></li>
-                            <li><a href="https://www.uob.edu.bh/contact/" target="_blank">Contact Us</a></li>
-                            <li><a href="https://www.uob.edu.bh/privacy-policy/" target="_blank">Privacy Policy</li>
-                        </ul>
-                    </div>
-                    <div class="footer-bottom">
-                        <p>&copy;2025 Campus Hub. All rights reserved.</p>
+            
+                    <div class="w-64 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <p class="text-gray-700 italic">
+                            "Crushed the final thanks to these. Skipped half the lectures but the summaries on DDoS and IDS were gold. Short, to the point, and no fluff. Lifesaver!"
+                        </p>
                     </div>
                 </div>
-        </footer>
+            </div>
+
+        <!--Footer-->
+        <footer class=" text-white p-6">
+
+            <div class="container mx-auto">
+                
+                <div class="flex flex-col md:flex-row gap-8 mb-6">
+    
+                <div class="md:w-1/3" id="TTL">
+                    <img src="img\uob-logo.png" alt="UOB logo" class="footer-logo">
+                    <h2 class="text-xl font-bold mb-4">Campus Hub - Connecting Students</h2>
+                </div>
+            
+                <!-- Useful Links -->
+                <div class="md:w-1/3" id="TTL">
+                    <h2 class="text-xl font-bold mb-4">Quick Links</h2>
+                    <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-[#f80000]">Home</a></li>
+                    <li><a href="https://www.uob.edu.bh/admission-requirements/" target="_blank" class="hover:text-[#f80000]">Join UOB</a></li>
+                    <li><a href="https://www.uob.edu.bh/current-students/" target="_blank" class="hover:text-[#f80000]">Current Students</a></li>
+                    <li><a href="https://www.uob.edu.bh/future-students/" target="_blank"class="hover:text-[#f80000]">Future Students</a></li>
+                    <li><a href="https://ucs.uob.edu.bh/" target="_blank"class="hover:text-[#f80000]">Course Schedule</a></li>
+                    </ul>
+                </div>
+            
+                    <div class="md:w-1/3" id="TTL">
+                        <h2 class="text-xl font-bold mb-4">Resources</h2>
+                        <ul class="space-y-2">
+                            <li><a href="https://www.uob.edu.bh/students-service-center/" target="_blank"class="hover:text-[#f80000]">Help Center</a></li>
+                            <li><a href="https://www.uob.edu.bh/contact/" target="_blank"class="hover:text-[#f80000]">Contact Us</a></li>
+                            <li><a href="https://www.uob.edu.bh/privacy-policy/" target="_blank"class="hover:text-[#f80000]">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                
+    
+                
+                </div>
+            
+                <!-- Footer Bottom -->
+                <div class="border-t border-gray-700 pt-4 text-center text-sm">
+                    <p>&copy;2025 Campus Hub. All rights reserved.</p>
+                </div>
+    
+            </div>
+            </footer>
     </body>
