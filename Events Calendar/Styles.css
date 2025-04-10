@@ -609,7 +609,7 @@ visibility: visible;
   background: none;
   border: none;
   color: #bda887;
-  font-size: 0.7rem; /* Smaller font size */
+  font-size: 0.7rem; 
   padding: 0;
   margin-top: 4px;
   cursor: pointer;
@@ -624,7 +624,7 @@ visibility: visible;
   background: none;
   border: none;
   color: #bda887;
-  font-size: 0.7rem; /* Smaller font size */
+  font-size: 0.7rem; 
   padding: 0;
   margin-top: 4px;
   cursor: pointer;
