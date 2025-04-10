@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UoB Hosts Astronauts for Satellite Launch | Campus News</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
     <script>
       tailwind.config = {
         theme: {
@@ -25,58 +26,67 @@
 <body class="bg-beige text-navy font-sans leading-relaxed">
 
     <!-- Header -->
-    <header class="flex items-center justify-between sticky top-0 z-50 px-4 py-2 shadow-sm bg-navy text-white"> 
-        <div class="flex items-center">
-            <img src="../photos/uob.png" alt="UOB Logo" class="w-14 h-14 object-contain mr-3">
-            <h1 class="text-xl font-bold">UoB Students' Hub</h1>
-        </div>
+     <header > 
+            <div>
+                <img src="../photos/uob.png" 
+                        alt="UOB Logo">
+                        <h1 ID="LOG" class="mt-1">UoB  | Students Hub</h1>
+                      </div>
 
-        <div class="hidden md:block flex-1 px-10">
-            <nav class="md:relative">
-                <div class="max-w-4xl">
-                    <div class="flex gap-6">
-                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
-                            <span class="text-sm relative z-10 text-white font-bold">Home</span>
-                            <div class="absolute inset-0 bg-navy transform -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-0"></div>
-                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-beige transform -translate-x-1/2 transition-all duration-300 group-hover:w-3/4"></span>
-                        </a>
-
-                        <div class="relative group">
-                            <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden cursor-pointer">
-                                <span class="text-sm relative z-10 text-white font-bold">Menu</span>
-                                <div class="absolute inset-0 bg-navy transform -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-0"></div>
-                                <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-beige transform -translate-x-1/2 transition-all duration-300 group-hover:w-3/4"></span>
+            <div class="mobile-menu-button md:hidden">
+                <button class="menu-icon">
+                  <svg stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round"  stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                  </svg> 
+                </button>
+            </div>
+        
+            <div class="hidden md:block flex-1 px-10 "> 
+                <nav >
+                    <div >  
+                        <div class="flex gap-3 mr-auto">  
+                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span >Home</span>
+                                <div ></div>
+                                <span ></span>
+                            </a>
+        
+                            <div class="relative group">
+                                <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                    <span >Menu</span>
+                                    <div ></div>
+                                    <span ></span>
+                                </a>
+                                
+                                <!-- Dropdown Menu -->
+                                <div id="MN" >
+                                    <a href="#">Events Calendar</a>
+                                    <a href="#">Study Group Finder</a>
+                                    <a href="#">Course Reviews</a>
+                                    <a href="#">Course Notes</a>
+                                    <a href="#">Campus News</a>
+                                    <a href="#">Club Activities</a>
+                                    <a href="#">Student Marketplace</a>
+                                </div>
+                            </div>
+        
+                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span >Profile</span>
+                                <div ></div>
+                                <span ></span>
                             </a>
                             
-                            <div class="absolute left-1/2 transform -translate-x-1/2 mt-3 w-48 bg-navy text-white z-10 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                <a href="#" class="block py-2 px-4 hover:bg-beige hover:text-navy transition-colors border-b border-beige/10">Events Calendar</a>
-                                <a href="#" class="block py-2 px-4 hover:bg-beige hover:text-navy transition-colors border-b border-beige/10">Study Group Finder</a>
-                                <a href="#" class="block py-2 px-4 hover:bg-beige hover:text-navy transition-colors border-b border-beige/10">Course Reviews</a>
-                                <a href="#" class="block py-2 px-4 hover:bg-beige hover:text-navy transition-colors border-b border-beige/10">Course Notes</a>
-                                <a href="#" class="block py-2 px-4 hover:bg-beige hover:text-navy transition-colors border-b border-beige/10">Campus News</a>
-                                <a href="#" class="block py-2 px-4 hover:bg-beige hover:text-navy transition-colors border-b border-beige/10">Club Activities</a>
-                                <a href="#" class="block py-2 px-4 hover:bg-beige hover:text-navy transition-colors">Student Marketplace</a>
-                            </div>
+                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span>Help</span>
+                                <div ></div>
+                                <span ></span>
+                            </a>
                         </div>
-
-                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
-                            <span class="text-sm relative z-10 text-white font-bold">Profile</span>
-                            <div class="absolute inset-0 bg-navy transform -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-0"></div>
-                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-beige transform -translate-x-1/2 transition-all duration-300 group-hover:w-3/4"></span>
-                        </a>
-                        
-                        <a href="#" class="flex flex-col items-center py-3 px-10 relative group overflow-hidden">
-                            <span class="text-sm relative z-10 text-white font-bold">Help</span>
-                            <div class="absolute inset-0 bg-navy transform -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-0"></div>
-                            <span class="absolute bottom-2 left-1/2 w-0 h-[1px] bg-beige transform -translate-x-1/2 transition-all duration-300 group-hover:w-3/4"></span>
-                        </a>
+                     
                     </div>
-                </div>
-            </nav>
-            <div class="pb-16 md:pb-0"></div>
-        </div>
-    </header>
-
+                </nav>
+            </div>
+        </header>
     <!-- Article Content -->
     <main class="max-w-4xl mx-auto p-6">
         <!-- Back button -->
@@ -85,7 +95,7 @@
         </a>
 
         <!-- Article Header -->
-        <header class="mb-8">
+        <div class="mb-8">
             <span class="inline-block bg-red text-white px-3 py-1 rounded-full text-sm font-semibold mb-3">Recommended</span>
             <h1 class="text-3xl md:text-4xl font-bold mb-4">UoB Hosts Astronauts for Satellite Launch</h1>
             
@@ -103,7 +113,7 @@
                     <span><strong>Category</strong> University Events</span>
                 </div>
             </div>
-        </header>
+        </div>
 
         <!-- Featured Image -->
         <figure class="mb-8 rounded-lg overflow-hidden shadow-lg">
@@ -287,13 +297,13 @@
                     <img src="../photos/International Garden Show.png" alt="Garden Show" class="w-full h-48 object-cover">
                     <div class="p-4">
                         <h3 class="font-bold text-lg mb-2 text-navy hover:text-red transition-colors">
-                            <a href="article.html?id=4">UoB Wins at Bahrain Garden Show</a>
+                            <a href="https://www.uob.edu.bh/uob-wins-first-place-in-garden-shows-educational-category/">UoB Wins at Bahrain Garden Show</a>
                         </h3>
                         <div class="flex justify-between items-center text-xs text-brown">
                             <span><i class="fas fa-calendar-day mr-1"></i> Feb 23, 2025</span>
                             <span><i class="fas fa-user mr-1"></i> University of Bahrain</span>
                         </div>
-                        <a href="article.html?id=4" class="mt-3 inline-block text-gold hover:text-red font-medium text-sm">
+                        <a href="https://www.uob.edu.bh/uob-wins-first-place-in-garden-shows-educational-category/" class="mt-3 inline-block text-gold hover:text-red font-medium text-sm">
                             Read More <i class="fas fa-arrow-right ml-1"></i>
                         </a>
                     </div>
@@ -304,13 +314,13 @@
                     <img src="../photos/uob_badminton_championship.png" alt="Badminton Championship" class="w-full h-48 object-cover">
                     <div class="p-4">
                         <h3 class="font-bold text-lg mb-2 text-navy hover:text-red transition-colors">
-                            <a href="article.html?id=3">National Badminton Championship</a>
+                            <a href="NationalCharterUniversityBadmintonChampionshipFullArticle.html">National Badminton Championship</a>
                         </h3>
                         <div class="flex justify-between items-center text-xs text-brown">
                             <span><i class="fas fa-calendar-day mr-1"></i> Feb 15, 2024</span>
                             <span><i class="fas fa-user mr-1"></i> University of Bahrain</span>
                         </div>
-                        <a href="article.html?id=3" class="mt-3 inline-block text-gold hover:text-red font-medium text-sm">
+                        <a href="NationalCharterUniversityBadmintonChampionshipFullArticle.html" class="mt-3 inline-block text-gold hover:text-red font-medium text-sm">
                             Read More <i class="fas fa-arrow-right ml-1"></i>
                         </a>
                     </div>
