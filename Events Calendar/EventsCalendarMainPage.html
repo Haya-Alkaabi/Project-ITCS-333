@@ -336,9 +336,9 @@
  
    <section class=" mt-4 mb-6 px-3">
   <div class="flex flex-wrap gap-2 justify-center">
-    <button title="Add course"class="design-btn mx-3 my-2 ">
-          <span >Add</span>
-      </button>
+    <button title="Add course" class="design-btn mx-3 my-2 ">
+      <span>Add</span>
+    </button>
       <button title="Delete course"class="design-btn mx-3 my-2">
         <span >Delete</span>
       </button>
@@ -353,6 +353,8 @@
    
  
     <section class="middle">
+
+      
       
       <div class="schedule-container">
         
@@ -393,13 +395,94 @@
               </ul>
           </div> 
           </section>
-            <button class="design-btn">+ Add Event</button>
-          
-         
-          
+
+          <section class="relative group">  <!--again wo group hover effect aint working-->
+            <button class="design-btn  ">+ Add Event</button>
+            <div class="absolute right-0 mt-2 z-10 bg-white rounded-lg shadow-xl p-6 w-80 opacity-0 invisible 
+                        group-hover:opacity-100 group-hover:visible transition-all duration-200 ">
+              <h2 class="text-xl font-bold text-black mb-4">Add New Event</h2>
+              
+              <form class="space-y-2">
+                <div>
+                  <label class="block text-sm font-medium text-[#001f3f] mb-1">Event Date:</label>
+                  <input type="date" required 
+                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887]" placeholder="DD/MM/YYYY">
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-[#001f3f] mb-1">Event Time:</label>
+                  <input type="time" required 
+                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887]">
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-[#001f3f] mb-1">Location:</label>
+                  <input type="text" required 
+                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887]" placeholder="Enter Location">
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-[#001f3f] mb-1">Description (Optional):</label>
+                  <textarea class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887] h-20"></textarea>
+                </div>
+                
+                <div class="flex justify-end space-x-3 pt-2">
+                  <button type="button" class="px-4 py-2 text-gray-600 hover:text-gray-800">Close</button>
+                  <button type="submit" class="px-4 py-2 bg-[#bda887] text-white rounded hover:bg-[#a9926a]">Submit</button>
+                </div>
+              </form>
+            </div>
+          </section>
+            
         </div>
+
+        <!--
+
+        This is a form for when I will be adding courses. I will fix it once we start JS because it requires a JS functionality.
+
+
+
+        <section class="relative flex justify-center ">
+          <div class="fixed top-1/2 left-1/2 hidden transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white rounded-lg shadow-xl p-6 w-80">
+            <h2 class="text-xl font-bold text-black mb-4">Add Course</h2>
+            
+            <form class="space-y-2">
+              <div>
+                <label class="block text-sm font-medium text-[#001f3f] mb-1">Course Code:</label>
+                <input type="text" required 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887]" 
+                       placeholder="e.g. ITCS333">
+              </div>
+              
+           
+              
+              <div>
+                <label class="block text-sm font-medium text-[#001f3f] mb-1">Course Time:</label>
+                <input type="time" required 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887]"
+                       placeholder="Select time">
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-[#001f3f] mb-1">Location:</label>
+                <input type="text" required 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887]" 
+                       placeholder="e.g. S40-2086">
+              </div>
+              
+          
+              
+              <div class="flex justify-end space-x-3 pt-2">
+                <button type="button" class="px-4 py-2 text-gray-600 hover:text-gray-800">Close</button>
+                <button type="submit" class="px-4 py-2 bg-[#bda887] text-white rounded hover:bg-[#a9926a]">Add Course</button>
+              </div>
+            </form>
+          </div>
+        </section>
        
-     
+-->
+        
+        
         <div class="date-header">
           <div class="mrg"></div>
           <div class="date-card">
@@ -487,10 +570,9 @@
       </div>
        
         </section>
+
+        
  
-   
-   
-   
 </main>
  
  

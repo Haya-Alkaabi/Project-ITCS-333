@@ -255,13 +255,16 @@ div.Dropdown:hover #MN {
     width:78%;
     margin: auto;
     border-radius: 10px;
+
  
 }
 .calendar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
   font-size: 0.7rem;
 }
  
@@ -570,7 +573,7 @@ visibility: visible;
   background: #f8f9fa;
   border-left: 4px solid #bda887;
   border-radius: 4px;
-  padding: 8px;
+  padding: 12px;
   margin: 1px;
   z-index: 1;
   min-width: 140px;
@@ -674,3 +677,4 @@ footer {
   margin-bottom: 5px;
  
 }
+
