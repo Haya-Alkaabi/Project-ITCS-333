@@ -59,7 +59,7 @@
                             </div>
         
                             <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
-                                <span >Profile</span>
+                                <span >Settings</span>
                                 <div ></div>
                                 <span ></span>
                             </a>
@@ -98,21 +98,21 @@
             </div>
 
             <!-- item main details -->
-            <div class="flex bg-white rounded-lg shadow-md mt-2 mb-8 p-4 gap-4 mx-8">
-                <!-- Left Section (Image) -->
-                <div class="w-1/6 flex items-center justify-center p-2">
-                    <img src="img/NE341.png" class="w-64 h-auto object-contain">
+            <div class="flex flex-col md:flex-row bg-white rounded-lg shadow-md mt-2 mb-8 p-4 gap-4 mx-2 sm:mx-4 md:mx-8">
+                <!-- Left Section (Image) - Stacked on mobile -->
+                <div class="w-full md:w-1/6 flex items-center justify-center p-2">
+                    <img src="img/NE341.png" class="w-32 md:w-64 h-auto object-contain">
                 </div>
             
-                <!-- Middle Section (Content) - Takes more space -->
-                <div class="w-4/6 p-4" id="detail-container">
-                    <h1 class="text-xl font-bold mb-2">ITNE341 COURSE NOTES</h1>
-                    <h2 class="text-lg text-gray-600 mb-4">By Israa</h2>
+                <!-- Middle Section (Content) - Full width on mobile -->
+                <div class="w-full md:w-4/6 p-2 md:p-4" id="detail-container">
+                    <h1 class="text-lg md:text-xl font-bold mb-2">ITNE341 COURSE NOTES</h1>
+                    <h2 class="text-base md:text-lg text-gray-600 mb-4">By Israa</h2>
                     <a href="#customer-review" class="text-[#c8102e] hover:underline mb-4 inline-block">Customer Reviews</a>
                     
                     <div class="mt-4">
-                        <h3 class="font-semibold text-lg mb-2">OverView:</h3>
-                        <p class="text-gray-700">
+                        <h3 class="font-semibold text-base md:text-lg mb-2">OverView:</h3>
+                        <p class="text-sm md:text-base text-gray-700">
                             ITNE341 Network Security Course Notes – Quick Overview<br><br>
                             These concise and focused notes cover all key topics from the ITNE341 Network Security course, including:<br><br>
                             - Network threats & attacks (e.g., DDoS, malware, phishing)<br>
@@ -126,14 +126,14 @@
                     </div>
                 </div>
             
-                <!-- Right Section (Details) -->
-                <div class="w-1/6 p-4 flex flex-col justify-between">
+                <!-- Right Section (Details) - Stacked on mobile -->
+                <div class="w-full md:w-1/6 p-2 md:p-4 flex flex-col justify-between border-t md:border-t-0 border-gray-200 mt-4 md:mt-0">
                     <div>
-                        <h1 class="font-semibold">Format: pdf</h1>
-                        <h1 class="font-semibold mt-2">Price: 5.00 BD</h1>
+                        <h1 class="font-semibold text-sm md:text-base">Format: pdf</h1>
+                        <h1 class="font-semibold mt-2 text-sm md:text-base">Price: 5.00 BD</h1>
                     </div>
-                    <div class="mt-auto">
-                        <h1 class="font-semibold">Contact No: +973 3333 3333</h1>
+                    <div class="mt-4 md:mt-auto">
+                        <h1 class="font-semibold text-sm md:text-base">Contact No: +973 3333 3333</h1>
                     </div>
                 </div>
             </div>
