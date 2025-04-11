@@ -1,18 +1,19 @@
 * {
   font-family: "Playfair Display", serif;
   margin: 0;
-    padding: 0; /*Removal of default padding or margin so we can add preceisly what we need*/
-    font-size: 16px;}
- 
- 
+  padding: 0; /*Removal of default padding or margin so we can add preceisly what we need*/
+  font-size: 16px;
+}
+
 body {
   background-color: #fcfbf6;
-    height: 100vh;/*occupies full viewport*/
-    width: 100vw;
-    overflow-x: hidden; /*When we have many elements centred at the x axis or margins this stops the page from extending*/
+  height: 100vh;/*occupies full viewport*/
+  width: 100vw;
+  overflow-x: hidden; /*When we have many elements centred at the x axis or margins this stops the page from extending*/
 }
- /*Header explanarion in detail*/
- header {
+
+/*Header explanarion in detail*/
+header {
   display: flex; /*Header is flex container having flex items. down I align them vertically to the centre*/
   align-items: center;
   justify-content: space-between;/*Adds large equal spacing*/
@@ -26,19 +27,17 @@ body {
   background-color: #053868;
   color: white;
   width: 100%;
-  min-width: 100vw; 
- 
+  min-width: 100vw;
 }
- 
 
 ul {
   list-style: none;
 }
- 
+
 a {
   text-decoration:none;
 }
- 
+
 header > div { /*Selects the first div inside the container*/
   display: flex;
   align-items: center;
@@ -46,18 +45,18 @@ header > div { /*Selects the first div inside the container*/
   margin-right: 0; /* Remove this margin */
   flex-shrink: 0; /* Prevent shrinking */
 }
- 
+
 header img {
   width: 3.3rem;
   height: 3.3rem;
   object-fit: contain; /*Fits the image to the container while its dimensions are still the same*/
   margin-right: 0.75rem;
 }
- 
+
 #LOG{
   font-size: medium;
   letter-spacing: 2PX;;
- font-weight: 650;
+  font-weight: 650;
 }
 
 nav > div {
@@ -66,42 +65,39 @@ nav > div {
   justify-content: space-between; /* Changed from flex-end */
   flex-wrap:wrap-reverse; /* Allow items to wrap */
   gap: 1rem;
-
 }
- 
- 
+
 /*  menu for mobile  */
 .mobile-menu-button {
   display: flex;
   justify-content: flex-end;/* Pushes button to the right */
   margin-left: auto; /* Pushes button to the right */
 }
- 
+
 .menu-icon {
   padding: 0.5rem;
 }
- 
+
 .menu-icon:focus {
   outline: none;
 }
- 
+
 .menu-icon svg {
   width: 1.5rem;
   height: 1.5rem;
 }
- 
+
 nav {
   width: 100%;
 }
- 
 
- 
 a[href="#"] span {
   font-size: 0.875rem;
   position: relative;
   z-index: 10;
   font-weight: 700;
 }
+
 a[href="#"] div {
   position: absolute; /*Same size-location as parent*/
   top: 0;
@@ -112,14 +108,14 @@ a[href="#"] div {
   transform: translateX(-100%);/*positioned back initially and its hiddem 0 opacity */
   opacity: 0;
   transition: transform 0.3s, opacity 0.3s;
-/*everything is visible later when hover is applied*/
- 
+  /*everything is visible later when hover is applied*/
 }
+
 a[href="#"]:hover div {
   opacity: 1;
   transform: translateX(0);
 }
- 
+
 a[href="#"] span:last-child {/*I added two span elements so this goes to the last span element responsible for uderlining then make its position absolute pushes it down its
   parent elemeny and to right it has 0 width initially and its width reaches 75 later when we hover over it and this creates a sliding effect*/
   position: absolute;
@@ -131,11 +127,11 @@ a[href="#"] span:last-child {/*I added two span elements so this goes to the las
   transform: translateX(-50%);
   transition: all 0.3s;
 }
- 
+
 a[href="#"]:hover span:last-child {
   width: 75%;
 }
- 
+
 #MN { /*The drop down menu now is located relative to its parent container since it has absolute positioning, here, it is pushed 50% to right so it stands at the middle*/
   position: absolute;
   left: 50%;
@@ -149,12 +145,12 @@ a[href="#"]:hover span:last-child {
   visibility: hidden;
   transition: all 0.2s;
 }
- 
+
 div.Dropdown:hover #MN {
   opacity: 1;
   visibility: visible;
 }
- 
+
 #MN a {
   display: block; /*Makes the elements occupy full block, it is necessary*/
   padding-top: 0.5rem;
@@ -164,11 +160,12 @@ div.Dropdown:hover #MN {
   transition: background-color 0.2s, color 0.2s;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 #MN a:hover {
   color: #ffffff;
   background-color: #bda887;
 }
- 
+
 .search input {
   border-radius: 15px;
   border: none;
@@ -182,7 +179,6 @@ div.Dropdown:hover #MN {
   padding-left: 2rem; 
   background-size: 12px;
   font-size: 0.875rem; 
-
 }
 
 .search {
@@ -203,20 +199,20 @@ div.Dropdown:hover #MN {
   transition: all ease-in-out 0.3s;
   cursor: pointer;
 }
- 
+
 .btn:hover {
   transform: translateY(-3px);
 }
- 
+
 .icon {
   font-size: 20px;
 }
- 
- 
+
 .content {
   display: flex;
   flex-flow: row wrap;
 }
+
 .contentE {
   display: flex;
   flex-flow:wrap;
@@ -243,21 +239,20 @@ div.Dropdown:hover #MN {
   flex-direction: column; /* Stack children vertically */
   height: auto;
 }
+
 .middle{
   width: 80%;
 }
 
- 
 /*I did not divide the page using grids as in the above two blocks bc percentages*/
 .main-container {
-    background: #053868;
-    color: #ffffff;
-    width:78%;
-    margin: auto;
-    border-radius: 10px;
-
- 
+  background: #053868;
+  color: #ffffff;
+  width:78%;
+  margin: auto;
+  border-radius: 10px;
 }
+
 .calendar-header {
   display: flex;
   justify-content: space-between;
@@ -267,65 +262,63 @@ div.Dropdown:hover #MN {
   padding-top: 1rem;
   font-size: 0.7rem;
 }
- 
+
 .calendar-body {
   padding: 20px;
-  text-align: center;}
- 
-.weekdays {
-    text-transform: uppercase;
-    color:#bda887;
-    font-weight: bold;
-    display: grid; /*MADE 7 COLUMNS OF EQUAL WIDTH BELOW*/
-    grid-template-columns: repeat(7, 1fr);
-    margin-bottom: 5px;
-    gap: 2.7px;
+  text-align: center;
 }
- 
-.days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
-}
- 
-.days li {
-    padding: 5px 0;
-    cursor: pointer;
-    position: relative;
-}
- 
-.days li:hover {
-    color: #fbff00;
-}
- 
-.previous-month {
-    opacity: 0.4;
-}
- 
- 
-/* Code below pertains to course sched*/
 
+.weekdays {
+  text-transform: uppercase;
+  color:#bda887;
+  font-weight: bold;
+  display: grid; /*MADE 7 COLUMNS OF EQUAL WIDTH BELOW*/
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 5px;
+  gap: 2.7px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.days li {
+  padding: 5px 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.days li:hover {
+  color: #fbff00;
+}
+
+.previous-month {
+  opacity: 0.4;
+}
+
+/* Code below pertains to course sched*/
 .sched-temp {
   margin: 0 0.75rem 1rem 0.75rem;
   max-width: 28rem;
   background: white;
   border-radius: 0.5rem;
   overflow: hidden;
-  
 }
+
 /*Here, we want the table to have the same width as the parent container, since we are using % which relates to the div then*/
- 
 .table-oc {
   width: 100%;
   border-collapse: collapse;/*Instead of using double borders*/
   min-height: 300px;
 }
- 
+
 .shdr {
   background-color: #053868;
   border-bottom: 2px solid #202020;
 }
- 
+
 .sday {
   padding: 0.75rem 0.5rem;
   text-align: center;
@@ -333,15 +326,12 @@ div.Dropdown:hover #MN {
   color: #ffffff;
   border-right: 1px solid #202020;
   font-weight: 600;
- 
 }
- 
+
 .row {
   border-bottom:  1px solid #202020;
 }
- 
- 
- 
+
 .cell {
   height: 82px;
   width: 20%;
@@ -349,103 +339,97 @@ div.Dropdown:hover #MN {
   vertical-align: top;
   border-right:  1px solid #202020;
 }
- 
+
 .schedule-time-cell:last-child {
   border-right: none;
 }
- 
+
 .empty-cell {
   background-color: rgb(255, 255, 255);
 }
- 
+
 /* better looking */
 .schedule-class {
   padding: 0.25rem;
   height: 100%;
 }
- 
+
 .class-name {
   font-weight: 600;
   font-size: 0.79rem;
   color: #000000;
 }
- 
+
 .class-time {
   font-size: 0.7rem;
   color: #000000;
   margin-top: 0.25rem;
 }
- 
+
 .class-location {
   font-size: 0.7rem;
   color: #000000;
 }
- 
- 
- 
-.design-btn {
- position: static;
- min-width: 80px;
- width: auto;
- padding: 8px 16px;
- height: auto;
- border: 0;
- border-radius: 100px;
- background-color: #bda887;
- color: #ffffff;
- font-weight: bold;
- transition: all 0.5s;
- margin: 4px;
 
+.design-btn {
+  position: static;
+  min-width: 80px;
+  width: auto;
+  padding: 8px 16px;
+  height: auto;
+  border: 0;
+  border-radius: 100px;
+  background-color: #bda887;
+  color: #ffffff;
+  font-weight: bold;
+  transition: all 0.5s;
+  margin: 4px;
 }
- 
+
 .design-btn:hover {
   background-color:  rgb(255, 0, 0);
   transform: scale(1.1);
 }
- 
+
 .design-btn:active {
   background-color:  #fbff00;
   transition: all 0.25s;
   transform: scale(0.98);
 }
- 
- 
- /* main sec Schedule container */
- 
- .schedule-container {
+
+/* main sec Schedule container */
+.schedule-container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   color: #333;
   padding: 20px;
-  
 }
- 
+
 .schedule-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
 }
- 
+
 .month-navigation {
   display: flex;
   align-items: center;
   gap: 30px;
 }
- 
+
 .month-navigation h2 {
   font-weight: 400;
   font-size: 1.8rem;
   margin: 0;
 }
- 
+
 .nav-buttons {
   display: flex;
   gap: 20px;
 }
- 
+
 .sort{
   position: absolute;
   background-color: #04437e;
@@ -457,8 +441,8 @@ div.Dropdown:hover #MN {
   visibility: hidden;
   transition: all 0.2s;
   z-index: 2;
-
 }
+
 .sort li{
   display: block;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -470,8 +454,9 @@ div.Dropdown:hover #MN {
 
 section.b:hover .sort{
   opacity: 1;
-visibility: visible;
+  visibility: visible;
 }
+
 .sort li:hover {
   color: #ffffff;
   background-color: #bda887;
@@ -481,20 +466,20 @@ visibility: visible;
   display: flex;
   margin-bottom: 10px;
 }
- 
+
 .mrg {
   width: 120px;
   padding: 15px 10px;
   background: transparent;
 }
- 
+
 .date-card {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   flex-grow: 1;
 }
- 
+
 .date-square {
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   background: white;
@@ -507,19 +492,19 @@ visibility: visible;
   flex-direction: column;
   justify-content: center;
 }
- 
+
 .date-number {
   font-size: 2.2rem;
   font-weight: 500;
   margin-bottom: 5px;
 }
- 
+
 .date-day {
   font-size: 1rem;
   color: #777;
   text-transform: uppercase;
 }
- 
+
 .time-chart {
   display: grid;
   grid-template-columns: 120px 1fr;
@@ -528,14 +513,14 @@ visibility: visible;
   border-radius: 8px;
   position: relative;
 }
- 
+
 .time-axis {
   display: flex;
   flex-direction: column;
   padding: 20px 10px;
   border-right: 1px solid #eee;
 }
- 
+
 .time-label {
   height: 60px; 
   display: flex;
@@ -545,14 +530,14 @@ visibility: visible;
   color: #777;
   padding-right: 10px;
 }
- 
+
 .chart-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(26, 30px); 
   position: relative;
 }
- 
+
 /* Vertical grid lines */
 .grid-line {
   position: absolute;
@@ -561,14 +546,14 @@ visibility: visible;
   background: #f0f0f0;
   top: 0;
 }
- 
+
 /* Position vertical grid lines between columns */
 .grid-line:nth-child(1) { left: 20%; }
 .grid-line:nth-child(2) { left: 40%; }
 .grid-line:nth-child(3) { left: 60%; }
 .grid-line:nth-child(4) { left: 80%; }
 .grid-line:nth-child(5) { left: 100%; }
- 
+
 .event-card {
   background: #f8f9fa;
   border-left: 4px solid #bda887;
@@ -585,8 +570,8 @@ visibility: visible;
   transition: all 0.2s ease;
   transition: height 0.3s ease;
   height: auto;
- 
 }
+
 .event-cardlarge {
   background: #f8f9fa;
   border-left: 4px solid #bda887;
@@ -599,23 +584,23 @@ visibility: visible;
   box-sizing: border-box;
   font-size: 0.8rem;
   position: relative;
- 
 }
+
 .event-card:hover {
   transform: scale(1.02);
   height: 100px;
- 
 }
+
 .event-title {
   font-weight: 500;
   margin-bottom: 3px;
 }
- 
+
 .event-time {
   font-size: 0.7rem;
   color: #666;
 }
- 
+
 .bbnlarge {
   background: none;
   border: none;
@@ -628,9 +613,11 @@ visibility: visible;
   font-family: 'Inter', sans-serif;
   letter-spacing: 0.5px;
 }
+
 .bbnlarge:hover {
   text-decoration: underline;
 }
+
 .bbn {
   background: none;
   border: none;
@@ -648,14 +635,15 @@ visibility: visible;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
- 
+
 .bbn:hover {
   text-decoration: underline;
 }
+
 .event-card:hover .bbn {
   opacity: 1;
 }
- 
+
 footer {
   background-color: #053868;
   display: flex;
@@ -668,14 +656,14 @@ footer {
   position: relative;
   width: 100%;
 }
+
 #TTL h2{
   color: #bda887;
 }
- 
+
 .footer-logo{
   height: 80px;
   margin-bottom: 5px;
- 
 }
 
 .custom-scrollbar {
