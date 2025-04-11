@@ -104,17 +104,17 @@
     <main class="content">
     <section class="content__left ">
      <section class="mx-7 my-2 mt-7 ">
-        <div class="main-container  ">
+        <div class="main-container shadow-lg ">
             <div class=' calendar-header text-sm md:text-base'>
                 <h4>T <em>25th</em> </h4>
                 <div>
                     <button>
-                        <span class="font-bold text-xl btn "> <svg class="w-4 h-4"  stroke="currentColor" viewBox="0 0 24 24">
+                        <span class="font-bold text-xl btn "> <svg class="w-4 h-4"  stroke="black" viewBox="0 0 24 24">
                             <path  stroke-width="3" d="M15 19l-7-7 7-7"/>
                           </svg></span>
                     </button>
                     <button>
-                          <span class="font-bold text-xl btn  "> <svg class="w-4 h-4"  stroke="currentColor" viewBox="0 0 24 24">
+                          <span class="font-bold text-xl btn  "> <svg class="w-4 h-4"  stroke="black" viewBox="0 0 24 24">
                             <path  stroke-width="3" d="M9 5l7 7-7 7"/>
                           </svg></span>
                         
@@ -176,8 +176,8 @@
     </section>
  
     <section class="comment-sec flex justify-center"> <!--The comment section was done using tailwind and html as a quick addition-->
-        <div class="max-w-2xl md:w-[90%] lg:w-[80%]  mx-3  mt-2 p-6 bg-[#053868] text-[1rem] rounded-lg shadow-md">
-            <h2 class=" font-semibold mb-2 text-[white]">Comments</h2>
+        <div class="max-w-2xl md:w-[90%] lg:w-[80%]  mx-3  mt-2 p-6 bg-[#fcfbf6] text-[1rem] rounded-lg shadow-md">
+            <h2 class=" font-semibold mb-2 text-[black]">Comments</h2>
 
             <div class="mb-1 max-h-32 overflow-y-auto custom-scrollbar"> <!-- for more comments: overflow -->
 
@@ -189,15 +189,15 @@
              
                   <div class="flex-1">
                       <div class="flex items-center justify-between">
-                          <h3 class="text-[0.87em] text-[white]">202203297</h3>
-                          <span class="text-xs text-[#C80000]">2 hours ago</span>
+                          <h3 class="text-[0.87em] text-[black]">202203297</h3>
+                          <span class="text-xs text-[#bda887]">2 hours ago</span>
                       </div>
-                      <p class="mt-0.59 text-[white] text-[0.8em]">I have an exam at 20th, change the event date!</p>
+                      <p class="mt-0.59 text-[black] text-[0.8em]">I have an exam at 20th, change the event date!</p>
              
                       <div class="flex justify-between items-center mt-2">
                           <div class="flex items-center">
                               <!-- Heart Button with number -->
-                              <button class="flex items-center text-xs text-gray-300 hover:text-[#C80000] mr-3">
+                              <button class="flex items-center text-xs text-[#04437e] hover:text-[#C80000] mr-3">
                                   <svg class="w-3.5 h-3.5 mr-1 fill-none stroke-current stroke-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                                       <path d="M12 21s-6-5.5-9-9c-2.5-3.5-1.5-7.5 2-9 2.5-1.5 5.5-.5 7 2 1.5-2.5 4.5-3.5 7-2 3.5 1.5 4.5 5.5 2 9-3 3.5-9 9-9 9z"></path>
                                   </svg>
@@ -224,17 +224,17 @@
              
                   <div class="flex-1">
                       <div class="flex items-center justify-between">
-                          <h3 class="text-[0.87em] text-[white]">202208680</h3>
-                          <span class="text-xs text-[#C80000]">10 hours ago</span>
+                          <h3 class="text-[0.87em] text-[black]">202208680</h3>
+                          <span class="text-xs text-[#bda887]">10 hours ago</span>
                       </div>
-                      <p class="mt-0.59 text-[white] text-[0.8em]">Six midterms right next to each other! Please be more
+                      <p class="mt-0.59 text-[black] text-[0.8em]">Six midterms right next to each other! Please be more
                         considerate!!
                       </p>
              
                       <div class="flex justify-between items-center mt-4">
                           <div class="flex items-center">
                               <!-- Heart Btn w numbr -->
-                              <button class="flex items-center text-xs text-gray-300 hover:text-[#C80000] mr-3">
+                              <button class="flex items-center text-xs  text-[#04437e] hover:text-[#C80000] mr-3">
                                   <svg class="w-3.5 h-3.5 mr-1 fill-none stroke-current stroke-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                                       <path d="M12 21s-6-5.5-9-9c-2.5-3.5-1.5-7.5 2-9 2.5-1.5 5.5-.5 7 2 1.5-2.5 4.5-3.5 7-2 3.5 1.5 4.5 5.5 2 9-3 3.5-9 9-9 9z"></path>
                                   </svg>
@@ -276,7 +276,7 @@
     </section>
    
    <div class="flex justify-center">
-    <section class="sched-temp mt-3 md:w-[90%] lg:w-[80%] flex justify-center  ">
+    <section class="sched-temp mt-3 md:w-[90%] lg:w-[80%] flex justify-center shadow-lg ">
     <div class="w-full  max-w-4xl overflow-x-auto">
       <table class="table-oc ">
         <!-- Table Header= THEAD -->
@@ -546,7 +546,7 @@
       <div class="event-card" style="grid-column: 2; grid-row: 5/ span 2;">
         <div class="event-title">Team Meeting</div>
         <div class="event-time">10:30 AM - 11:00 AM</div>
-        <button class="bbn">Details</button>
+        <button ><a class="bbn">Details</a></button>
       </div>
      
       <div class="event-cardlarge" style="grid-column: 3; grid-row: 8 / span 3;">

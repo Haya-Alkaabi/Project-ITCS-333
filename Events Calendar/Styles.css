@@ -233,7 +233,7 @@ div.Dropdown:hover #MN {
 
 .content__left {
   width: 20%;
-  background: #053868ea;
+  background: #ffffff;
   position: relative; /* Add this */
   display: flex;
   flex-direction: column; /* Stack children vertically */
@@ -246,8 +246,8 @@ div.Dropdown:hover #MN {
 
 /*I did not divide the page using grids as in the above two blocks bc percentages*/
 .main-container {
-  background: #053868;
-  color: #ffffff;
+  background: #fcfbf6;
+  color: #050144;
   width:78%;
   margin: auto;
   border-radius: 10px;
@@ -291,7 +291,7 @@ div.Dropdown:hover #MN {
 }
 
 .days li:hover {
-  color: #fbff00;
+  color: #ff0000;
 }
 
 .previous-month {
@@ -315,7 +315,8 @@ div.Dropdown:hover #MN {
 }
 
 .shdr {
-  background-color: #053868;
+  
+  background-color: #fcfbf6;
   border-bottom: 2px solid #202020;
 }
 
@@ -323,13 +324,20 @@ div.Dropdown:hover #MN {
   padding: 0.75rem 0.5rem;
   text-align: center;
   font-size: 0.75rem;
-  color: #ffffff;
+  color: #bda887;
   border-right: 1px solid #202020;
   font-weight: 600;
+}
+.sday:last-child{
+  border-right:none;
 }
 
 .row {
   border-bottom:  1px solid #202020;
+}
+.row:last-child {
+  border-bottom: none;
+
 }
 
 .cell {
@@ -340,8 +348,10 @@ div.Dropdown:hover #MN {
   border-right:  1px solid #202020;
 }
 
-.schedule-time-cell:last-child {
+.cell:last-child {
+
   border-right: none;
+
 }
 
 .empty-cell {
@@ -501,7 +511,7 @@ section.b:hover .sort{
 
 .date-day {
   font-size: 1rem;
-  color: #777;
+  color: #04437e;
   text-transform: uppercase;
 }
 
@@ -668,5 +678,5 @@ footer {
 
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #bda887 #053868;
+  scrollbar-color: #bda887 #fcfbf6;
 }
