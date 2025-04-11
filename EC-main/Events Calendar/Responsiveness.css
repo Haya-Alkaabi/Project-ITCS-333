@@ -1,0 +1,81 @@
+/*Media Queries*/
+
+@media (min-width: 768px) { /*If the width is 768 or larger the header gets bigger*/
+  header h1 {
+      font-size: 1.25rem;
+  }
+}
+
+/* Hide menu on large screens */
+@media (min-width: 768px) {
+  .mobile-menu-button {
+      display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .max-w-4xl {
+      width: 100%;
+  }
+  .search {
+      width: 100%;
+      margin-top: 1rem;
+  }
+  .search input {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+      display: block;
+  }
+}
+
+@media (max-width: 1350px) {
+  .content {
+      flex-direction: column; /*Content stacked vertically when 1550 or less*/
+  }
+  
+  .content__left, 
+  .middle {
+      width: 100%;
+  } /*so that both parts occupy all of*/
+  
+  /* Big calendar in middle section */
+  .schedule-header {
+      flex-wrap: wrap;
+      gap: 0.8rem;
+  }
+  .month-navigation {
+      order: 1;
+      width: 100%;
+      justify-content: space-between;
+      gap: 1rem;
+  }
+  
+  .nav-buttons {
+      gap: 0.5rem;
+  }
+  
+  .month-navigation h2 {
+      font-size: 1.2rem;
+  }
+  
+  /* Date cards adjustments */
+  .date-card {
+      overflow-x: auto; /*enables scrolling for dates on header*/
+      padding-bottom: 1rem;
+  }
+  
+  .date-square {
+      min-width: 120px;
+      min-height: 80px;
+      padding: 10px 5px;
+  }
+  
+  .date-number {
+      font-size: 1.5rem;
+  }
+  
+  .date-day {
+      font-size: 0.8rem;
+  }
+}
