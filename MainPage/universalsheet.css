@@ -1,26 +1,18 @@
-
-  
-  * {
+* {
     font-family: "Playfair Display", serif;
     margin: 0;
-    padding: 0; /*Removal of default padding or margin so we can add preceisly what we need*/
-    font-size: 16px;
+      padding: 0; /*Removal of default padding or margin so we can add preceisly what we need*/
+      font-size: 16px;
   
   }
-body{
-    font-family: 'Arial', sans-serif, serif;
-    background-color: #FBF9F1;
-    color: #002E5D;
+  
+body {
+    margin: auto;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
 }
-a{
-    text-decoration: none;
-    color: inherit;
-}
-svg {
-    width: 50px;
-    height: 50px;
-    fill: black;
-  }
+ 
 /*Header explanarion in detail*/
 header {
     display: flex; /*Header is flex container having flex items. down I align them vertically to the centre*/
@@ -28,7 +20,7 @@ header {
     justify-content: space-between;/*Adds large equal spacing*/
     position: sticky;
     top: 0;
-    z-index: 3;/*ensures items are visible and above other elements*/
+    z-index: 1;/*ensures items are visible and above other elements*/
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 0.5rem;
@@ -63,13 +55,6 @@ header {
   header h1 {
     font-size: 1.1rem;
     font-weight: 700;
-  }
- 
-  #LOG{
-    font-size: medium;
-    letter-spacing: 2PX;;
-   font-weight: 650;
-  
   }
   
   
@@ -177,8 +162,30 @@ header {
     color: #ffffff;
     background-color: #bda887;
   }
+  .btn {
+    outline: 0 !important;
+    border: 0 !important; /*inheretence thingy*/
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+  }
   
+  .btn:hover {
+    transform: translateY(-3px);
+  }
   
+  .icon {
+    font-size: 20px;
+  }
+  
+ 
 .Logo{
     height: 70px;
     transition: transform 0.3s ease;
