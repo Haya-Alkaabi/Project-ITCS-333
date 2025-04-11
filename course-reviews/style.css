@@ -263,7 +263,7 @@ grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .padding-gap-large {
-gap: 1rem;
+gap: 2rem;
 }
 
 /* --- responsivness of grid --- */
