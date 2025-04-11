@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ss.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Student Clubs and Activities</title>
+  </head>
+<body>
+  <section class="registration-form">
+    <div class="form-container">
+      <a class="filter-btn" href="club.html">Go Back</a>
+      <h2>Register for University Clubs</h2>
+
+      <form id="registration-form">
+        <div class="form-section">
+          <h3>Personal Information</h3>
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstname" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required>
+          </div>
+          <div class="form-group">
+            <label for="studentId">Student ID</label>
+            <input type="text" id="studentId" name="studentId" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">University Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+        </div>
+  
+        <div class="form-section">
+          <h3>Club Selection</h3>
+          <div class="form-group">
+            <label for="primaryClub">Primary Club Choice</label>
+            <select id="primaryClub" name="primaryClub" required>
+              <option value="">Select a club</option>
+              <option value="chess">Chess Club</option>
+              <option value="music">Music Club</option>
+              <option value="plant">Plant Club</option>
+              <option value="acting">Acting Club</option>
+              <option value="architecture">Architecture Club</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="secondaryClub">Secondary Club Choice (Optional)</label>
+            <select id="secondaryClub" name="secondaryClub">
+              <option value="">Select a club</option>
+              <option value="chess">Chess Club</option>
+              <option value="music">Music Club</option>
+              <option value="plant">Plant Club</option>
+              <option value="acting">Acting Club</option>
+              <option value="architecture">Architecture Club</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="form-section">
+          <h3>Additional Information</h3>
+          <div class="form-group">
+            <label for="experience">Previous Experience (if any)</label>
+            <textarea id="experience" name="experience" rows="3"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="Join">Why do you want to join this club?</label>
+            <textarea id="Join" name="Join" rows="3" required></textarea>
+          </div>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">I agree to the club's terms and conditions</label>
+        </div>
+        
+        <button type="submit" class="filter-btn">Submit Registration</button>
+      </form>
+    </div>
+  </section>
+</body>
+</html>
