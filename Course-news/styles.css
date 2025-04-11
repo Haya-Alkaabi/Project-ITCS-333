@@ -295,7 +295,7 @@ div.group:hover #MN {
   flex: 1;
   padding: 15px 20px;
   border: none;
-  font-size: 1rem;
+  font-size: 2rem;
   color: #002E5D;
 }
 .search-container input:focus{
