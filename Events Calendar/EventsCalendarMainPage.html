@@ -5,116 +5,116 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Events Calendar</title>
         <script src="https://cdn.tailwindcss.com"></script>
-        <link href="E.css" rel="stylesheet">
+        <link href="Styles.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous"
          referrerpolicy="no-referrer" />  
          <link href="Responsiveness.css" rel="stylesheet">
-
- 
-         
     </head>
     <body class="overflow-x-hidden ">
  
-        <header >
-            <div>
-                <!-- Logo Image -->
-                <img src="../Images/uob-logo.png"
-                        alt="UOB Logo">
-                <h1 ID="LOG" class="mt-2">UoB  | Students' Hub </h1>
-            </div>
- 
-            <div class="mobile-menu-button md:hidden">
-                <button class="menu-icon">
-                  <svg stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round"  stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
-                  </svg> <!--d means path data and it draws the three lines of the menu svg pic-->
-                </button>
-            </div>
+      <header>
        
-            <div class="hidden md:block flex-1 px-10 "> <!--flex-1 makes the bar grow shrink dtsrt from0 %  and its short hand for flex: 1 1 0%, there is px for right left padding and responsive design parameteres-->
-                <nav >
-                    <div >  
-                        <div class="flex gap-3 mr-auto">  <!-- mr-auto means margin right auto, puses elemnt to right inside here -->
-                            <a href="#" class="flex  items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden"><!-- py,x margins vertical and horizontal both t-b and r-l, relative makes the absolute items take it as reference and group makes us apply  effects on child elements -->
-                                <span >Home</span>
-                                <!--Sliding square-->
+        <div class="flex items-center space-x-3 md:hidden">
+          <img src="../Images/uob-logo.png" alt="UOB Logo" class="w-10 h-10 object-contain" />
+          <h1 id="LOG" class="text-lg font-bold">UoB | Students' Hub</h1>
+        </div>
+
+        <div class="mobile-menu-button md:hidden">
+          
+            <button class="menu-icon">
+              <svg stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round"  stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg> <!--d means path data and it draws the three lines of the menu svg pic-->
+            </button>
+        </div>
+   
+        <div class="hidden md:block flex-1 px-10 "> <!--flex-1 makes the bar grow shrink dtsrt from0 %  and its short hand for flex: 1 1 0%, there is px for right left padding and responsive design parameteres-->
+            <nav >
+              
+                <div >
+                  <div class="flex items-center space-x-3 ">
+                    <img src="../Images/uob-logo.png" alt="UOB Logo" class="w-10 h-10 object-contain" />
+                    <h1 id="LOG" class="text-lg font-bold">UoB | Students' Hub</h1>
+                  </div>
+                  
+                    <div class="flex gap-3 mr-auto">  <!-- mr-auto means margin right auto, puses elemnt to right inside here -->
+                        <a href="#" class="flex  items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden"><!-- py,x margins vertical and horizontal both t-b and r-l, relative makes the absolute items take it as reference and group makes us apply  effects on child elements -->
+                            <span >Home</span>
+                            <!--Sliding square-->
+                            <div ></div>
+                         <!--Underine-->
+                            <span ></span>
+                        </a>
+   
+                        <div class="relative group Dropdown">
+                            <a href="#" class="flex items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span >Menu</span>
                                 <div ></div>
-                             <!--Underine-->
                                 <span ></span>
                             </a>
-       
-                            <div class="relative group Dropdown">
-                                <a href="#" class="flex items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
-                                    <span >Menu</span>
-                                    <div ></div>
-                                    <span ></span>
-                                </a>
-                               
-                                <!-- Dropdown Menu -->
-                                <div id="MN" >
-                                    <a href="#">Events Calendar</a>
-                                    <a href="#">Study Group Finder</a>
-                                    <a href="#">Course Reviews</a>
-                                    <a href="#">Course Notes</a>
-                                    <a href="#">Campus News</a>
-                                    <a href="#">Club Activities</a>
-                                    <a href="#">Student Marketplace</a>
-                                </div>
+                           
+                            <!-- Dropdown Menu -->
+                            <div id="MN" >
+                                <a href="#">Events Calendar</a>
+                                <a href="#">Study Group Finder</a>
+                                <a href="#">Course Reviews</a>
+                                <a href="#">Course Notes</a>
+                                <a href="#">Campus News</a>
+                                <a href="#">Club Activities</a>
+                                <a href="#">Student Marketplace</a>
                             </div>
-       
-                            <a href="#" class="flex  items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
-                                <span >Profile</span>
-                                <div ></div>
-                                <span ></span>
-                            </a>
-                           
-                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
-                                <span>Help</span>
-                                <div ></div>
-                                <span ></span>
-                            </a>
                         </div>
+   
+                        <a href="#" class="flex  items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                            <span >Profile</span>
+                            <div ></div>
+                            <span ></span>
+                        </a>
                        
-                       
-                       
-                        <div class="search @870:mt-10"> <!--The position is affected since I sat mr-auto this element is pushed to far right! -->
-                         
-                            <input type="text" placeholder="search" />
-                        </div>
-                       
-                        <div class="flex items-center gap-4">
-                          <button class="btn">
-                            <svg class="icon" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7 23.1 23.1L882 542.3h-96.1z"></path>
-                             </svg>
-                             </button>
-                           
-                             <button class="btn">
-                              <svg class="icon" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2.5a5.5 5.5 0 0 1 3.096 10.047 9.005 9.005 0 0 1 5.9 8.181.75.75 0 1 1-1.499.044 7.5 7.5 0 0 0-14.993 0 .75.75 0 0 1-1.5-.045 9.005 9.005 0 0 1 5.9-8.18A5.5 5.5 0 0 1 12 2.5ZM8 8a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"
-                                ></path>
-                              </svg>
-                            </button>
-                        </div>
-                       
- 
-                   
-                       
+                        <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                            <span>Help</span>
+                            <div ></div>
+                            <span ></span>
+                        </a>
                     </div>
-                </nav>
-            </div>
-        </header>
- 
- 
- 
- 
- 
+                   
+                   
+                   
+                    <div class="search @870:mt-10"> <!--The position is affected since I sat mr-auto this element is pushed to far right! -->
+                     
+                        <input type="text" placeholder="search" />
+                    </div>
+                   
+                    <div class="flex items-center gap-4">
+                      <button class="btn">
+                        <svg class="icon" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7 23.1 23.1L882 542.3h-96.1z"></path>
+                         </svg>
+                         </button>
+                       
+                         <button class="btn">
+                          <svg class="icon" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2.5a5.5 5.5 0 0 1 3.096 10.047 9.005 9.005 0 0 1 5.9 8.181.75.75 0 1 1-1.499.044 7.5 7.5 0 0 0-14.993 0 .75.75 0 0 1-1.5-.045 9.005 9.005 0 0 1 5.9-8.18A5.5 5.5 0 0 1 12 2.5ZM8 8a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"
+                            ></path>
+                          </svg>
+                        </button>
+                    </div>
+                   
+
+               
+                   
+                </div>
+            </nav>
+            
+        </div>
+    </header>
+
     <main class="content">
-    <section class="content__left">
+    <section class="content__left ">
      <section class="mx-7 my-2 mt-7 ">
-        <div class="main-container ">
+        <div class="main-container  ">
             <div class=' calendar-header text-sm md:text-base'>
                 <h4>T <em>25th</em> </h4>
                 <div>
@@ -183,8 +183,8 @@
         </div>
     </section>
  
-    <section class="comment-sec"> <!--The comment section was done using tailwind and html as a quick addition-->
-        <div class="max-w-2xl mx-3  mt-2 p-6 bg-[#2b2a2a] text-[1rem] rounded-lg shadow-md">
+    <section class="comment-sec flex justify-center"> <!--The comment section was done using tailwind and html as a quick addition-->
+        <div class="max-w-2xl md:w-[90%] lg:w-[80%]  mx-3  mt-2 p-6 bg-[#053868] text-[1rem] rounded-lg shadow-md">
             <h2 class=" font-semibold mb-2 text-[white]">Comments</h2>
            
             <div class="mb-1">
@@ -196,25 +196,25 @@
                   <div class="flex-1">
                       <div class="flex items-center justify-between">
                           <h3 class="text-[0.87em] text-[white]">202203297</h3>
-                          <span class="text-xs text-[#504f4f]">2 hours ago</span>
+                          <span class="text-xs text-[#C80000]">2 hours ago</span>
                       </div>
                       <p class="mt-0.59 text-[white] text-[0.8em]">I have an exam at 20th, change the event date!</p>
              
                       <div class="flex justify-between items-center mt-2">
                           <div class="flex items-center">
                               <!-- Heart Button with number -->
-                              <button class="flex items-center text-xs text-gray-300 hover:text-red-500 mr-3">
+                              <button class="flex items-center text-xs text-gray-300 hover:text-[#C80000] mr-3">
                                   <svg class="w-3.5 h-3.5 mr-1 fill-none stroke-current stroke-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                                       <path d="M12 21s-6-5.5-9-9c-2.5-3.5-1.5-7.5 2-9 2.5-1.5 5.5-.5 7 2 1.5-2.5 4.5-3.5 7-2 3.5 1.5 4.5 5.5 2 9-3 3.5-9 9-9 9z"></path>
                                   </svg>
-                                  <span class="text-[#504f4f]"><small>5</small></span>
+                                  <span class="text-[#C80000]"><small>5</small></span>
                               </button>
              
-                              <button class="text-xs text-[#bda887] hover:text-red-500">
+                              <button class="text-xs text-[#bda887] hover:text-[#C80000]">
                                   Reply
                               </button>
                           </div>
-                          <button class="text-xs text-[#bda887] hover:text-red-500">
+                          <button class="text-xs text-[#bda887] hover:text-[#C80000]">
                               Read more
                           </button>
                       </div>
@@ -235,7 +235,7 @@
                                placeholder="Add a comment..."
                                class="w-full px-2 py-1 text-sm focus:outline-none placeholder-gray-400">
                        
-                        <button class="ml-2 text-xs px-2 py-1 text-[#bda887] hover:text-red-500 transition-colors">
+                        <button class="ml-2 text-xs px-2 py-1 text-[#bda887] hover:text-[#C80000] transition-colors">
                             Post
                         </button>
                     </div>
@@ -245,90 +245,93 @@
        
     </section>
    
-   
-    <div class="sched-temp mt-3 ">
-        <table class="table-oc">
-          <!-- Table Header= THEAD -->
-          <thead>
-            <tr class="shdr">
-              <th scope="col" class="sday">U</th> <!--THE SCOPE ATTRIBUTE HELPS US POSITION THE HEADERS OVER EACH COLUMN-->
-              <th scope="col" class="sday">M</th>
-              <th scope="col" class="sday">T</th>
-              <th scope="col" class="sday">W</th>
-              <th scope="col" class="sday">H</th>
-            </tr>
-          </thead>
+   <div class="flex justify-center">
+    <section class="sched-temp mt-3 md:w-[90%] lg:w-[80%] flex justify-center  ">
+    <div class="w-full  max-w-4xl overflow-x-auto">
+      <table class="table-oc ">
+        <!-- Table Header= THEAD -->
+        <thead>
+          <tr class="shdr">
+            <th scope="col" class="sday">U</th> <!--THE SCOPE ATTRIBUTE HELPS US POSITION THE HEADERS OVER EACH COLUMN-->
+            <th scope="col" class="sday">M</th>
+            <th scope="col" class="sday">T</th>
+            <th scope="col" class="sday">W</th>
+            <th scope="col" class="sday">H</th>
+          </tr>
+        </thead>
+       
+        <!-- Table Body= TBODY-->
+        <tbody>
+
+          <tr class="row" >
+            <td class="cell">
+              <div class="schedule-class">
+                <div class="class-name">ITCS333</div>
+                <div class="class-time">9:00</div>
+                <div class="class-location">S40-2086</div>
+              </div>
+            </td>
+            <td class="cell">
+              <div class="schedule-class">
+                <div class="class-name">PHYS101</div>
+                <div class="class-time">10:00</div>
+                <div class="class-location">S30-3077</div>
+              </div>
+            </td>
+            <td class="cell">
+              <div class="schedule-class">
+                <div class="class-name">ITCS333</div>
+                <div class="class-time">9:00</div>
+                <div class="class-location">S40-2086</div>
+              </div>
+            </td>
+            <td class="cell">
+              <div class="schedule-class">
+                <div class="class-name">CHEM110</div>
+                <div class="class-time">13:00</div>
+                <div class="class-location">S50-4099</div>
+              </div>
+            </td>
+            <td class="cell empty-cell"></td>
+
+          </tr>
          
-          <!-- Table Body= TBODY-->
-          <tbody>
- 
-            <tr class="row" >
-              <td class="cell">
-                <div class="schedule-class">
-                  <div class="class-name">ITCS333</div>
-                  <div class="class-time">9:00</div>
-                  <div class="class-location">S40-2086</div>
-                </div>
-              </td>
-              <td class="cell">
-                <div class="schedule-class">
-                  <div class="class-name">PHYS101</div>
-                  <div class="class-time">10:00</div>
-                  <div class="class-location">S30-3077</div>
-                </div>
-              </td>
-              <td class="cell">
-                <div class="schedule-class">
-                  <div class="class-name">ITCS333</div>
-                  <div class="class-time">9:00</div>
-                  <div class="class-location">S40-2086</div>
-                </div>
-              </td>
-              <td class="cell">
-                <div class="schedule-class">
-                  <div class="class-name">CHEM110</div>
-                  <div class="class-time">13:00</div>
-                  <div class="class-location">S50-4099</div>
-                </div>
-              </td>
-              <td class="cell empty-cell"></td>
- 
-            </tr>
-           
-           
-            <tr class="row">
-              <td class="cell">
-                <div class="schedule-class">
-                  <div class="class-name">MATH201</div>
-                  <div class="class-time">11:00</div>
-                  <div class="class-location">S20-1055</div>
-                </div>
-              </td>
-              <td class="cell empty-cell"></td>
-              <td class="cell">
-                <div class="schedule-class">
-                  <div class="class-name">ENG101</div>
-                  <div class="class-time">14:00</div>
-                  <div class="class-location">S10-3022</div>
-                </div>
-              </td>
-              <td class="cell empty-cell"></td>
-              <td class="cell empty-cell"></td>
-            </tr>
- 
- 
-             <tr class="row"> <!--Better table look-->
-              <td class="cell empty-cell"></td>
-              <td class="cell empty-cell"></td>
-              <td class="cell empty-cell"></td>
-              <td class="cell empty-cell"></td>
-              <td class="cell empty-cell"></td>
-            </tr>
- 
- 
-          </tbody>
-        </table>
-      </div>
+         
+          <tr class="row">
+            <td class="cell">
+              <div class="schedule-class">
+                <div class="class-name">MATH201</div>
+                <div class="class-time">11:00</div>
+                <div class="class-location">S20-1055</div>
+              </div>
+            </td>
+            <td class="cell empty-cell"></td>
+            <td class="cell">
+              <div class="schedule-class">
+                <div class="class-name">ENG101</div>
+                <div class="class-time">14:00</div>
+                <div class="class-location">S10-3022</div>
+              </div>
+            </td>
+            <td class="cell empty-cell"></td>
+            <td class="cell empty-cell"></td>
+          </tr>
+
+
+           <tr class="row"> <!--Better table look-->
+            <td class="cell empty-cell"></td>
+            <td class="cell empty-cell"></td>
+            <td class="cell empty-cell"></td>
+            <td class="cell empty-cell"></td>
+            <td class="cell empty-cell"></td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+  </section></div>
+    
  
  
    <section class=" mt-4 mb-6 px-3">
@@ -355,7 +358,7 @@
         
         <div class="schedule-header">
           <div class="month-navigation">
-            <h2>March 2024</h2>
+            <h2>April 2024</h2>
             <div class="nav-buttons">
               <button class="text-[#bda887]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -401,23 +404,23 @@
           <div class="mrg"></div>
           <div class="date-card">
             <div class="date-square">
-              <div class="date-number">18</div>
+              <div class="date-number">13</div>
               <div class="date-day">Sunday</div>
             </div>
             <div class="date-square">
-              <div class="date-number">19</div>
+              <div class="date-number">14</div>
               <div class="date-day">Monday</div>
             </div>
             <div class="date-square">
-              <div class="date-number">20</div>
+              <div class="date-number">15</div>
               <div class="date-day">Tuesday</div>
             </div>
             <div class="date-square">
-              <div class="date-number">21</div>
+              <div class="date-number">16</div>
               <div class="date-day">Wednesday</div>
             </div>
             <div class="date-square">
-              <div class="date-number">22</div>
+              <div class="date-number">17</div>
               <div class="date-day">Thursday</div>
             </div>
           </div>
@@ -440,8 +443,10 @@
             <div class="time-label">8 PM</div>
             <div class="time-label">9 PM</div>
           </div>
-     
-          <div class="chart-grid">
+          <div class="overflow-x-auto w-full"> <!--The events card were making the whole page overflow thus we needed to somehow keep the cards inside the table and shrinking
+            was difficult so I opted to enable overflow for the grid chart that contains the cells hence when the cells are about to move outside of their cells overflow occurs
+            and the scrolling is triggered -->
+            <div class="chart-grid min-w-[800px] relative grid grid-cols-5 gap-2 ">
             <div class="grid-line"></div>
             <div class="grid-line"></div>
             <div class="grid-line"></div>
@@ -464,7 +469,7 @@
       <div class="event-cardlarge " style="grid-column: 4; grid-row: 4 / span 3;">
         <div class="event-title">Multiple Events</div>
           <div class="event-time">9:00 AM - 10:00 AM</div>
-        <button class="bbnlarge">Read More</button>
+        <button ><a class="bbnlarge"  href="../Events Calendar/EventsPage.html">Read More</a></button> <!--I will adjust all the buttons and add links once phase2 take place-->
  
       </div>
      
@@ -474,7 +479,9 @@
         <button class="bbnlarge">Details</button>
  
       </div>
-    </div>
+    </div></div>
+
+         
           </div>
         </div>
       </div>

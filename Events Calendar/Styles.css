@@ -6,7 +6,7 @@
  
  
 body {
-  background-color: #f5f2ed;
+  background-color: #fcfbf6;
     height: 100vh;/*occupies full viewport*/
     width: 100vw;
     overflow-x: hidden; /*When we have many elements centred at the x axis or margins this stops the page from extending*/
@@ -25,9 +25,12 @@ body {
   padding-bottom: 0.5rem;
   background-color: #053868;
   color: white;
+  width: 100%;
+  min-width: 100vw; 
  
 }
  
+
 ul {
   list-style: none;
 }
@@ -40,7 +43,8 @@ header > div { /*Selects the first div inside the container*/
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  margin-right: 1.5rem;
+  margin-right: 0; /* Remove this margin */
+  flex-shrink: 0; /* Prevent shrinking */
 }
  
 header img {
@@ -54,9 +58,16 @@ header img {
   font-size: medium;
   letter-spacing: 2PX;;
  font-weight: 650;
- 
 }
- 
+
+nav > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Changed from flex-end */
+  flex-wrap:wrap-reverse; /* Allow items to wrap */
+  gap: 1rem;
+
+}
  
  
 /*  menu for mobile  */
@@ -83,12 +94,7 @@ nav {
   width: 100%;
 }
  
-nav > div {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 2rem;
-}
+
  
 a[href="#"] span {
   font-size: 0.875rem;
@@ -168,16 +174,24 @@ div.Dropdown:hover #MN {
   border: none;
   background: white;
   color: rgb(0, 0, 0);
-  padding-left: 37px;
   background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/ios-search.svg);
   background-repeat: no-repeat;
-  background-size: 8%;  
   background-position: 10px;
   outline: none; /*Removes the outline when one inputs some text in the search engine*/
+  width: 100%; /* Full width of container */
+  padding-left: 2rem; 
+  background-size: 12px;
+  font-size: 0.875rem; 
+
 }
- 
+
+.search {
+  min-width: 150px; 
+  max-width: 200px; 
+  flex: 1; /*  grow/shrink */
+}
+
 .btn {
- 
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -223,35 +237,25 @@ div.Dropdown:hover #MN {
 
 .content__left {
   width: 20%;
-  background: #202020;
+  background: #053868ea;
   position: relative; /* Add this */
   display: flex;
   flex-direction: column; /* Stack children vertically */
+  height: auto;
 }
 .middle{
   width: 80%;
 }
-.imgc {
-  height: auto;
-  width: 110px;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-
-.cont {
-  padding: 6rem 4rem 5rem 4rem;
-}
  
 /*I did not divide the page using grids as in the above two blocks bc percentages*/
 .main-container {
-    background: #2b2a2a;
+    background: #053868;
     color: #ffffff;
     width:78%;
     margin: auto;
     border-radius: 10px;
+ 
 }
 .calendar-header {
   display: flex;
@@ -288,7 +292,7 @@ div.Dropdown:hover #MN {
 }
  
 .days li:hover {
-    color: #ff1100;
+    color: #fbff00;
 }
  
 .previous-month {
@@ -297,13 +301,14 @@ div.Dropdown:hover #MN {
  
  
 /* Code below pertains to course sched*/
- 
+
 .sched-temp {
   margin: 0 0.75rem 1rem 0.75rem;
   max-width: 28rem;
   background: white;
   border-radius: 0.5rem;
   overflow: hidden;
+  
 }
 /*Here, we want the table to have the same width as the parent container, since we are using % which relates to the div then*/
  
@@ -314,7 +319,7 @@ div.Dropdown:hover #MN {
 }
  
 .shdr {
-  background-color: #2b2a2a;
+  background-color: #053868;
   border-bottom: 2px solid #202020;
 }
  
@@ -388,10 +393,11 @@ div.Dropdown:hover #MN {
  font-weight: bold;
  transition: all 0.5s;
  margin: 4px;
+
 }
  
 .design-btn:hover {
-  background-color:  red;
+  background-color:  rgb(255, 0, 0);
   transform: scale(1.1);
 }
  
@@ -410,6 +416,7 @@ div.Dropdown:hover #MN {
   margin: 0 auto;
   color: #333;
   padding: 20px;
+  
 }
  
 .schedule-header {
@@ -486,6 +493,7 @@ visibility: visible;
 }
  
 .date-square {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   background: white;
   border: 1px solid #eee;
   border-radius: 8px;
