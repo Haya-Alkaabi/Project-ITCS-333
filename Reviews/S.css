@@ -1,0 +1,527 @@
+* {
+    font-family: "Playfair Display", serif;
+    margin: 0;
+      padding: 0; /*Removal of default padding or margin so we can add preceisly what we need*/
+      font-size: 16px;
+  
+  }
+  
+  body {
+    margin: auto;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /*Header explanarion in detail*/
+  header {
+    display: flex; /*Header is flex container having flex items. down I align them vertically to the centre*/
+    align-items: center;
+    justify-content: space-between;/*Adds large equal spacing*/
+    position: sticky;
+    top: 0;
+    z-index: 1;/*ensures items are visible and above other elements*/
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: #053868;
+    color: white;
+   
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration:none;
+  }
+  
+  header > div { /*Selects the first div inside the container*/
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-right: 1.5rem;
+  }
+  
+  header img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain; /*Fits the image to the container while its dimensions are still the same*/
+    margin-right: 0.75rem;
+  }
+  
+  header h1 {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  
+  
+  
+  /*  menu for mobile  */
+  .mobile-menu-button {
+    display: flex;
+    justify-content: flex-end;/* Pushes button to the right */
+    margin-left: auto; /* Pushes button to the right */
+  }
+  
+  .menu-icon {
+    padding: 0.5rem;
+  }
+  
+  .menu-icon:focus {
+    outline: none;
+  }
+  
+  .menu-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  nav {
+    width: 100%;
+  }
+  
+  nav > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2rem;
+  }
+  
+  a[href="#"] span {
+    font-size: 0.875rem;
+    position: relative;
+    z-index: 10;
+    font-weight: 700;
+  }
+  a[href="#"] div {
+    position: absolute; /*Same size-location as parent*/
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #04437e;
+    transform: translateX(-100%);/*positioned back initially and its hiddem 0 opacity */
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+  /*everything is visible later when hover is applied*/
+  
+  }
+  a[href="#"]:hover div {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  a[href="#"] span:last-child {/*I added two span elements so this goes to the last span element responsible for uderlining then make its position absolute pushes it down its
+    parent elemeny and to right it has 0 width initially and its width reaches 75 later when we hover over it and this creates a sliding effect*/
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background-color: #ffffff;
+    transform: translateX(-50%);
+    transition: all 0.3s;
+  }
+  
+  a[href="#"]:hover span:last-child {
+    width: 75%;
+  }
+  
+  #MN { /*The drop down menu now is located relative to its parent container since it has absolute positioning, here, it is pushed 50% to right so it stands at the middle*/
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);/*Using 100 makes the menu drop to left, unlike 50 it is centred*/
+    margin-top: 0.7rem;
+    width: 12rem; /*Width of the dropdown menu*/
+    background-color: #04437e;
+    color: white;
+    border-radius: 0.375rem;
+    opacity: 0;/*Same as I explained for when we hide a sliding square*/
+    visibility: hidden;
+    transition: all 0.2s;
+  }
+  
+  div.group:hover #MN {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  #MN a {
+    display: block; /*Makes the elements occupy full block, it is necessary*/
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    transition: background-color 0.2s, color 0.2s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  #MN a:hover {
+    color: #ffffff;
+    background-color: #bda887;
+  }
+  .btn {
+    outline: 0 !important;
+    border: 0 !important; /*inheretence thingy*/
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px);
+  }
+  
+  .icon {
+    font-size: 20px;
+  }
+  
+  
+  .Logo{
+    height: 70px;
+    transition: transform 0.3s ease;
+  }
+  .Logo:hover{
+    transform: scale(1.05);
+  }
+  .nav-links{
+    display: flex;
+    list-style: none;
+    gap: 25px;
+  }
+  .nav-links a{
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    position:flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-links a.active{
+    text-align: center;
+    color: #DBC26D;
+    text-decoration: underline;
+  }
+  .nav-links a.active:hover{
+    color: #DBC26D;
+  }
+  .nav-links a:hover{
+    color:#DEC8A4;
+  }
+  
+  
+  
+  
+  /* 
+    --navy: #002E5D;
+    --gold: #DBC26D;
+    --red: #C8102E;
+    --beige: #FBF9F1;
+    --brown: #DEC8A4;
+    --white: #FFFFFF;
+  } */
+  
+  /*Main section*/
+  .title-big {
+  font-size: 30px; 
+  }
+  
+  .text-bold {
+  font-weight: bold;
+  }
+  
+  .margin-bottom-large {
+  margin-bottom: 1rem;
+  
+  }
+  h1{
+    text-align: center;
+  }
+  
+  /* --- grid --- */
+  .layout-grid {
+  display: grid;
+  background-color:  #FBF9F1;
+  
+  }
+  
+  main{
+    background-color:  #FBF9F1;
+  }
+  
+  .grid-columns-one {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  
+  .padding-gap-large {
+  gap: 1rem;
+  }
+  
+  /* --- responsivness of grid --- */
+  @media (min-width: 768px) { /* md:grid-cols-4 */
+  .grid-columns-four-medium {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  }
+  
+  /* --- responsivness of aside --- */
+  @media (min-width: 768px) { /* md:col-span-1 */
+  .column-span-one-medium {
+      grid-column: span 1 / span 1;
+      
+  }
+  }
+  
+  /* --- articls and aside--- */
+  .background-white {
+  background-color: white;
+  }
+  
+  .padding-all-large {
+  padding: 1rem;
+  }
+  
+  .border-rounded-medium {
+  border-radius: 6px;
+  }
+  
+  .shadow-light {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  /* --- h2 + h3 styling--- */
+  .text-medium {
+  font-size: 20px; 
+  }
+  
+  .text-semi-bold {
+  font-weight: 600;
+  }
+  
+  .text-normal {
+  font-size: 18px; 
+  }
+  
+  /* --- selectors + inputs--- */
+  .width-full {
+  width: 100%;
+  }
+  
+  .border-thin {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb; 
+  }
+  
+  /* --- selectors +articls-- */
+  .padding-all-small {
+  padding: 0.5rem;
+  }
+  
+  
+  .border-rounded-small {
+  border-radius: 4px; 
+  }
+  
+  .margin-bottom-small {
+  margin-bottom: 0.5rem;
+  }
+  
+  
+  /* --- add a review button-- */
+  .background-gold {
+  background-color: #DBC26D;
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+  }
+  .background-gold:hover{
+    transform: translateY(-3px);
+    background-color: #bda887;
+  }
+  
+  .text-dark-blue {
+  color: #002E5D;
+  }
+  
+  
+  /* --- buttons -- */
+  .padding-vertical-small {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  margin-bottom: 5px;
+  align-items: flex-end;
+  }
+  
+  .padding-horizontal-large {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-bottom:5px;
+  align-items: flex-end;
+  }
+  
+  .background-dark-blue {
+  background-color: #002E5D;
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+  }
+  .background-dark-blue:hover{
+    transform: translateY(-3px);
+    background-color: rgb(1, 1, 48);
+  
+  }
+  
+  .text-pure-white {
+  color: white;
+  }
+  
+  /* --- ratings -- */
+  @media (min-width: 768px) { /* md:col-span-3 */
+  .column-span-three-medium {
+      grid-column: span 3 / span 3;
+  }
+  
+  }
+  
+  .grid-columns-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .layout-flex {
+  display: flex;
+  }
+  
+  /* --- stars -- */
+  .items-center-vertical {
+  align-items: center;
+  }
+  
+  .text-gray-medium {
+  color: #6b7280;
+  }
+  
+  /* --- view review + edit and delete -- */
+  .layout{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  }
+  
+  
+  .background-gray-light { 
+  background-color: gray;
+  transition: all ease-in-out 0.3s;
+  cursor:pointer;
+  }
+  .background-gray-light:hover{
+    transform: translateY(-3px);
+    background-color: rgb(71, 70, 70);
+  
+  }
+  
+  .background-red-dark { 
+  background-color: #C8102E;
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+  }
+  .background-red-dark:hover{
+    transform: translateY(-3px);
+    background-color: #7f0c1f;
+  
+  }
+  .padding-vertical-tiny { 
+  padding-top: 0.25rem; 
+  padding-bottom: 0.25rem;
+  margin-right: 5px;
+  }
+  .padding-horizontal-small { 
+  padding-left: 0.5rem; 
+  padding-right: 0.5rem;
+  margin-right:5px;
+  }
+  .text-smaller { 
+  font-size: 14px;
+  } 
+  .text-gold { 
+  color: #DBC26D; 
+  }
+  
+  @media (max-width:780px) {
+  .layout{
+      display: inline;
+      justify-content: space-between;
+      align-items: center;
+  } }
+  
+  /* --- pagaination-- */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+  
+   }
+  
+   .page-number {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+   }
+  
+   .page-number:hover {
+    background-color: #f0f0f0;
+   }
+  
+   .current {
+    background-color: #002E5D;
+    color: white;
+    border-color: #002E5D;
+   }
+  
+   .prev,
+   .next {
+    font-weight: bold;
+   }
+  
+   .dots {
+    padding: 8px 12px;
+    color: #777;
+   }
+   
+  
+  
+  /* --- footer -- */
+  footer {
+    background-color: #053868;
+    display: flex;
+    flex-wrap: wrap;
+    color: black;
+    padding: 50px;
+    justify-content: space-around;
+    align-items: flex-start;
+    clear: both;
+    position: relative;
+    width: 100%;
+  }
+  #TTL h2{
+    color: #bda887;
+  }
+  
+  .footer-logo{
+    height: 80px;
+    margin-bottom: 5px;
+  
+  }
