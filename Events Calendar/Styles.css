@@ -18,7 +18,7 @@ body {
   justify-content: space-between;/*Adds large equal spacing*/
   position: sticky;
   top: 0;
-  z-index: 4;/*ensures items are visible and above other elements*/
+  z-index: 12;/*ensures items are visible and above other elements*/
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.5rem;
@@ -405,7 +405,7 @@ div.Dropdown:hover #MN {
 }
  
 .design-btn:active {
-  background-color:  #bda887;
+  background-color:  #fbff00;
   transition: all 0.25s;
   transform: scale(0.98);
 }
@@ -678,3 +678,7 @@ footer {
  
 }
 
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #bda887 #053868;
+}
