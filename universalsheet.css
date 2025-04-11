@@ -224,7 +224,7 @@ header {
             rgba(73, 90, 128, 0.6), /* 70% opacity navy blue */
             rgba(73, 90, 128, 0.75) /* 85% opacity navy blue */
         ),
-        url('../Project-ITCS-333/photos/students.jpg') center/cover no-repeat;
+        url('/photos/students.jpg') center/cover no-repeat;
     color: var(--white);
     padding: 100px 20px;
     text-align: center;
