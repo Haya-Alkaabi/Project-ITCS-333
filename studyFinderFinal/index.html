@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Events Calendar</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="studyFinder.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Ibarra+Real+Nova:ital,wght@0,400..700;1,400..700&family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
+                 
+        
+    </head>
+    <body class="overflow-x-hidden">
+
+        <header > 
+            <div>
+                <img src="finderPic/uobp.png" 
+                        alt="UOB Logo">
+                <h1 >UoB Students' Hub</h1>
+            </div>
+
+            <div class="mobile-menu-button md:hidden">
+                <button class="menu-icon">
+                  <svg stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round"  stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                  </svg> 
+                </button>
+            </div>
+        
+            <div class="hidden md:block flex-1 px-10 "> 
+                <nav >
+                    <div >  
+                        <div class="flex gap-3 mr-auto">  
+                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span >Home</span>
+                                <div ></div>
+                                <span ></span>
+                            </a>
+        
+                            <div class="relative group">
+                                <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                    <span >Menu</span>
+                                    <div ></div>
+                                    <span ></span>
+                                </a>
+                                
+                                <!-- Dropdown Menu -->
+                                <div id="MN" >
+                                    <a href="#">Events Calendar</a>
+                                    <a href="#">Study Group Finder</a>
+                                    <a href="#">Course Reviews</a>
+                                    <a href="#">Course Notes</a>
+                                    <a href="#">Campus News</a>
+                                    <a href="#">Club Activities</a>
+                                    <a href="#">Student Marketplace</a>
+                                </div>
+                            </div>
+        
+                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span >Profile</span>
+                                <div ></div>
+                                <span ></span>
+                            </a>
+                            
+                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                                <span>Help</span>
+                                <div ></div>
+                                <span ></span>
+                            </a>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                          
+                              
+                               <button class="btn">
+                                <svg class="icon" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12 2.5a5.5 5.5 0 0 1 3.096 10.047 9.005 9.005 0 0 1 5.9 8.181.75.75 0 1 1-1.499.044 7.5 7.5 0 0 0-14.993 0 .75.75 0 0 1-1.5-.045 9.005 9.005 0 0 1 5.9-8.18A5.5 5.5 0 0 1 12 2.5ZM8 8a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"
+                                  ></path>
+                                </svg>
+                              </button>
+                          </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+
+<class=bg-gray-100 text-gray-800>
+   <main class="max-w-4xl mx-auto px-6 py-10">
+    <h1 class="text-3xl font-bold mb-8 text-center">📚 Study Group Finder – Project Pages</h1>
+
+    <div class="space-y-10">
+
+      <!-- Main Listing -->
+      <section class="bg-white p-6 rounded shadow">
+        <h2 class="text-2xl font-semibold mb-2">📄 Main Listing Page</h2>
+        <p class="mb-4">This is the homepage where all study groups are listed.</p>
+        <a href="studyFinder.html" class="text-blue-600 hover:underline">🔗 Open studyFinder.html</a>
+        <div class="mt-4">
+          <img src="finderPic\list.png" alt="Study Finder Listing" class="border rounded shadow w-full max-w-md">
+        </div>
+      </section>
+
+      <!-- Form Page -->
+      <section class="bg-white p-6 rounded shadow">
+        <h2 class="text-2xl font-semibold mb-2">📄 Create Group Form</h2>
+        <p class="mb-4">Form to add a new study group.</p>
+        <a href="studyForm.html" class="text-blue-600 hover:underline">🔗 Open studyForm.html</a>
+        <div class="mt-4">
+          <img src="finderPic/images.png" alt="Study Group Form" class="border rounded shadow w-full max-w-md">
+        </div>
+      </section>
+
+      <!-- Detail Page -->
+      <section class="bg-white p-6 rounded shadow">
+        <h2 class="text-2xl font-semibold mb-2">📄 Group Details Page</h2>
+        <p class="mb-4">View full details of a selected study group.</p>
+        <a href="studyDetail.html" class="text-blue-600 hover:underline">🔗 Open studyDetail.html</a>
+        <div class="mt-4">
+          <img src="finderPic/detail.png" alt="Study Group Detail" class="border rounded shadow w-full max-w-md">
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class=" text-white p-6">
+
+    <div class="container mx-auto">
+        
+        <div class="flex flex-col md:flex-row gap-8 mb-6">
+
+        <div class="md:w-1/3" id="TTL">
+            <img src="finderPic/uobp.png" alt="UOB logo" class="footer-logo">
+            <h2 class="text-xl font-bold mb-4">Campus Hub - Connecting Students</h2>
+        </div>
+    
+        <!-- Useful Links -->
+        <div class="md:w-1/3" id="TTL">
+            <h2 class="text-xl font-bold mb-4">Quick Links</h2>
+            <ul class="space-y-2">
+            <li><a href="#" class="hover:text-[#f80000]">Home</a></li>
+            <li><a href="https://www.uob.edu.bh/admission-requirements/" target="_blank" class="hover:text-[#f80000]">Join UOB</a></li>
+            <li><a href="https://www.uob.edu.bh/current-students/" target="_blank" class="hover:text-[#f80000]">Current Students</a></li>
+            <li><a href="https://www.uob.edu.bh/future-students/" target="_blank"class="hover:text-[#f80000]">Future Students</a></li>
+            <li><a href="https://ucs.uob.edu.bh/" target="_blank"class="hover:text-[#f80000]">Course Schedule</a></li>
+            </ul>
+        </div>
+    
+            <div class="md:w-1/3" id="TTL">
+                <h2 class="text-xl font-bold mb-4">Resources</h2>
+                <ul class="space-y-2">
+                    <li><a href="https://www.uob.edu.bh/students-service-center/" target="_blank"class="hover:text-[#f80000]">Help Center</a></li>
+                    <li><a href="https://www.uob.edu.bh/contact/" target="_blank"class="hover:text-[#f80000]">Contact Us</a></li>
+                    <li><a href="https://www.uob.edu.bh/privacy-policy/" target="_blank"class="hover:text-[#f80000]">Privacy Policy</a></li>
+                </ul>
+            </div>
+        
+
+        
+        </div>
+    
+        <!-- Footer Bottom -->
+        <div class="border-t border-gray-700 pt-4 text-center text-sm">
+            <p>&copy;2025 Campus Hub. All rights reserved.</p>
+        </div>
+
+    </div>
+    </footer>
+</body>
+</html>    

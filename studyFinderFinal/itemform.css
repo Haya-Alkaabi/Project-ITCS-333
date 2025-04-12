@@ -1,0 +1,253 @@
+/* Add additional styling here if needed */
+/* itemform.css */
+* {
+  font-family: "Playfair Display", serif;
+  margin: 0;
+    padding: 0; /*Removal of default padding or margin so we can add preceisly what we need*/
+    font-size: 16px;
+
+}
+
+body {
+  margin: auto;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+/*Header explanarion in detail*/
+header {
+  display: flex; /*Header is flex container having flex items. down I align them vertically to the centre*/
+  align-items: center;
+  justify-content: space-between;/*Adds large equal spacing*/
+  position: sticky;
+  top: 0;
+  z-index: 1;/*ensures items are visible and above other elements*/
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #053868;
+  color: white;
+ 
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration:none;
+}
+
+header > div { /*Selects the first div inside the container*/
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+header img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain; /*Fits the image to the container while its dimensions are still the same*/
+  margin-right: 0.75rem;
+}
+
+header h1 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+
+
+/*  menu for mobile  */
+.mobile-menu-button {
+  display: flex;
+  justify-content: flex-end;/* Pushes button to the right */
+  margin-left: auto; /* Pushes button to the right */
+}
+
+.menu-icon {
+  padding: 0.5rem;
+}
+
+.menu-icon:focus {
+  outline: none;
+}
+
+.menu-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+nav {
+  width: 100%;
+}
+
+nav > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+}
+
+a[href="#"] span {
+  font-size: 0.875rem;
+  position: relative;
+  z-index: 10;
+  font-weight: 700;
+}
+a[href="#"] div {
+  position: absolute; /*Same size-location as parent*/
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #04437e;
+  transform: translateX(-100%);/*positioned back initially and its hiddem 0 opacity */
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+/*everything is visible later when hover is applied*/
+
+}
+a[href="#"]:hover div {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+a[href="#"] span:last-child {/*I added two span elements so this goes to the last span element responsible for uderlining then make its position absolute pushes it down its
+  parent elemeny and to right it has 0 width initially and its width reaches 75 later when we hover over it and this creates a sliding effect*/
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background-color: #ffffff;
+  transform: translateX(-50%);
+  transition: all 0.3s;
+}
+
+a[href="#"]:hover span:last-child {
+  width: 75%;
+}
+
+#MN { /*The drop down menu now is located relative to its parent container since it has absolute positioning, here, it is pushed 50% to right so it stands at the middle*/
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);/*Using 100 makes the menu drop to left, unlike 50 it is centred*/
+  margin-top: 0.7rem;
+  width: 12rem; /*Width of the dropdown menu*/
+  background-color: #04437e;
+  color: white;
+  border-radius: 0.375rem;
+  opacity: 0;/*Same as I explained for when we hide a sliding square*/
+  visibility: hidden;
+  transition: all 0.2s;
+}
+
+div.group:hover #MN {
+  opacity: 1;
+  visibility: visible;
+}
+
+#MN a {
+  display: block; /*Makes the elements occupy full block, it is necessary*/
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transition: background-color 0.2s, color 0.2s;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+#MN a:hover {
+  color: #ffffff;
+  background-color: #bda887;
+}
+.btn {
+  outline: 0 !important;
+  border: 0 !important; /*inheretence thingy*/
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.icon {
+  font-size: 20px;
+}
+
+/* Heading styling */
+h2 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+}
+
+/* Input field styles */
+input[type="text"],
+input[type="email"],
+textarea {
+  border: 1px solid #d1d5db;
+  outline: none;
+  font-size: 1rem;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+}
+
+/* Button styling */
+button[type="submit"],
+a.bg-gray-400 {
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form spacing */
+form > div {
+  margin-bottom: 1.5rem;
+}
+
+/* Footer styling */
+footer p, footer a, footer h3 {
+  font-size: 0.95rem;
+}
+
+/*Footer*/
+
+ 
+footer {
+  background-color: #053868;
+  display: flex;
+  flex-wrap: wrap;
+  color: black;
+  padding: 50px;
+  justify-content: space-around;
+  align-items: flex-start;
+  clear: both;
+  position: relative;
+  width: 100%;
+}
+#TTL h2{
+  color: #bda887;
+}
+
+.footer-logo{
+  height: 80px;
+  margin-bottom: 5px;
+
+}
