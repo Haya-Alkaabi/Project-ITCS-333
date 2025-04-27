@@ -18,42 +18,41 @@
                     <span class="title">Personal Data</span>
                     <div class="fields">
                         <div class="input-field">
-                            <label>Full Name</label>
-                            <input type="text" placeholder="Enter your name" required>
+                            <label for = "fullName">Full Name</label>
+                            <input type="text" id = "fullName" placeholder="Enter your name" required>
                         </div>
                         <div class="input-field">
-                            <label>ID</label>
-                            <input type="number" placeholder="Enter your ID" required>
+                            <label for="studentId">ID</label>
+                            <input type="number" id="studentId" placeholder="Enter your ID" required>
                         </div>
                         <div class="input-field">
-                            <label>Email</label>
-                            <input type="text" placeholder="Enter your email" required>
+                            <label for="studentEmail">Email</label>
+                            <input type="text" id="studentEmail" placeholder="e.g. 202201234@stu.uob.edu.bh" required>
                         </div>
                         <div class="input-field">
-                            <label>Mobile Number</label>
-                            <input type="number" placeholder="Enter mobile number" required>
+                            <label for="mobileNumber">Mobile Number</label>
+                            <input type="number" id="mobileNumber" placeholder="Enter mobile number" required>
                         </div>
                         <div class="input-field">
-                            <label>
+                            <label for="college">
                                 college
                             </label>
-                            <select required>
+                            <select id="college" name="college" required>
                                 <option disabled selected>Select College</option>
-                                <option>Information Technology</option>
-                                <option>Science</option>
-                                <option>Law</option>
-                                <option>Engineering</option>
-                                <option>Business</option>
-                                <option>health & Sports Science</option>
-                                <option>Arts</option>
-                                <option>Applied studies</option>
-                                <option>Law</option>
-                                <option>Bahrain Teachers College</option>
+                                <option value="it">Information Technology</option>
+                                <option value="Science">Science</option>
+                                <option value="law">Law</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="business">Business</option>
+                                <option value="healthSC">health & Sports Science</option>
+                                <option value="arts">Arts</option>
+                                <option value="appStudies">Applied studies</option>
+                                <option value="teachers">Bahrain Teachers College</option>
                             </select>
                         </div>
                         <div class="input-field">
-                            <label>Major</label>
-                            <input type="text" placeholder="Enter your Major" required>
+                            <label for="major">Major</label>
+                            <input type="text" id="major" placeholder="Enter your Major" required>
                         </div>
                     </div>
                 </div>
@@ -61,28 +60,28 @@
                     <span class="title">Item Details</span>
                     <div class="fields">
                         <div class="input-field">
-                            <label>Item Name</label>
-                            <input type="text" placeholder="Enter Item name" required>
+                            <label for="itemName">Item Name</label>
+                            <input type="text" id="itemName" placeholder="Enter Item name" required>
                         </div>
                         <div class="input-field">
-                            <label>Type</label>
-                            <input type="text" placeholder="Enter type of the item" required>
+                            <label for="itemType">Type</label>
+                            <input type="text" id="itemType" placeholder="Enter type of the item" required>
                         </div>
                         <div class="input-field">
-                            <label>Upload an image of the item</label>
-                            <input type="image" placeholder="Enter item image" required src="img\image_icon.png" alt = "submit"width="50" height="50">
+                            <label for="itemImage">Upload an image of the item</label>
+                            <input type="file" id="itemImage" accept="image/*" required>
                         </div>
                         <div class="input-field">
-                            <label>Brief</label>
-                            <input type="text" placeholder="Enter a brief discruption" required>
+                            <label for="itemBrief">Brief</label>
+                            <input type="text" id="itemBrief" placeholder="Enter a brief discruption" required>
                         </div>
                         <div class="input-field">
-                            <label>Price</label>
-                            <input type="number" placeholder="Enter items' price" required>
+                            <label for="itemPrice">Price</label>
+                            <input type="number" id="itemPrice" placeholder="Enter items' price" required>
                         </div>
                         <div class="input-field">
-                            <label>Avaliable Quantity</label>
-                            <input type="Number" placeholder="Enter the avaliable Quantity" required>
+                            <label for="itemQuantity">Avaliable Quantity</label>
+                            <input type="Number" id="itemQuantity" placeholder="Enter the avaliable Quantity" required>
                         </div>
                     </div>
                     <div class="buttons">
@@ -97,5 +96,6 @@
             </div>
         </form>
     </div>
+    <script src="MPform.js"></script>
 </body>
 </html>

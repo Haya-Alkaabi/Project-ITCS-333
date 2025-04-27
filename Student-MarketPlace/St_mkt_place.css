@@ -260,6 +260,13 @@ header {
 .card:hover {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+.card-wrapper {
+  transition: transform 0.3s ease; /* for smooth reordering */
+}
+
+#no-results-message.hidden {
+  display: none !important;
+}
 
 /*for itemscards*/
 #card1{
@@ -268,21 +275,21 @@ header {
 }
 
 /*pagination control*/
-.Pagination a{
+.pagination a{
     color: #002E5D;
     text-decoration: none;
     padding: 0.5rem;
     display: inline-block;
 }
 
-.Pagination a.active{
+.pagination a.active{
     background-color: #dec8a467;
     text-decoration:underline;
     border-radius: 0.5rem;
     font-weight: bold;
 }
 
-.Pagination a:hover:not(.active){
+.pagination a:hover:not(.active){
     background-color: #dec8a425;
     border-radius: 0.5rem;
 }
