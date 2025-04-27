@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus hub| student MarketPlace </title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="C:\Users\202203297\Desktop\333\ITCS333 PROJECT\Project-ITCS-333\layoutfinaldesign\layoutcss.css" rel="stylesheet">
     <link href="itemDetail.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +32,7 @@
                 <nav >
                     <div >  
                         <div class="flex gap-3 mr-auto">  
-                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                            <a href="..\index.html" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
                                 <span >Home</span>
                                 <div ></div>
                                 <span ></span>
@@ -48,13 +47,13 @@
                                 
                                 <!-- Dropdown Menu -->
                                 <div id="MN" >
-                                    <a href="#">Events Calendar</a>
-                                    <a href="#">Study Group Finder</a>
-                                    <a href="#">Course Reviews</a>
-                                    <a href="#">Course Notes</a>
-                                    <a href="#">Campus News</a>
-                                    <a href="#">Club Activities</a>
-                                    <a href="#">Student Marketplace</a>
+                                    <a href="..\EC-main\Events Calendar\EventsCalendarMainPage.html">Events Calendar</a>
+                                    <a href="..\studyFinderFinal\studyFinder.html">Study Group Finder</a>
+                                    <a href="..\Reviews\rev.html">Course Reviews</a>
+                                    <a href="..\course-notes-work\coursenotes.html">Course Notes</a>
+                                    <a href="..\course-reviews\CampusNews.html">Campus News</a>
+                                    <a href="..\Club-Activities\club.html">Club Activities</a>
+                                    <a href="St_mkt_place.html">Student Marketplace</a>
                                 </div>
                             </div>
         
@@ -101,18 +100,18 @@
             <div class="flex flex-col md:flex-row bg-white rounded-lg shadow-md mt-2 mb-8 p-4 gap-4 mx-2 sm:mx-4 md:mx-8">
                 <!-- Left Section (Image) - Stacked on mobile -->
                 <div class="w-full md:w-1/6 flex items-center justify-center p-2">
-                    <img src="img/NE341.png" class="w-32 md:w-64 h-auto object-contain">
+                    <img src="img/NE341.png" class="w-32 md:w-64 h-auto object-contain" id="detailImage">
                 </div>
             
                 <!-- Middle Section (Content) - Full width on mobile -->
                 <div class="w-full md:w-4/6 p-2 md:p-4" id="detail-container">
-                    <h1 class="text-lg md:text-xl font-bold mb-2">ITNE341 COURSE NOTES</h1>
-                    <h2 class="text-base md:text-lg text-gray-600 mb-4">By Israa</h2>
+                    <h1 class="text-lg md:text-xl font-bold mb-2" id="itemName">ITNE341 COURSE NOTES</h1>
+                    <h2 class="text-base md:text-lg text-gray-600 mb-4" id="itemOwner">By Israa</h2>
                     <a href="#customer-review" class="text-[#c8102e] hover:underline mb-4 inline-block">Customer Reviews</a>
                     
                     <div class="mt-4">
                         <h3 class="font-semibold text-base md:text-lg mb-2">OverView:</h3>
-                        <p class="text-sm md:text-base text-gray-700">
+                        <p class="text-sm md:text-base text-gray-700" id="itemOverview">
                             ITNE341 Network Security Course Notes – Quick Overview<br><br>
                             These concise and focused notes cover all key topics from the ITNE341 Network Security course, including:<br><br>
                             - Network threats & attacks (e.g., DDoS, malware, phishing)<br>
@@ -129,11 +128,11 @@
                 <!-- Right Section (Details) - Stacked on mobile -->
                 <div class="w-full md:w-1/6 p-2 md:p-4 flex flex-col justify-between border-t md:border-t-0 border-gray-200 mt-4 md:mt-0">
                     <div>
-                        <h1 class="font-semibold text-sm md:text-base">Format: pdf</h1>
-                        <h1 class="font-semibold mt-2 text-sm md:text-base">Price: 5.00 BD</h1>
+                        <h1 class="font-semibold text-sm md:text-base" id="itemFormat">Format: pdf</h1>
+                        <h1 class="font-semibold mt-2 text-sm md:text-base" id="itemPrice">Price: 5.00 BD</h1>
                     </div>
                     <div class="mt-4 md:mt-auto">
-                        <h1 class="font-semibold text-sm md:text-base">Contact No: +973 3333 3333</h1>
+                        <h1 class="font-semibold text-sm md:text-base" id="itemContact">Contact No: +973 3333 3333</h1>
                     </div>
                 </div>
             </div>
@@ -168,7 +167,7 @@
                     </div>
                 </div>
             </div>
-
+        </main>    
         <!--Footer-->
         <footer class=" text-white p-6">
 
@@ -185,7 +184,7 @@
                 <div class="md:w-1/3" id="TTL">
                     <h2 class="text-xl font-bold mb-4">Quick Links</h2>
                     <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-[#f80000]">Home</a></li>
+                    <li><a href="..\index.html" class="hover:text-[#f80000]">Home</a></li>
                     <li><a href="https://www.uob.edu.bh/admission-requirements/" target="_blank" class="hover:text-[#f80000]">Join UOB</a></li>
                     <li><a href="https://www.uob.edu.bh/current-students/" target="_blank" class="hover:text-[#f80000]">Current Students</a></li>
                     <li><a href="https://www.uob.edu.bh/future-students/" target="_blank"class="hover:text-[#f80000]">Future Students</a></li>
@@ -200,10 +199,7 @@
                             <li><a href="https://www.uob.edu.bh/contact/" target="_blank"class="hover:text-[#f80000]">Contact Us</a></li>
                             <li><a href="https://www.uob.edu.bh/privacy-policy/" target="_blank"class="hover:text-[#f80000]">Privacy Policy</a></li>
                         </ul>
-                    </div>
-                
-    
-                
+                    </div>     
                 </div>
             
                 <!-- Footer Bottom -->
@@ -212,5 +208,7 @@
                 </div>
     
             </div>
-            </footer>
+        </footer>
+        <script src="itemDetails.js"></script>
     </body>
+</html>
