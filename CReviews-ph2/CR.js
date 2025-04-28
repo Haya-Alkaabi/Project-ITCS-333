@@ -571,7 +571,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 date: new Date().toLocaleDateString()
             };
             allReviews.unshift(newReview);
-            // Update the courseCategories object if the new course doesn't exist
+            // Update the course Categories object if the new course doesn't exist
             if (!courseCategories[courseName]) {
                 courseCategories[courseName] = category;
                 populateCourseFilter(allReviews); 
