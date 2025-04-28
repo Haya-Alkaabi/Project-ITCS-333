@@ -7,7 +7,7 @@
     <link href="S.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
+    
 </head>
 <body>
     
@@ -47,7 +47,7 @@
                             <div id="MN" >
                                 <a href="#">Events Calendar</a>
                                 <a href="#">Study Group Finder</a>
-                                <a href="reviews.html">Course Reviews</a>
+                                <a href="#">Course Reviews</a>
                                 <a href="#">Course Notes</a>
                                 <a href="#">Campus News</a>
                                 <a href="#">Club Activities</a>
@@ -92,45 +92,55 @@
             <aside class="column-span-one-medium background-white padding-all-large border-rounded-medium shadow-light">
                 <h2 class="text-medium text-semi-bold margin-bottom-large">Filters</h2>
               
-                <select class="width-full border-thin padding-all-small border-rounded-small margin-bottom-small background-white ">
+                <select id="categoryFilter" class="width-full border-thin padding-all-small border-rounded-small margin-bottom-small background-white ">
                  <option value="Category">Category</option>
                  <option value="IT">Information system</option>
                  <option value="Engineering">Engineering</option>
                  <option value="Math">Mathamatics</option>
                 </select>
               
-                <select class="width-full border-thin padding-all-small border-rounded-small margin-bottom-large background-white">
-                 <option value="sort">Sort By</option>
-                 <option value="rating">Rating</option>
-                 <option value="date">Date</option>
-                 <option value="level">from level 1-4</option>
+                <select id="sortBy" class="width-full border-thin padding-all-small border-rounded-small margin-bottom-large background-white">
+                    <option value="sort">Sort By</option>
+                    <option value="rating">Rating (Highest to Lowest)</option>
+                    <option value="level">Level (I to IV)</option>
                 </select>
-              
+
                 <button id="addReviewButton" class="background-gold text-dark-blue padding-vertical-small padding-horizontal-large border-rounded-small width-full margin-bottom-large">Add a Review</button>
               
-                <div id="reviewForm" style="display: none;">
-                 <h2 class="text-medium text-semi-bold margin-bottom-large ">Add New Review</h2>
-                 <form>
-                  <label for="courseName" class="text-normal">Course Name:</label><br>
-                  <input type="text" id="courseName" name="courseName" placeholder="enter course name" class="width-full border-thin padding-all-small border-rounded-small margin-bottom-small background-white"><br><br>
-              
-                  <label for="reviewText" class="text-normal">Review:</label><br>
-                  <textarea id="reviewText" name="reviewText" rows="4" class="width-full border-thin padding-all-small border-rounded-small margin-bottom-large background-white"></textarea><br><br>
-              
-                  <label for="rating" class="text-normal">Rating (1-5):</label><br>
-                  <select id="rating" name="rating" class="width-full border-thin padding-all-small border-rounded-small margin-bottom-small background-white">
-                   <option value="1">1</option>
-                   <option value="2">2</option>
-                   <option value="3">3</option>
-                   <option value="4">4</option>
-                   <option value="5">5</option>
-                  </select><br><br>
-              
-                  <button type="submit" class="background-dark-blue text-pure-white padding-vertical-small padding-horizontal-large border-rounded-small width-full">Submit Review</button>
-                 </form>
+                <div id="reviewForm" class="mt-4 hidden">
+                    <h2>Add Your Review</h2>
+                    <form id="addReviewForm" class="grid grid-cols-1 gap-4">
+                        <div>
+                            <label for="reviewerName" class="block text-gray-700 text-sm font-bold mb-2">Your Name:</label>
+                            <input type="text" id="reviewerName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="courseName" class="block text-gray-700 text-sm font-bold mb-2">Course Name:</label>
+                            <input type="text" id="courseName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category:</label>
+                            <select id="category" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="">Select Category</option>
+                                <option value="Information System">Information System</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Mathematics">Mathematics</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="reviewText" class="block text-gray-700 text-sm font-bold mb-2">Review:</label>
+                            <textarea id="reviewText" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                        </div>
+                        <div>
+                            <label for="rating" class="block text-gray-700 text-sm font-bold mb-2">Rating (1-5):</label>
+                            <input type="number" id="rating" min="1" max="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <button type="submit" class="text-white font-bold py-2 px-4 border-rounded-small focus:outline-none focus:shadow-outline submit-button-custom-color">Submit Review</button>
+                        <button type="button" id="cancelReview" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 border-rounded-small focus:outline-none focus:shadow-outline">Cancel</button>
+                    </form>
                 </div>
               
-                <h2 class="text-medium text-semi-bold margin-bottom-large">Comments</h2>
+                <h2 class="text-medium text-semi-bold margin-bottom-large" id="comments-heading">Comments</h2>
               
                 <article class="background-white padding-all-small border-rounded-small margin-bottom-small">
                  <p>student 1: Great course!</p>
@@ -204,6 +214,7 @@
                         </div>
                     </article>
                     
+                    
             </div>
             <div class="pagination">
                 <a href="#" class="page-number prev">Previous</a>
@@ -264,5 +275,6 @@
 
       </div>
       </footer>
+
 </body>
 </html>
