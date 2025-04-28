@@ -22,8 +22,9 @@
       }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="campusNews.js" defer></script>
 </head>
-<body class="bg-beige text-navy font-sans leading-relaxed">
+<body class="full-article-page bg-beige text-navy font-sans leading-relaxed">
 
     <!-- Header -->
      <header > 
@@ -45,7 +46,7 @@
                 <nav >
                     <div >  
                         <div class="flex gap-3 mr-auto">  
-                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                            <a href="..\index.html" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
                                 <span >Home</span>
                                 <div ></div>
                                 <span ></span>
@@ -58,19 +59,19 @@
                                     <span ></span>
                                 </a>
                                 
-                                <!-- Dropdown Menu -->
-                                <div id="MN" >
-                                    <a href="#">Events Calendar</a>
-                                    <a href="#">Study Group Finder</a>
-                                    <a href="#">Course Reviews</a>
-                                    <a href="#">Course Notes</a>
-                                    <a href="#">Campus News</a>
-                                    <a href="#">Club Activities</a>
-                                    <a href="#">Student Marketplace</a>
-                                </div>
+                               <!-- Dropdown Menu -->
+                            <div id="MN" >
+                                <a href="..\EC-main\Events Calendar\EventsCalendarMainPage.html">Events Calendar</a>
+                                <a href="..\studyFinderFinal\studyFinder.html">Study Group Finder</a>
+                                <a href="..\Reviews\rev.html">Course Reviews</a>
+                                <a href="..\course-notes-work\coursenotes.html">Course Notes</a>
+                                <a href="CampusNews.html">Campus News</a>
+                                <a href="..\Club-Activities\club.html">Club Activities</a>
+                                <a href="..\Student-MarketPlace\St_mkt_place.html">Student Marketplace</a>
                             </div>
-        
-                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                        </div>
+    
+                        <a href="..\index.html" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
                                 <span >Profile</span>
                                 <div ></div>
                                 <span ></span>
@@ -242,28 +243,33 @@
                 </div>
             </details>
             
-            <!-- Comment Form -->
-            <details open class="mt-8 group">
+           <!-- Comment Form -->
+            <details open id="comment-form" class="mt-8 group">
                 <summary class="list-none cursor-pointer">
                     <h3 class="text-xl font-bold mb-4 flex items-center">
                         Leave a Comment
                         <i class="fas fa-chevron-down ml-2 text-gold transform group-open:rotate-180 transition-transform"></i>
                     </h3>
                 </summary>
-                <form class="bg-white p-6 rounded-lg shadow">
+                <form id="commentForm" class="bg-white p-6 rounded-lg shadow">
                     <div class="mb-4">
                         <label for="comment-name" class="block font-medium mb-2">Name</label>
-                        <input type="text" id="comment-name" class="w-full px-4 py-2 border border-brown rounded focus:outline-none focus:ring-2 focus:ring-gold" placeholder="Enter your name">
-                    </div>
-                    <div class="mb-4">
-                        <label for="comment-email" class="block font-medium mb-2">Email (will not be published)</label>
-                        <input type="email" id="comment-email" class="w-full px-4 py-2 border border-brown rounded focus:outline-none focus:ring-2 focus:ring-gold" placeholder="Enter your email">
-                    </div>
-                    <div class="mb-4">
-                        <label for="comment-text" class="block font-medium mb-2">Comment</label>
-                        <textarea id="comment-text" rows="4" class="w-full px-4 py-2 border border-brown rounded focus:outline-none focus:ring-2 focus:ring-gold" placeholder="Write your comment"></textarea>
-                    </div>
-                    <button type="submit" class="px-6 py-2 bg-gold text-white font-bold rounded hover:bg-red transition-colors">Post Comment</button>
+                        <input type="text" id="comment-name" name="comment-name" class="w-full px-4 py-2 border border-brown rounded focus:outline-none focus:ring-2 focus:ring-gold" placeholder="Enter your name">
+                        <!-- Error message will be injected here -->
+                        </div>
+                        <div class="mb-4">
+                            <label for="comment-email" class="block font-medium mb-2">Email (will not be published)</label>
+                            <input type="email" id="comment-email" name="comment-email" class="w-full px-4 py-2 border border-brown rounded focus:outline-none focus:ring-2 focus:ring-gold" placeholder="Enter your email">
+                            <!-- Error message will be injected here -->
+                        </div>
+                        <div class="mb-4">
+                            <label for="comment-text" class="block font-medium mb-2">Comment</label>
+                            <textarea id="comment-text" name="comment-text" rows="4" class="w-full px-4 py-2 border border-brown rounded focus:outline-none focus:ring-2 focus:ring-gold" placeholder="Write your comment"></textarea>
+                            <!-- Error message will be injected here -->
+                        </div>
+                        <button type="submit" id="comment-submit" class="px-6 py-2 bg-gold text-white font-bold rounded hover:bg-red transition-colors">
+                                Post Comment
+                        </button>
                 </form>
             </details>
         </section>
@@ -336,7 +342,7 @@
         <div class="footer-section">
             <h3 class="text-gold text-xl font-bold mb-4">Quick Links</h3>
             <ul class="space-y-2">
-                <li><a href="layout.html" class="hover:text-red transition-colors">Home</a></li>
+                <li><a href="..\index.html" class="hover:text-red transition-colors">Home</a></li>
                 <li><a href="https://www.uob.edu.bh/admission-requirements/" target="_blank" class="hover:text-red transition-colors">Join UOB</a></li>
                 <li><a href="https://www.uob.edu.bh/current-students/" target="_blank" class="hover:text-red transition-colors">Current Students</a></li>
                 <li><a href="https://www.uob.edu.bh/future-students/" target="_blank" class="hover:text-red transition-colors">Future Students</a></li>
