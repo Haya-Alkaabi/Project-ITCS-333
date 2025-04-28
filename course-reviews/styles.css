@@ -314,3 +314,47 @@ div.group:hover #MN {
   background-color: #C8102E;
   color: white;
 }
+/* Loading spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Error message */
+.bg-red-100 {
+  background-color: #fee2e2;
+}
+.border-red-500 {
+  border-color: #ef4444;
+}
+.text-red-700 {
+  color: #b91c1c;
+}
+
+/* Success message */
+.bg-green-100 {
+  background-color: #dcfce7;
+}
+.border-green-500 {
+  border-color: #22c55e;
+}
+.text-green-700 {
+  color: #15803d;
+}
+
+/* Validation states */
+.border-red-500 {
+  border-color: #ef4444 !important;
+}
+.border-green-500 {
+  border-color: #22c55e !important;
+}
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

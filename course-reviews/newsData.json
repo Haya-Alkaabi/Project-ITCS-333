@@ -1,0 +1,88 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "UOB Shines in Sixth Arab Youth Leaders Training Program",
+      "summary": "UOB Excellent Participation in Sixth Training Program for Preparing Arab Youth Leaders.",
+      "content": "Full details about UOB's participation...",
+      "image": "photos/Training Program .png",
+      "category": "achievements",
+      "recommended": true,
+      "author": "University of Bahrain",
+      "publishDate": "2025-03-16",
+      "fullArticleLink": "TrainingProgramFullArticle.html"
+    },
+    {
+      "id": 2,
+      "title": "UoB Hosts Astronauts for Satellite Launch",
+      "summary": "University of Bahrain Hosts Emirati Astronauts to Mark the Launch of Bahrain's 'Al Munther' Satellite.",
+      "content": "Full details about the satellite launch...",
+      "image": "photos/Emirati astronauts.png",
+      "category": "events",
+      "recommended": true,
+      "author": "University of Bahrain",
+      "publishDate": "2025-03-05",
+      "fullArticleLink": "EmiratiAstronautsFullArticle.html"
+    },
+    {
+      "id": 3,
+      "title": "National Charter University Badminton Championship",
+      "summary": "UOB hosted the first National Charter University Badminton Championship.",
+      "content": "Full details about the badminton championship...",
+      "image": "photos/uob_badminton_championship.png",
+      "category": "sports",
+      "recommended": true,
+      "author": "University of Bahrain",
+      "publishDate": "2024-02-15",
+      "fullArticleLink": "NationalCharterUniversityBadmintonChampionshipFullArticle.html"
+    },
+    {
+      "id": 4,
+      "title": "UOB Professors and Students Explore Text Generation Models",
+      "summary": "Professors and Students at UOB Practice Developing Text Generation Models",
+      "content": "Full details about the text generation models research...",
+      "image": "photos/Text Generation Models.png",
+      "category": "academic",
+      "recommended": false,
+      "author": "University of Bahrain",
+      "publishDate": "2025-02-25",
+      "fullArticleLink": "https://www.uob.edu.bh/professors-and-students-at-uob-practice-developing-text-generation-models/"
+    },
+    {
+      "id": 5,
+      "title": "UOB President Highlights Digital Learning Transformation at Huawei Seminar in China",
+      "summary": "Within His Participation in Huawei's Seminar in China President of UOB Reviews the University's Efforts in Strategic Transformation Towards Digital Learning",
+      "content": "Full details about the Huawei seminar...",
+      "image": "photos/Huawei's seminar.png",
+      "category": "academic",
+      "recommended": false,
+      "author": "University of Bahrain",
+      "publishDate": "2024-06-09",
+      "fullArticleLink": "https://www.uob.edu.bh/42826/"
+    },
+    {
+      "id": 6,
+      "title": "UoB Wins First Place at Bahrain International Garden Show",
+      "summary": "The University of Bahrain secured first place at the Bahrain International Garden Show for its plant sustainability project, supporting Bahrain's carbon neutrality goals.",
+      "content": "Full details about the garden show achievement...",
+      "image": "photos/International Garden Show.png",
+      "category": "achievements",
+      "recommended": false,
+      "author": "University of Bahrain",
+      "publishDate": "2025-02-23",
+      "fullArticleLink": "https://www.uob.edu.bh/uob-wins-first-place-in-garden-shows-educational-category/"
+    },
+    {
+      "id": 7,
+      "title": "Symposium at BTC reviews Evolution of Education",
+      "summary": "Bahrain Teachers College at UoB held its first symposium on educational innovation, featuring Dr. Hanin Anwar Bukamal's keynote on inclusive education and 15 sessions on reform and sustainability.",
+      "content": "Full details about the symposium...",
+      "image": "photos/BTC .png",
+      "category": "academic",
+      "recommended": false,
+      "author": "University of Bahrain",
+      "publishDate": "2025-02-12",
+      "fullArticleLink": "https://www.uob.edu.bh/symposium-at-btc-reviews-evolution-of-education/"
+    }
+  ]
+}
