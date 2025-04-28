@@ -20,12 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentlyEditingId = null; // To track which review is being edited
 
 
-    // --- Load Comments from localStorage ---
+    // --- Load Comments from local Storage ---
     function loadComments() {
         const storedComments = localStorage.getItem('comments');
         if (storedComments) {
             comments = JSON.parse(storedComments);
             renderComments();
+
         }
     }
 
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('comments', JSON.stringify(comments));
     }
 
+    
     // --- Render Comments ---
     function renderComments() {
         if (commentsContainer) {
