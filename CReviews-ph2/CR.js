@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('comments', JSON.stringify(comments));
     }
 
-    
+
     // --- Render Comments ---
     function renderComments() {
         if (commentsContainer) {
@@ -575,4 +575,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-//first version of js and need to be updated- Aldana
+//first version of js and need to be updated and edited- Aldana
