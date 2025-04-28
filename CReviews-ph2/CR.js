@@ -4,20 +4,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const categoryFilter = document.getElementById('categoryFilter');
     const courseLevelFilter = document.getElementById('courseLevelFilter');
     const sortByFilter = document.getElementById('sortBy');
-    console.log('sortByFilter element:', sortByFilter);
+    console.log('sortByFilter element:', sortByFilter); // Logging the sortByFilter element for debugging
     const paginationContainer = document.querySelector('.pagination');
     const addReviewButton = document.querySelector('aside button');
-    const reviewForm = document.getElementById('reviewForm');
-    const addReviewForm = document.getElementById('addReviewForm');
+    const reviewForm = document.getElementById('reviewForm');//The form to add a new review
+    const addReviewForm = document.getElementById('addReviewForm'); // The form element itself
     const cancelReviewButton = document.getElementById('cancelReview');
     const commentsContainer = document.querySelector('aside'); 
     const commentInput = document.querySelector('aside input[placeholder="Add a comment..."]');
     const postCommentButton = document.querySelector('aside button.background-dark-blue');
-    let comments = [];
-    let allReviews = [];
-    let currentPage = 1;
-    const reviewsPerPage = 6;
+    let comments = []; // Array to store comments
+    let allReviews = []; // Array to store all fetched and added reviews
+    let currentPage = 1; // Current page number for pagination
+    const reviewsPerPage = 6;  // Number of reviews to display per page
     let currentlyEditingId = null; // To track which review is being edited
+
 
 
     // --- Load Comments from local Storage ---
@@ -83,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Event listener for deleting a comment ---
     if (commentsContainer) {
         commentsContainer.addEventListener('click', (event) => {
             if (event.target.classList.contains('background-red-dark') && event.target.textContent === 'Delete') {
@@ -116,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Initialize Comments ---
     loadComments();
 
+    // --- Course Categories Mapping ---
     const courseCategories = {
       "Computer Programming I": "Information System",
       "Network Security III": "Information System",
@@ -127,19 +130,22 @@ document.addEventListener('DOMContentLoaded', () => {
       "Highway Engineering III": "Engineering",
       "Hydraulics IIV": "Engineering"
     };
-  
+   
+    // --- Display Loading State ---
     function displayLoading() {
       if (reviewsGridContainer) {
         reviewsGridContainer.innerHTML = '<p>Loading reviews...</p>';
       }
     }
-  
+    
+    // --- Clear Loading State ---
     function clearLoading() {
       if (reviewsGridContainer) {
         reviewsGridContainer.innerHTML = '';
       }
     }
-  
+
+    // --- Transform Fetched Review Data ---
     function transformReviewData(data) {
       const courses = Object.keys(courseCategories);
       const reviewers = ["Aldana", "saud", "Shikha", "Hamad", "Omayma", "Khalid", "Fajer", "Fahad", "Maria", "Aziz","kalifa","sultan","Ameena","Reem","Shahad","Noor"];
@@ -160,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         }
       });
-  
+     // Shuffle the array to randomize the order of reviews
       for (let i = transformedData.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [transformedData[i], transformedData[j]] = [transformedData[j], transformedData[i]];
@@ -168,7 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
       return transformedData.slice(0, 27);
     }
-  
+
+    // --- Populate Course Filter Options ---
     function populateCourseFilter(reviews) {
       if (!categoryFilter) return;
       categoryFilter.innerHTML = '<option value="">Category</option>';
@@ -182,7 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
         categoryFilter.appendChild(option);
       });
     }
-  
+    
+    // --- Fetch Reviews from API ---
     async function fetchReviews() {
       displayLoading();
       try {
@@ -202,7 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
         displayError(error.message);
       }
     }
-  
+   
+     // --- Render Reviews to the Grid ---
     function renderReviews(reviews) {
         if (!reviewsGridContainer) return;
         reviewsGridContainer.innerHTML = '';
@@ -286,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (reviewDetails && editForm && editForm.classList.contains('edit-form')) {
                 reviewDetails.classList.add('hidden');
                 editForm.classList.remove('hidden');
-                // Optionally, scroll to the edit form
+                // Optional scroll to the edit form
                 editForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
         }
@@ -306,6 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- Event listener for "Save Changes" button in edit form ---
     reviewsGridContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('save-edit-button')) {
                 console.log('Save Changes button clicked!')
@@ -344,13 +354,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-  
+
+   // --- Update Pagination Controls ---
     function updatePagination(reviews) {
       if (!paginationContainer) return;
-      const totalPages = Math.ceil(reviews.length / reviewsPerPage);
-      paginationContainer.innerHTML = '';
+      const totalPages = Math.ceil(reviews.length / reviewsPerPage); // Calculate the total number of pages
+      paginationContainer.innerHTML = ''; // Clear existing pagination links
   
-      const prevLink = document.createElement('a');
+      const prevLink = document.createElement('a'); // Create "Previous" link
       prevLink.href = '#';
       prevLink.classList.add('page-number', 'prev');
       prevLink.textContent = 'Previous';
@@ -377,6 +388,8 @@ document.addEventListener('DOMContentLoaded', () => {
           updatePagination(reviews);
         });
         paginationContainer.appendChild(pageLink);
+
+         // Add ellipses for large number of pages
         if (totalPages > 5 && i === 2 && currentPage > 3) {
           const dots = document.createElement('span');
           dots.classList.add('page-number', 'dots');
@@ -404,7 +417,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       paginationContainer.appendChild(nextLink);
     }
-  
+
+
+    // --- Render Reviews for the Current Page ---
     function renderCurrentPage(reviews) {
       const startIndex = (currentPage - 1) * reviewsPerPage;
       const endIndex = startIndex + reviewsPerPage;
@@ -412,6 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
       renderReviews(currentReviews);
     }
   
+     // --- Get Course Level from Course Name ---
     function getCourseLevel(courseName) {
         const romanMap = { "I": 1, "II": 2, "III": 3, "IIV": 4 };
         const parts = courseName.split(/[\s]+/);
@@ -440,6 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     
+    // --- Sort Reviews ---
     if (sortByFilter) {
         console.log('sortByFilter event listener is being attached.');
         sortByFilter.addEventListener('change', applyFiltersAndSort);
@@ -453,6 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
   
+    // --- Apply Filters and Sorting ---
     function applyFiltersAndSort() {
         const selectedCategory = categoryFilter ? categoryFilter.value : "";
         const sortByValue = sortByFilter ? sortByFilter.value : "sort";
@@ -474,6 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePagination(filteredAndSortedReviews);
     }
 
+    // --- Load Reviews from localStorage ---
     function loadReviews() {
         const storedReviews = localStorage.getItem('reviews');
         if (storedReviews) {
@@ -486,7 +505,8 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('reviews', JSON.stringify(allReviews));
     }
 
-    
+
+    // --- Event listener to show the add review form ---
     if (addReviewButton) {
         addReviewButton.addEventListener('click', () => {
             if (reviewForm) {
@@ -494,6 +514,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // --- Event listener for submitting the add review form ---
     if (addReviewForm) {
          addReviewForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -552,7 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update the courseCategories object if the new course doesn't exist
             if (!courseCategories[courseName]) {
                 courseCategories[courseName] = category;
-                populateCourseFilter(allReviews); // Re-populate the filter
+                populateCourseFilter(allReviews); 
             }
             saveReviews(); // Save the updated reviews to localStorage
             currentPage = 1;
@@ -563,16 +585,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // --- Initial Load and Setup ---
     loadReviews();
     if (allReviews.length === 0) {
-        fetchReviews();
+        fetchReviews(); // Fetch reviews from the API if none are in local storage
     } else {
         renderCurrentPage(allReviews);
         updatePagination(allReviews);
         populateCourseFilter(allReviews);
     }
-    loadComments();
+    loadComments();  // Load comments from local storage
 });
 
 
-//first version of js and need to be updated and edited- Aldana
+
+
+//everything seems good know ..Aldana
