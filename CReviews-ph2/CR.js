@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const reviewForm = document.getElementById('reviewForm');
     const addReviewForm = document.getElementById('addReviewForm');
     const cancelReviewButton = document.getElementById('cancelReview');
-    const commentsContainer = document.querySelector('aside'); // The comments are directly within the aside
+    const commentsContainer = document.querySelector('aside'); 
     const commentInput = document.querySelector('aside input[placeholder="Add a comment..."]');
     const postCommentButton = document.querySelector('aside button.background-dark-blue');
     let comments = [];
