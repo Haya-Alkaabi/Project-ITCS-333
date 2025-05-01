@@ -485,7 +485,7 @@ section.b:hover .sort{
 
 .date-card {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 10px;
   flex-grow: 1;
 }
@@ -527,8 +527,9 @@ section.b:hover .sort{
 .time-axis {
   display: flex;
   flex-direction: column;
-  padding: 20px 10px;
+  padding: 30px 10px;
   border-right: 1px solid #eee;
+  
 }
 
 .time-label {
@@ -543,9 +544,9 @@ section.b:hover .sort{
 
 .chart-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(26, 30px); 
-  position: relative;
+  position: relative;;
 }
 
 /* Vertical grid lines */
@@ -558,11 +559,15 @@ section.b:hover .sort{
 }
 
 /* Position vertical grid lines between columns */
-.grid-line:nth-child(1) { left: 20%; }
-.grid-line:nth-child(2) { left: 40%; }
-.grid-line:nth-child(3) { left: 60%; }
-.grid-line:nth-child(4) { left: 80%; }
-.grid-line:nth-child(5) { left: 100%; }
+/* Update grid-line positions for 7 columns */
+.grid-line:nth-child(1) { left: calc(100% / 7); }
+.grid-line:nth-child(2) { left: calc(200% / 7); }
+.grid-line:nth-child(3) { left: calc(300% / 7); }
+.grid-line:nth-child(4) { left: calc(400% / 7); }
+.grid-line:nth-child(5) { left: calc(500% / 7); }
+.grid-line:nth-child(6) { left: calc(600% / 7); }
+.grid-line:nth-child(7) { left: calc(700% / 7); }
+
 
 .event-card {
   background: #f8f9fa;
@@ -680,4 +685,41 @@ footer {
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: #053868 #fcfbf6;
+}
+
+.cell-action-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 12px;
+  color: black;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+/* Tooltip styles */
+.add-tooltip {
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+
+/* Button styles */
+.edit-course-btn, .delete-course-btn {
+  font-size: 12px;
+  padding: 2px 4px;
+  margin-top: 4px;
+  align-self: flex-end;
+}
+
+/* Cell styles */
+.cell {
+  position: relative;
+  min-height: 60px;
+}
+
+.empty-cell {
+  background-color: #f8f9fa;
 }
