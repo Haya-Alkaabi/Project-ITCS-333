@@ -149,9 +149,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function isSameDay(date1, date2) {
+        if (!date1 || !date2) return false;
         return date1.getDate() === date2.getDate() &&
-            date1.getMonth() === date2.getMonth() &&
-            date1.getFullYear() === date2.getFullYear();
+               date1.getMonth() === date2.getMonth() &&
+               date1.getFullYear() === date2.getFullYear();
     }
 
     function formatTime(timeStr) {
@@ -293,57 +294,68 @@ document.addEventListener('DOMContentLoaded', function() {
         eventForm.classList.add('hidden');
     });
 
-    eventFormElement.addEventListener('submit', function(event) {
-        event.preventDefault();
+  eventFormElement.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-        const title = document.getElementById('eventTitle').value;
-        const dateStr = document.getElementById('eventDate').value;
-        const startTime = document.getElementById('eventStartTime').value;
-        const endTime = document.getElementById('eventEndTime').value;
-        const location = document.getElementById('eventLocation').value;
-        const description = document.getElementById('eventDescription').value;
+    const title = document.getElementById('eventTitle').value;
+    const dateStr = document.getElementById('eventDate').value;
+    const startTime = document.getElementById('eventStartTime').value;
+    const endTime = document.getElementById('eventEndTime').value;
+    const location = document.getElementById('eventLocation').value;
+    const description = document.getElementById('eventDescription').value;
 
-        if (!title || !dateStr || !startTime || !endTime) {
-            alert('Please fill all required fields');
-            return;
-        }
+    if (!title || !dateStr || !startTime || !endTime) {
+        alert('Please fill all required fields');
+        return;
+    }
 
-        const [year, month, day] = dateStr.split('-');
-        const eventDate = new Date(year, month - 1, day);
-        eventDate.setHours(0, 0, 0, 0);
+    const [year, month, day] = dateStr.split('-');
+    const eventDate = new Date(year, month - 1, day);
+    eventDate.setHours(0, 0, 0, 0);
 
-        const [startHour, startMinute] = startTime.split(':').map(Number);
-        const [endHour, endMinute] = endTime.split(':').map(Number);
+    // Check if the event date is in the current month view
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+    if (eventDate.getMonth() !== currentMonth || eventDate.getFullYear() !== currentYear) {
+        // If not, navigate to that month first
+        currentDate = new Date(eventDate);
+        updateCalendar(currentDate);
+    }
 
-        const startDateTime = new Date(eventDate);
-        startDateTime.setHours(startHour, startMinute);
+    // Rest of your event creation logic...
+    const [startHour, startMinute] = startTime.split(':').map(Number);
+    const [endHour, endMinute] = endTime.split(':').map(Number);
 
-        const endDateTime = new Date(eventDate);
-        endDateTime.setHours(endHour, endMinute);
+    const startDateTime = new Date(eventDate);
+    startDateTime.setHours(startHour, startMinute);
 
-        const duration = (endDateTime - startDateTime) / (1000 * 60);
-        if (startHour < 8 || endHour > 21 || (endHour === 21 && endMinute > 50) || duration > 600) {
-            alert('Events must be within working hours (8:00 AM - 9:50 PM) and less than 10 hours.');
-            return;
-        }
+    const endDateTime = new Date(eventDate);
+    endDateTime.setHours(endHour, endMinute);
 
-        const newEvent = {
-            id: Date.now(),
-            title,
-            date: eventDate,
-            startTime,
-            endTime,
-            duration,
-            location: location || 'Not specified',
-            description: description || 'No description',
-            type: 'custom'
-        };
+    const duration = (endDateTime - startDateTime) / (1000 * 60);
+    if (startHour < 8 || endHour > 21 || (endHour === 21 && endMinute > 50) || duration > 600) {
+        alert('Events must be within working hours (8:00 AM - 9:50 PM) and less than 10 hours.');
+        return;
+    }
 
-        events.push(newEvent);
-        renderEvents();
-        eventFormElement.reset();
-        eventForm.classList.add('hidden');
-    });
+    const newEvent = {
+        id: Date.now(),
+        title,
+        date: eventDate,
+        startTime,
+        endTime,
+        duration,
+        location: location || 'Not specified',
+        description: description || 'No description',
+        type: 'custom',
+        marked: false // Explicitly set to false
+    };
+
+    events.push(newEvent);
+    renderEvents();
+    eventFormElement.reset();
+    eventForm.classList.add('hidden');
+});
 
     // Fetch Events
     async function fetchEvents() {
@@ -425,24 +437,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Event Rendering
     function renderEvents() {
         const existingEvents = document.querySelectorAll('.event-card, .event-cardlarge');
         existingEvents.forEach(event => event.remove());
-
-        const weekStart = new Date(currentDate);
-        weekStart.setHours(0, 0, 0, 0);
-        const weekEnd = new Date(weekStart);
-        weekEnd.setDate(weekStart.getDate() + 6);
-
+    
+        // Get all dates that are currently displayed in the calendar
+        const displayedDates = [];
+        for (let i = 0; i < dateSquares.length; i++) {
+            const squareDate = new Date(dateSquares[i].dataset.date);
+            squareDate.setHours(0, 0, 0, 0);
+            displayedDates.push(squareDate);
+        }
+    
         const processedEvents = processEvents();
-        const weekEvents = processedEvents.filter(event => {
+        
+        // Filter events that match any of the displayed dates
+        const eventsToShow = processedEvents.filter(event => {
             const eventDate = new Date(event.date);
             eventDate.setHours(0, 0, 0, 0);
-            return eventDate >= weekStart && eventDate <= weekEnd;
+            return displayedDates.some(displayedDate => isSameDay(displayedDate, eventDate));
         });
-
-        weekEvents.forEach(event => createTimeChartEvent(event));
+    
+        eventsToShow.forEach(event => createTimeChartEvent(event));
     }
 
     function createTimeChartEvent(event) {
