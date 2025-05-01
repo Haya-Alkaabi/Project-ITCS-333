@@ -191,5 +191,41 @@
 
   </div>
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Parse URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const eventId = params.get('id');
+        
+        if (eventId) {
+            // Update page content directly (no DOM changes needed)
+            document.querySelector('.text-yellow-600').textContent = 
+                `Join us this ${formatDate(params.get('date'))}!`;
+            document.querySelector('.text-4xl').textContent = params.get('title');
+            document.querySelector('.text-gray-600').innerHTML = 
+                `Presented by <em class="font-semibold">Dr. Ali Alsaffar</em>, ${params.get('description') || 'No description'}`;
+            
+            // Update time and location
+            const timeHtml = `<i class="fas fa-clock text-yellow-600 mr-2"></i> ${formatTime(params.get('startTime'))} - ${formatTime(params.get('endTime'))}`;
+            const locationHtml = `<i class="fas fa-map-marker-alt text-yellow-600 mr-2 mt-2"></i> ${params.get('location') || 'UoB Innovation Lab'}`;
+            document.querySelector('.border-t.pt-6 .text-gray-500').innerHTML = `${timeHtml}<br>${locationHtml}`;
+        }
+    
+        function formatTime(timeStr) {
+            const [h, m] = timeStr.split(':');
+            const hours = h % 12 || 12;
+            const ampm = h < 12 ? 'AM' : 'PM';
+            return `${hours}:${m} ${ampm}`;
+        }
+    
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const options = { weekday: 'long', day: 'numeric', month: 'long' };
+            return date.toLocaleDateString('en-US', options);
+        }
+    });
+    </script>
+
+  
     </body>
 </html>
