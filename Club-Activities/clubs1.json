@@ -1,0 +1,37 @@
+[
+  {
+    "id": "chess-club-123",
+    "name": "Chess Club",
+    "description": "Sharpen your mind and make new friends! We welcome players of all skill levels, from beginners to seasoned strategists. Join us for weekly meetings, tournaments, and casual games.",
+    "category": "academic",
+    "image": "pictures/chess.jpg"
+  },
+  {
+    "id": "music-society-456",
+    "name": "Music Society",
+    "description": "Do you love to play, sing, or simply appreciate music? Our society brings together musicians and music lovers from all genres. We organize jam sessions, concerts, and workshops.",
+    "category": "arts",
+    "image": "pictures/music.jpg"
+  },
+  {
+    "id": "plant-enthusiasts-789",
+    "name": "Campus Plant Enthusiasts",
+    "description": "For students with a green thumb or anyone curious about the world of plants! We explore botany, gardening, and sustainable living through workshops, plant swaps, and field trips.",
+    "category": "other",
+    "image": "pictures/plant.jpg"
+  },
+  {
+    "id": "drama-club-abc",
+    "name": "The University Drama Club",
+    "description": "Step into the spotlight! Our drama club offers opportunities for acting, directing, scriptwriting, and stage management. Participate in plays, musicals, and improv nights.",
+    "category": "arts",
+    "image": "pictures/acting.jpg"
+  },
+  {
+    "id": "architecture-guild-def",
+    "name": "Architectural Design Club",
+    "description": "A space for aspiring architects and design enthusiasts to collaborate, share ideas, and explore the principles of architecture through discussions, design challenges, and site visits.",
+    "category": "academic",
+    "image": "pictures/architecture.jpg"
+  }
+]
