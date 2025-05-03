@@ -22,8 +22,9 @@
       }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="campusNews.js" defer></script>
 </head>
-<body class="bg-beige text-navy font-sans leading-relaxed">
+<body class="AddNews bg-beige text-navy font-sans leading-relaxed">
 
     <!-- Header -->
      <header > 
@@ -45,7 +46,7 @@
                 <nav >
                     <div >  
                         <div class="flex gap-3 mr-auto">  
-                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                            <a href="..\index.html" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
                                 <span >Home</span>
                                 <div ></div>
                                 <span ></span>
@@ -60,18 +61,17 @@
                                 
                                 <!-- Dropdown Menu -->
                                 <div id="MN" >
-                                    <a href="#">Events Calendar</a>
-                                    <a href="#">Study Group Finder</a>
-                                    <a href="#">Course Reviews</a>
-                                    <a href="#">Course Notes</a>
-                                    <a href="#">Campus News</a>
-                                    <a href="#">Club Activities</a>
-                                    <a href="#">Student Marketplace</a>
+                                    <a href="..\EC-main\Events Calendar\EventsCalendarMainPage.html">Events Calendar</a>
+                                    <a href="..\studyFinderFinal\studyFinder.html">Study Group Finder</a>
+                                    <a href="..\Reviews\rev.html">Course Reviews</a>
+                                    <a href="..\course-notes-work\coursenotes.html">Course Notes</a>
+                                    <a href="CampusNews.html">Campus News</a>
+                                    <a href="..\Club-Activities\club.html">Club Activities</a>
+                                    <a href="..\Student-MarketPlace\St_mkt_place.html">Student Marketplace</a>
                                 </div>
                             </div>
         
-                            <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
-                                <span >Profile</span>
+                            <a href="..\index.html" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden"><span >Profile</span>
                                 <div ></div>
                                 <span ></span>
                             </a>
@@ -130,9 +130,9 @@
                 <span class="absolute bottom-0 left-0 w-24 h-1 bg-gold"></span>
             </h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div id ="recommended-news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 <!-- First Recommended Article -->
-                <article class="flex flex-col bg-white p-4 rounded-lg shadow-md hover:-translate-y-1 hover:shadow-lg transition-all h-full">
+                <article class="recommended-news flex flex-col bg-white p-4 rounded-lg shadow-md hover:-translate-y-1 hover:shadow-lg transition-all h-full">
                     <img src="../photos/Training Program .png" alt="Training Program" title="Training Program" 
                          class="w-full h-40 object-cover rounded mb-3 hover:scale-102 transition-transform">
                     <h3 class="text-red font-bold mb-2 hover:text-gold transition-colors">UOB Shines in Sixth Arab Youth Leaders Training Program</h3>
@@ -152,7 +152,7 @@
                 </article>
                 
                 <!-- Second Recommended Article -->
-                <article class="flex flex-col bg-white p-4 rounded-lg shadow-md hover:-translate-y-1 hover:shadow-lg transition-all h-full">
+                <article class="recommended-news flex flex-col bg-white p-4 rounded-lg shadow-md hover:-translate-y-1 hover:shadow-lg transition-all h-full">
                     <img src="../photos/Emirati astronauts .png" alt="Emirati astronauts" title="Emirati astronauts" 
                          class="w-full h-40 object-cover rounded mb-3 hover:scale-102 transition-transform">
                     <h3 class="text-red font-bold mb-2 hover:text-gold transition-colors">UoB Hosts Astronauts for Satellite Launch</h3>
@@ -172,7 +172,7 @@
                 </article> 
                 
                 <!-- Third Recommnended Article -->
-                <article class="flex flex-col bg-white p-4 rounded-lg shadow-md hover:-translate-y-1 hover:shadow-lg transition-all h-full">
+                <article class="recommended-news flex flex-col bg-white p-4 rounded-lg shadow-md hover:-translate-y-1 hover:shadow-lg transition-all h-full">
                     <img src="../photos/uob_badminton_championship.png" alt="National Charter University Badminton Championship at UOB" 
                          class="w-full h-40 object-cover rounded mb-3 hover:scale-102 transition-transform">
                     <h3 class="text-red font-bold mb-2 hover:text-gold transition-colors">National Charter University Badminton Championship</h3>
@@ -200,7 +200,7 @@
                 <span class="absolute bottom-0 left-0 w-24 h-1 bg-gold"></span>
             </h2>
             
-            <div class="flex flex-col gap-4">
+            <div id="regular-news-container" class="flex flex-col gap-4">
                 <!-- Regular Article 1 -->
                 <article class="flex flex-col md:flex-row items-center bg-white rounded-lg p-4 shadow hover:translate-x-1 hover:shadow-md transition-all">
                     <div class="flex-1 min-w-0">
@@ -272,7 +272,7 @@
         </section>
         
         <!-- Pagination -->
-        <div class="flex gap-3 justify-center my-10">
+        <div id="pagination-container" class="flex gap-3 justify-center my-10">
             <a href="https://www.uob.edu.bh/news/page/2/" class="px-4 py-2 bg-beige text-navy border border-gold rounded hover:bg-brown hover:text-white transition-colors">« Prev</a>
             <a href="https://www.uob.edu.bh/news/page/2/" class="px-4 py-2 bg-red text-white rounded">1</a>
             <a href="https://www.uob.edu.bh/news/page/2/" class="px-4 py-2 bg-gold text-white rounded hover:bg-navy transition-colors">2</a>
@@ -282,6 +282,22 @@
         
         <!-- Add News Button -->
         <a href="AddNews.html" class="block w-fit mx-auto mb-10 px-6 py-3 bg-gold text-white font-bold rounded hover:bg-red hover:-translate-y-1 hover:shadow-lg transition-all">+ Add News</a>
+
+        <!-- Loading Indicator -->
+         <div id="loading-indicator" class="text-center py-12 hidden">
+            <i class="fas fa-spinner fa-spin text-4xl text-gold"></i>
+            <p class="mt-4 text-navy">Loading news...</p>
+        </div>
+        <!-- No Results Message -->
+         <div id="no-results" class="text-center py-12 hidden">
+            <i class="fas fa-newspaper text-4xl text-gold"></i>
+            <p class="mt-4 text-navy">No articles found matching your search</p>
+            <button onclick="campusNews.handleFilter()" class="mt-4 px-4 py-2 bg-gold text-white rounded hover:bg-red transition-colors">
+                Clear Filters
+            </button>
+        </div>
+        <!-- Error Message Container -->
+         <div id="error-message" class="container mx-auto px-4"></div>
     </main>
 
     <!-- Footer -->
@@ -294,7 +310,7 @@
             <div class="footer-section">
                 <h3 class="text-gold text-xl font-bold mb-4">Quick Links</h3>
                 <ul class="space-y-2">
-                    <li><a href="layout.html" class="hover:text-red transition-colors">Home</a></li>
+                    <li><a href="..\index.html" class="hover:text-red transition-colors">Home</a></li>
                     <li><a href="https://www.uob.edu.bh/admission-requirements/" target="_blank" class="hover:text-red transition-colors">Join UOB</a></li>
                     <li><a href="https://www.uob.edu.bh/current-students/" target="_blank" class="hover:text-red transition-colors">Current Students</a></li>
                     <li><a href="https://www.uob.edu.bh/future-students/" target="_blank" class="hover:text-red transition-colors">Future Students</a></li>
