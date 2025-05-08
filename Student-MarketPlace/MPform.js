@@ -1,191 +1,209 @@
-//form validation
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form');
+    const submitBtn = document.querySelector('.SubmitBtn');
     
-    form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault();
         
-        // Validate personal data
-        if (!validatePersonalData()) {
-            return;
+        // Disable submit button to prevent multiple submissions
+        submitBtn.disabled = true;
+        submitBtn.querySelector('.btnText').textContent = 'Submitting...';
+        
+        try {
+            // Validate all form data
+            if (!validatePersonalData() || !validateItemDetails()) {
+                return;
+            }
+            
+            // Prepare form data with actual image filename
+            const formData = prepareFormData();
+            
+            // Submit to API
+            const response = await submitToApi(formData);
+            
+            if (response.ok) {
+                alert('Item added successfully!');
+                // Clear cache and force refresh
+                localStorage.removeItem('marketplaceItems');
+                sessionStorage.setItem('forceRefresh', 'true');
+                window.location.href = `St_mkt_place.html?refresh=${Date.now()}`;
+            } else {
+                throw new Error(`API request failed with status ${response.status}`);
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('Failed to submit item. Please try again later.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.querySelector('.btnText').textContent = 'Submit';
         }
-        
-        // Validate item details
-        if (!validateItemDetails()) {
-            return;
-        }
-        
-        // If all validations pass, submit the form
-        alert('Form submitted successfully!');
-        // form.submit(); // Uncomment this to actually submit the form
     });
     
+    function prepareFormData() {
+        const itemImage = document.getElementById('itemImage').files[0];
+        const now = new Date().toISOString();
+        
+        return {
+            // Core item information
+            title: document.getElementById('itemName').value.trim(),
+            author: document.getElementById('fullName').value.trim(),
+            price: document.getElementById('itemPrice').value.trim(),
+            category: document.getElementById('itemType').value.trim().toLowerCase(),
+            image: `img/${itemImage.name}`, // Using actual uploaded filename
+            reviews: 0,
+            format: document.getElementById('itemType').value.trim(),
+            contact: document.getElementById('mobileNumber').value.trim(),
+            overview: document.getElementById('itemBrief').value.trim(),
+            customerReviews: [],
+            
+            // Seller information
+            seller: document.getElementById('fullName').value.trim(),
+            studentId: document.getElementById('studentId').value.trim(),
+            email: document.getElementById('studentEmail').value.trim(),
+            phone: document.getElementById('mobileNumber').value.trim(),
+            college: document.getElementById('college').value,
+            major: document.getElementById('major').value.trim(),
+            
+            // Additional metadata
+            quantity: parseInt(document.getElementById('itemQuantity').value) || 1,
+            createdAt: now,
+            updatedAt: now,
+            
+            // Store original filename for reference
+            originalFilename: itemImage.name
+        };
+    }
+    
+    async function submitToApi(formData) {
+        const apiUrl = 'https://680d0e83c47cb8074d8f6cb6.mockapi.io/items';
+        
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        if (!response.ok) {
+            const errorDetails = await response.text();
+            console.error('API Error:', errorDetails);
+            throw new Error(`API request failed: ${errorDetails}`);
+        }
+        
+        return response;
+    }
+       
     function validatePersonalData() {
-        // Get form elements with null checks
-        const fullNameEl = document.getElementById('fullName');
-        const idEl = document.getElementById('studentId');
-        const emailEl = document.getElementById('studentEmail');
-        const mobileEl = document.getElementById('mobileNumber');
-        const collegeEl = document.getElementById('college');
-        const majorEl = document.getElementById('major');
-
-        // Verify elements exist before accessing values
-        if (!fullNameEl || !idEl || !emailEl || !mobileEl || !collegeEl || !majorEl) {
-        console.error('One or more form elements not found');
-            return false;
-        }
-
-        // Get trimmed values
-        const fullName = fullNameEl.value.trim();
-        const id = idEl.value.trim();
-        const email = emailEl.value.trim();
-        const mobile = mobileEl.value.trim();
-        const college = collegeEl.value;
-        const major = majorEl.value.trim();
+        const requiredFields = {
+            fullName: 'Please enter your full name',
+            studentId: 'Student ID must be 8 or 9 digits',
+            studentEmail: 'Please use your valid UOB student email',
+            mobileNumber: 'Please enter a valid mobile number',
+            college: 'Please select your college',
+            major: 'Please enter your major'
+        };
         
-        // Validate Full Name
-        if (fullName === '') {
-            alert('Please enter your full name');
-            return false;
-        }
-        
-        // Validate ID
-        if (id === '') {
-            alert('Please enter your ID');
-            return false;
-        }
-        if (!/^\d{8,9}$/.test(id)) {
-            alert('Student ID must be exactly 8 or 9 digits');
-            return false;
-        }
-        
-        // Validate Email
-        if (email === '') {
-            alert('Please enter your email');
-            return false;
-        }
-        if (!validateEmail(email,id)) {
-            return false;
-        }
-        
-        // Validate Mobile Number
-        if (mobile === '') {
-            alert('Please enter your mobile number');
-            return false;
-        }
-        if (isNaN(mobile)) {
-            alert('Mobile number must be a number');
-            return false;
-        }
-        
-        // Validate College
-        if (college === null || college === 'Select College') {
-            alert('Please select your college');
-            return false;
-        }
-        
-        // Validate Major
-        if (major === '') {
-            alert('Please enter your major');
-            return false;
+        // Validate each required field
+        for (const [fieldId, errorMsg] of Object.entries(requiredFields)) {
+            const element = document.getElementById(fieldId);
+            const value = element.value.trim();
+            
+            if (!value || (fieldId === 'college' && value === 'Select College')) {
+                alert(errorMsg);
+                return false;
+            }
+            
+            // Special validation for student ID
+            if (fieldId === 'studentId' && !/^\d{8,9}$/.test(value)) {
+                alert(errorMsg);
+                return false;
+            }
+            
+            // Special validation for email
+            if (fieldId === 'studentEmail' && !validateEmail(value, document.getElementById('studentId').value.trim())) {
+                return false;
+            }
         }
         
         return true;
     }
     
     function validateItemDetails() {
-        const itemName = document.getElementById('itemName').value.trim();
-        const type = document.getElementById('itemType').value.trim();
-        const brief = document.getElementById('itemBrief').value.trim();
-        const price = document.getElementById('itemPrice').value.trim();
-        const quantity = document.getElementById('itemQuantity').value.trim();
+        const itemName = document.getElementById('itemName');
+        const itemType = document.getElementById('itemType');
+        const itemBrief = document.getElementById('itemBrief');
+        const itemPrice = document.getElementById('itemPrice');
+        const itemQuantity = document.getElementById('itemQuantity');
         const itemImage = document.getElementById('itemImage');
         
-        // Validate Item Name
-        if (itemName === '') {
+        // Validate text fields
+        if (!itemName.value.trim()) {
             alert('Please enter the item name');
             return false;
         }
         
-        // Validate Type
-        if (type === '') {
-            alert('Please enter the item type');
+        if (!itemType.value.trim()) {
+            alert('Please select the item type');
             return false;
         }
         
-        // Validate Brief
-        if (brief === '') {
+        if (!itemBrief.value.trim()) {
             alert('Please enter a brief description');
             return false;
         }
         
-        // Validate Price
-        if (price === '') {
-            alert('Please enter the price');
-            return false;
-        }
-        if (isNaN(price)) {
-            alert('Price must be a number');
-            return false;
-        }
-        if (parseFloat(price) <= 0) {
-            alert('Price must be greater than 0');
+        // Validate price
+        const price = parseFloat(itemPrice.value);
+        if (isNaN(price) || price <= 0) {
+            alert('Please enter a valid price (greater than 0)');
             return false;
         }
         
-        // Validate Quantity
-        if (quantity === '') {
-            alert('Please enter the available quantity');
+        // Validate quantity
+        const quantity = parseInt(itemQuantity.value);
+        if (isNaN(quantity) || quantity <= 0) {
+            alert('Please enter a valid quantity (greater than 0)');
             return false;
         }
-        if (isNaN(quantity)) {
-            alert('Quantity must be a number');
-            return false;
-        }
-        if (parseInt(quantity) <= 0) {
-            alert('Quantity must be greater than 0');
-            return false;
-        }
-        // Validate image upload
+        
+        // Validate image
         if (!itemImage.files || itemImage.files.length === 0) {
             alert('Please upload an image of the item');
             return false;
         }
-
-        // Check file type
-        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        if (!allowedTypes.includes(itemImage.files[0].type)) {
+        
+        const imageFile = itemImage.files[0];
+        const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        const maxSize = 2 * 1024 * 1024; // 2MB
+        
+        if (!validTypes.includes(imageFile.type)) {
             alert('Only JPG, PNG, and GIF images are allowed');
             return false;
         }
-    
-        // Check file size (2MB max)
-        const maxSize = 2 * 1024 * 1024; // 2MB in bytes
-        if (itemImage.files[0].size > maxSize) {
-          alert('Image size must be less than 2MB');
-          return false;
+        
+        if (imageFile.size > maxSize) {
+            alert('Image size must be less than 2MB');
+            return false;
         }
-
+        
         return true;
     }
     
     function validateEmail(email, studentId) {
         const uobEmailPattern = /^(\d{8,9})@stu\.uob\.edu\.bh$/;
         const match = email.match(uobEmailPattern);
-    
+        
         if (!match) {
             alert('Please use your UOB student email (format: studentID@stu.uob.edu.bh)\nWhere studentID is your 8-9 digit ID');
             return false;
         }
-    
-        // 2. Extract ID from email and compare with entered ID
-        const emailId = match[1]; // The captured group from the regex
-    
-        if (emailId !== studentId) {
-            alert('The ID in your email (' + emailId + ') does not match the Student ID you entered (' + studentId + ')');
+        
+        if (match[1] !== studentId) {
+            alert('The ID in your email does not match your Student ID');
             return false;
         }
-    
+        
         return true;
     }
 });

@@ -146,8 +146,23 @@
                     </h1>
                 </div>
                 
+                <!-- Comment submission form -->
+                <div class="max-w-2xl mx-auto mb-8 p-4 bg-gray-50 rounded-lg">
+                    <h2 class="text-lg font-semibold text-blue-800 mb-3">Add your review</h2>
+                    <form id="review-form" class="space-y-3">
+                        <div>
+                            <textarea id="review-text" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Write your review here..."></textarea>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                Submit Review
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
                 <!-- Horizontally centered review cards -->
-                <div class="flex flex-wrap justify-center gap-6">
+                <div class="flex flex-wrap justify-center gap-6" id="reviews-container">
                     <div class="w-64 p-4 bg-gray-50 rounded-lg border border-gray-200">
                         <p class="text-gray-700 italic">
                             "Barely passed my midterms until I got these notes! Everything from crypto to firewalls is explained so clearly—no textbook jargon. The attack examples saved me on the exam. 10/10!"
