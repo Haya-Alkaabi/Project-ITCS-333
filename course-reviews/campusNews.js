@@ -91,7 +91,7 @@ class CampusNews {
     }
   
     createArticleCard(article, isRecommended) {
-      const card = document.createElement('article');
+      const news = document.createElement('article');
       const date = new Date(article.publishDate);
       const formattedDate = date.toLocaleDateString('en-US', {
           year: 'numeric',
@@ -101,8 +101,8 @@ class CampusNews {
   
       if (isRecommended) {
           // Recommended article style (matches your HTML example)
-          card.className = 'recommended-news flex flex-col bg-white p-4 rounded-lg shadow-md hover:-translate-y-1 hover:shadow-lg transition-all h-full';
-          card.innerHTML = `
+          news.className = 'recommended-news flex flex-col bg-white p-4 rounded-lg shadow-md hover:-translate-y-1 hover:shadow-lg transition-all h-full';
+          news.innerHTML = `
               <img src="${article.image}" alt="${article.title}" 
                    class="w-full h-40 object-cover rounded mb-3 hover:scale-102 transition-transform"
                    onerror="this.onerror=null;this.src='../photos/uob.png'">
@@ -120,8 +120,8 @@ class CampusNews {
           `;
       } else {
           // Regular article style (matches your HTML example)
-          card.className = 'flex flex-col md:flex-row items-center bg-white rounded-lg p-4 shadow hover:translate-x-1 hover:shadow-md transition-all';
-          card.innerHTML = `
+          news.className = 'flex flex-col md:flex-row items-center bg-white rounded-lg p-4 shadow hover:translate-x-1 hover:shadow-md transition-all';
+          news.innerHTML = `
               <div class="flex-1 min-w-0">
                   <h3 class="text-navy font-bold mb-2 truncate">${article.title}</h3>
                   <div class="flex gap-4 text-gold text-sm mb-2">
@@ -143,7 +143,7 @@ class CampusNews {
           `;
       }
       
-      return card;
+      return news;
   }
     paginateArticles(articles) {
         const start = (this.currentPage - 1) * this.articlesPerPage;
@@ -363,7 +363,7 @@ class CampusNews {
       }
   });
   
-  // Notification system (like your Campus News code)
+  // Notification system 
   function showNotification(message, type) {
       const existing = document.querySelector('.form-notification');
       if (existing) existing.remove();
