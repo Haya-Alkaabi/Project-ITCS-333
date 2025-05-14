@@ -159,5 +159,45 @@
 
     </div>
     </footer>
+    <script>
+document.querySelector('form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const name     = document.querySelectorAll('input')[0].value.trim();
+  const subject  = document.querySelectorAll('input')[1].value.trim();
+  const meeting  = document.querySelector('textarea').value.trim();
+  const contact  = document.querySelectorAll('input')[2].value.trim();
+
+  if (!name || !subject || !meeting || !contact) {
+    alert('❌ Please fill in all fields.');
+    return;
+  }
+
+  try {
+const res = await fetch('https://study-group-backend--shaimaalrishany.repl.co/api/study_groups.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        subject: subject,
+        meeting: meeting,
+        contact: contact
+      })
+    });
+
+    const result = await res.json();
+    if (res.ok) {
+      alert('✅ Group added successfully!');
+      window.location.href = 'studyFinder.html';
+    } else {
+      alert('❌ Failed to add group: ' + result.error);
+    }
+  } catch (err) {
+    console.error(err);
+    alert('❌ Network error.');
+  }
+});
+</script>
+
 </body>
 </html>    
