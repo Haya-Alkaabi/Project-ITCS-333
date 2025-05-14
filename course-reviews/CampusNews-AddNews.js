@@ -1,40 +1,77 @@
-// CampusNews-AddNews.js
+// Wait for the DOM to fully load before executing the script
 document.addEventListener('DOMContentLoaded', function() {
+    // Select the form element and image input field
     const newsForm = document.querySelector('form');
-    
+    const imageInput = document.getElementById('image');
+    const previewContainer = document.getElementById('image-preview');
+     //Image Preview Handler (handles the image preview display when a file is selected).
+    if (imageInput) {
+        imageInput.addEventListener('change', function() {
+            previewContainer.innerHTML = '';
+            // Check if a file is selected and display the preview
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    previewContainer.innerHTML = `
+                        <div class="relative">
+                            <img src="${e.target.result}" class="max-h-40 rounded-lg">
+                            <button type="button" onclick="clearImage()" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    `;
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+            // Validate the selected image
+            validateImage();
+        });
+    }
+    //Form Submission Handler (Prevents the default form submission, validates the form data, and sends a POST request)
     if (newsForm) {
         newsForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            
+            event.preventDefault();// Prevent the default form submission
+
             if (!validateForm()) {
                 showNotification('Please fix all errors before submitting', 'error');
                 return;
             }
-
-            // Show loading state
+            // Validate the form before proceeding
             const submitBtn = newsForm.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerHTML;
+
+            // Loading state
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Publishing...';
             submitBtn.disabled = true;
+            newsForm.classList.add('opacity-50', 'pointer-events-none');
 
             try {
-                // Simulate API call 
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                
-                // Show success message
+                // Collect form data and send a POST request
+                const formData = new FormData(newsForm);
+                const response = await fetch('/Project-ITCS-333/course-reviews/create.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                // Handle server response
+                if (!response.ok) {
+                    throw new Error(result.error || 'Failed to publish article');
+                }
+                // Success notification
                 showNotification('Article published successfully!', 'success');
-                
-                // Clear form
                 newsForm.reset();
-                
-                // Redirect after 2 seconds
+                previewContainer.innerHTML = '';
+                // Redirect after a short delay
                 setTimeout(() => {
                     window.location.href = 'CampusNews.html';
                 }, 2000);
             } catch (error) {
                 console.error('Submission error:', error);
-                showNotification('Failed to publish article', 'error');
+                showNotification(error.message, 'error');
+                // Reset form state
             } finally {
+                newsForm.classList.remove('opacity-50', 'pointer-events-none');
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
             }
@@ -42,240 +79,186 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Add event listeners for real-time validation
-    const titleInput = document.getElementById('title');
-    const contentInput = document.getElementById('content');
-    const categorySelect = document.getElementById('category');
-    const imageInput = document.getElementById('image');
-    const authorInput = document.getElementById('author');
-    const publishDateInput = document.getElementById('publish-date');
+    const inputs = {
+        title: document.getElementById('title'),
+        content: document.getElementById('content'),
+        category: document.getElementById('category'),
+        author: document.getElementById('author'),
+        'publish-date': document.getElementById('publish-date')
+    };
 
-    if (titleInput) titleInput.addEventListener('input', validateTitle);
-    if (contentInput) contentInput.addEventListener('input', validateContent);
-    if (categorySelect) categorySelect.addEventListener('change', validateCategory);
-    if (imageInput) imageInput.addEventListener('change', validateImage);
-    if (authorInput) authorInput.addEventListener('input', validateAuthor);
-    if (publishDateInput) publishDateInput.addEventListener('change', validatePublishDate);
+    Object.entries(inputs).forEach(([name, input]) => {
+        if (input) {
+            const eventType = input.tagName === 'SELECT' ? 'change' : 'input';
+            input.addEventListener(eventType, () => {
+                if (name === 'publish-date') validatePublishDate();
+                else if (name === 'category') validateCategory();
+                else if (name === 'author') validateAuthor();
+                else if (name === 'content') validateContent();
+                else validateTitle();
+            });
+        }
+    });
 });
 
 // Notification system
 function showNotification(message, type) {
-    // Remove existing notifications
     const existing = document.querySelector('.form-notification');
     if (existing) existing.remove();
 
     const notification = document.createElement('div');
     notification.className = `form-notification fixed top-4 right-4 px-6 py-4 rounded-lg shadow-lg z-50 flex items-center ${
         type === 'success' ? 'bg-green-500' : 'bg-red-500'
-    } text-white`;
-    
+    } text-white animate-fade-in`;
+
     notification.innerHTML = `
         <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'} mr-3"></i>
         <span>${message}</span>
     `;
-    
+
     document.body.appendChild(notification);
-    
-    // Auto-remove after 5 seconds
+
     setTimeout(() => {
         notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
         setTimeout(() => notification.remove(), 300);
     }, 5000);
 }
 
+// Validation functions
 function validateForm() {
-    const isTitleValid = validateTitle();
-    const isContentValid = validateContent();
-    const isCategoryValid = validateCategory();
-    const isImageValid = validateImage();
-    const isAuthorValid = validateAuthor();
-    const isDateValid = validatePublishDate();
+    return [
+        validateTitle(),
+        validateContent(),
+        validateCategory(),
+        validateImage(),
+        validateAuthor(),
+        validatePublishDate()
+    ].every(valid => valid);
+}
 
-    return isTitleValid && isContentValid && isCategoryValid && 
-           isImageValid && isAuthorValid && isDateValid;
+function createErrorElement(input) {
+    let errorElement = input.nextElementSibling;
+    if (!errorElement?.classList?.contains('error-message')) {
+        errorElement = document.createElement('p');
+        errorElement.className = 'error-message text-red-500 mt-1 text-sm';
+        input.parentNode.insertBefore(errorElement, input.nextSibling);
+    }
+    return errorElement;
 }
 
 function validateTitle() {
-    const titleInput = document.getElementById('title');
-    const title = titleInput.value.trim();
+    const input = document.getElementById('title');
+    const value = input.value.trim();
+    const errorElement = createErrorElement(input);
 
-    // Create error element if it doesn't exist
-    let errorElement = titleInput.nextElementSibling;
-    if (!errorElement || !errorElement.classList.contains('error-message')) {
-        errorElement = document.createElement('p');
-        errorElement.className = 'error-message text-red mt-1 text-sm';
-        titleInput.parentNode.insertBefore(errorElement, titleInput.nextSibling);
-    }
-
-    if (title === '') {
+    let isValid = true;
+    if (value === '') {
         errorElement.textContent = 'Title is required';
-        titleInput.classList.add('border-red');
-        titleInput.classList.remove('border-brown');
-        return false;
-    }
-
-    if (title.length > 100) {
+        isValid = false;
+    } else if (value.length > 100) {
         errorElement.textContent = 'Title must be less than 100 characters';
-        titleInput.classList.add('border-red');
-        titleInput.classList.remove('border-brown');
-        return false;
+        isValid = false;
+    } else {
+        errorElement.textContent = '';
     }
 
-    errorElement.textContent = '';
-    titleInput.classList.remove('border-red');
-    titleInput.classList.add('border-brown');
-    return true;
+    input.classList.toggle('border-red-500', !isValid);
+    return isValid;
 }
 
 function validateContent() {
-    const contentInput = document.getElementById('content');
-    const content = contentInput.value.trim();
+    const input = document.getElementById('content');
+    const value = input.value.trim();
+    const errorElement = createErrorElement(input);
 
-    let errorElement = contentInput.nextElementSibling;
-    if (!errorElement || !errorElement.classList.contains('error-message')) {
-        errorElement = document.createElement('p');
-        errorElement.className = 'error-message text-red mt-1 text-sm';
-        contentInput.parentNode.insertBefore(errorElement, contentInput.nextSibling);
-    }
-
-    if (content === '') {
+    let isValid = true;
+    if (value === '') {
         errorElement.textContent = 'Content is required';
-        contentInput.classList.add('border-red');
-        contentInput.classList.remove('border-brown');
-        return false;
-    }
-
-    if (content.length < 300) {
+        isValid = false;
+    } else if (value.length < 300) {
         errorElement.textContent = 'Content must be at least 300 characters';
-        contentInput.classList.add('border-red');
-        contentInput.classList.remove('border-brown');
-        return false;
+        isValid = false;
+    } else {
+        errorElement.textContent = '';
     }
 
-    errorElement.textContent = '';
-    contentInput.classList.remove('border-red');
-    contentInput.classList.add('border-brown');
-    return true;
+    input.classList.toggle('border-red-500', !isValid);
+    return isValid;
 }
 
 function validateCategory() {
-    const categorySelect = document.getElementById('category');
-    const category = categorySelect.value;
+    const input = document.getElementById('category');
+    const value = input.value;
+    const errorElement = createErrorElement(input);
 
-    let errorElement = categorySelect.nextElementSibling;
-    if (!errorElement || !errorElement.classList.contains('error-message')) {
-        errorElement = document.createElement('p');
-        errorElement.className = 'error-message text-red mt-1 text-sm';
-        categorySelect.parentNode.insertBefore(errorElement, categorySelect.nextSibling);
-    }
-
-    if (category === '') {
-        errorElement.textContent = 'Please select a category';
-        categorySelect.classList.add('border-red');
-        categorySelect.classList.remove('border-brown');
-        return false;
-    }
-
-    errorElement.textContent = '';
-    categorySelect.classList.remove('border-red');
-    categorySelect.classList.add('border-brown');
-    return true;
+    const isValid = value !== '';
+    errorElement.textContent = isValid ? '' : 'Please select a category';
+    input.classList.toggle('border-red-500', !isValid);
+    return isValid;
 }
 
 function validateImage() {
-    const imageInput = document.getElementById('image');
-    const uploadContainer = imageInput.closest('div.border-dashed');
-    
-    let errorElement = uploadContainer.nextElementSibling;
-    if (!errorElement || !errorElement.classList.contains('error-message')) {
-        errorElement = document.createElement('p');
-        errorElement.className = 'error-message text-red mt-1 text-sm';
-        uploadContainer.parentNode.insertBefore(errorElement, uploadContainer.nextSibling);
-    }
+    const input = document.getElementById('image');
+    const uploadContainer = input.closest('div.border-dashed');
+    const errorElement = createErrorElement(uploadContainer);
 
-    if (imageInput.files.length === 0) {
+    let isValid = true;
+    if (!input.files.length) {
         errorElement.textContent = 'An image is required';
-        uploadContainer.classList.add('border-red');
-        uploadContainer.classList.remove('border-brown');
-        return false;
+        isValid = false;
+    } else {
+        const file = input.files[0];
+        if (!['image/jpeg', 'image/png', 'image/gif'].includes(file.type)) {
+            errorElement.textContent = 'Only JPEG, PNG, and GIF images are allowed';
+            isValid = false;
+        } else if (file.size > 2 * 1024 * 1024) {
+            errorElement.textContent = 'Image size must be less than 2MB';
+            isValid = false;
+        } else {
+            errorElement.textContent = '';
+        }
     }
 
-    const file = imageInput.files[0];
-    const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
-    const maxSize = 2 * 1024 * 1024; // 2MB
-
-    if (!validTypes.includes(file.type)) {
-        errorElement.textContent = 'Only JPEG, PNG, and GIF images are allowed';
-        uploadContainer.classList.add('border-red');
-        uploadContainer.classList.remove('border-brown');
-        return false;
-    }
-
-    if (file.size > maxSize) {
-        errorElement.textContent = 'Image size must be less than 2MB';
-        uploadContainer.classList.add('border-red');
-        uploadContainer.classList.remove('border-brown');
-        return false;
-    }
-
-    errorElement.textContent = '';
-    uploadContainer.classList.remove('border-red');
-    uploadContainer.classList.add('border-brown');
-    return true;
+    uploadContainer.classList.toggle('border-red-500', !isValid);
+    return isValid;
 }
 
 function validateAuthor() {
-    const authorInput = document.getElementById('author');
-    const author = authorInput.value.trim();
+    const input = document.getElementById('author');
+    const value = input.value.trim();
+    const errorElement = createErrorElement(input);
 
-    let errorElement = authorInput.nextElementSibling;
-    if (!errorElement || !errorElement.classList.contains('error-message')) {
-        errorElement = document.createElement('p');
-        errorElement.className = 'error-message text-red mt-1 text-sm';
-        authorInput.parentNode.insertBefore(errorElement, authorInput.nextSibling);
-    }
-
-    if (author === '') {
-        errorElement.textContent = 'Author name is required';
-        authorInput.classList.add('border-red');
-        authorInput.classList.remove('border-brown');
-        return false;
-    }
-
-    errorElement.textContent = '';
-    authorInput.classList.remove('border-red');
-    authorInput.classList.add('border-brown');
-    return true;
+    const isValid = value !== '';
+    errorElement.textContent = isValid ? '' : 'Author name is required';
+    input.classList.toggle('border-red-500', !isValid);
+    return isValid;
 }
 
 function validatePublishDate() {
-    const publishDateInput = document.getElementById('publish-date');
-    const publishDate = new Date(publishDateInput.value);
+    const input = document.getElementById('publish-date');
+    const value = new Date(input.value);
     const currentDate = new Date();
-    currentDate.setHours(0, 0, 0, 0); // Reset time part for accurate comparison
+    currentDate.setHours(0, 0, 0, 0);
+    const errorElement = createErrorElement(input);
 
-    let errorElement = publishDateInput.nextElementSibling;
-    if (!errorElement || !errorElement.classList.contains('error-message')) {
-        errorElement = document.createElement('p');
-        errorElement.className = 'error-message text-red mt-1 text-sm';
-        publishDateInput.parentNode.insertBefore(errorElement, publishDateInput.nextSibling);
-    }
-
-    if (!publishDateInput.value) {
+    let isValid = true;
+    if (!input.value) {
         errorElement.textContent = 'Publish date is required';
-        publishDateInput.classList.add('border-red');
-        publishDateInput.classList.remove('border-brown');
-        return false;
-    }
-
-    if (publishDate < currentDate) {
+        isValid = false;
+    } else if (value < currentDate) {
         errorElement.textContent = 'Publish date cannot be in the past';
-        publishDateInput.classList.add('border-red');
-        publishDateInput.classList.remove('border-brown');
-        return false;
+        isValid = false;
+    } else {
+        errorElement.textContent = '';
     }
 
-    errorElement.textContent = '';
-    publishDateInput.classList.remove('border-red');
-    publishDateInput.classList.add('border-brown');
-    return true;
+    input.classList.toggle('border-red-500', !isValid);
+    return isValid;
+}
+
+function clearImage() {
+    const input = document.getElementById('image');
+    input.value = '';
+    document.getElementById('image-preview').innerHTML = '';
+    validateImage();
 }
