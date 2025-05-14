@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Loading Spinner Functions
+    // Utility functions
     function showLoadingSpinner() {
         const spinner = document.createElement('div');
         spinner.id = 'loading-spinner';
@@ -13,61 +13,30 @@ document.addEventListener('DOMContentLoaded', function() {
         if (spinner) spinner.remove();
     }
 
-    // Month Dropdown Functionality
+    // Configuration
+    const API_URL = 'includes/formhandlerMiddleRead.php';
+    const SUBMIT_URL = 'includes/formhandlerMiddle.php';
+    
+    // DOM elements
     const monthsDropdown = document.getElementById('monthsDropdown');
     const monthsDropdownMenu = document.getElementById('monthsDropdownMenu');
     const monthOptions = document.querySelectorAll('.month-option');
-    
-    monthsDropdown.addEventListener('click', function(e) {
-        e.stopPropagation();
-        monthsDropdownMenu.classList.toggle('hidden');
-    });
+    const Monheader = document.querySelector('.month-navigation h2');
+    const prevBtn = document.querySelector('.month-navigation .nav-buttons button:first-child');
+    const nextBtn = document.querySelector('.month-navigation .nav-buttons button:last-child');
+    const dateSquares = document.querySelectorAll('.date-square');
+    const filterButton = document.getElementById('filterb');
+    const filterDropdown = document.getElementById('filterDropdown');
+    const filterli = filterDropdown.querySelectorAll('li');
+    const sortBtn = document.getElementById('sb');
+    const sortDropdown = document.getElementById('sortDropdown');
+    const sortOptions = document.querySelectorAll('.sort-option');
+    const eventForm = document.getElementById('eForm1');
+    const addEventBtn = document.getElementById('eForm');
+    const closeEventFormBtn = document.getElementById('closeEventForm');
+    const eventFormElement = document.getElementById('addEventForm');
 
-    document.addEventListener('click', function() {
-        monthsDropdownMenu.classList.add('hidden');
-    });
-
-    monthsDropdownMenu.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
-
-    monthOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            const selectedMonth = parseInt(this.getAttribute('data-month'));
-            
-            monthOptions.forEach(opt => opt.classList.remove('active'));
-            this.classList.add('active');
-            
-            navigateToMonth(selectedMonth);
-            monthsDropdownMenu.classList.add('hidden');
-        });
-    });
-
-    function navigateToMonth(monthIndex) {
-        const now = new Date();
-        let targetYear = now.getFullYear();
-        let targetMonth = monthIndex;
-        
-        if (monthIndex < now.getMonth()) {
-            targetYear++;
-        }
-        
-        currentDate = new Date(targetYear, targetMonth, 1);
-        updateCalendar(currentDate);
-        renderEvents();
-        
-        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
-                           'July', 'August', 'September', 'October', 'November', 'December'];
-        monthsDropdown.innerHTML = `<i class="fas fa-calendar-alt mr-1"></i> ${monthNames[monthIndex]}`;
-    }
-
-    // Calendar Navigation
-    let Monheader = document.querySelector('.month-navigation h2');
-    let prevBtn = document.querySelector('.month-navigation .nav-buttons button:first-child');
-    let nextBtn = document.querySelector('.month-navigation .nav-buttons button:last-child');
-    let dateSquares = document.querySelectorAll('.date-square');
-    const API_URL = 'https://681127853ac96f7119a3c427.mockapi.io/api/cal/events';
-    
+    // State variables
     let currentDate = new Date();
     currentDate.setHours(0, 0, 0, 0);
     let currentFilter = 'none';
@@ -75,27 +44,90 @@ document.addEventListener('DOMContentLoaded', function() {
     let isReverseOrder = false;
     const events = [];
     let markedDates = [];
-
+    
     // Initialize calendar
     initCalendar();
 
     function initCalendar() {
         updateCalendar(currentDate);
         fetchEvents();
+        setupEventListeners();
     }
 
-    prevBtn.addEventListener('click', function() {
-        currentDate.setDate(currentDate.getDate() - 7);
-        updateCalendar(currentDate, isReverseOrder);
-        renderEvents();
-    });
-    
-    nextBtn.addEventListener('click', function() {
-        currentDate.setDate(currentDate.getDate() + 7);
-        updateCalendar(currentDate, isReverseOrder);
-        renderEvents();
-    });
+    function setupEventListeners() {
+        // Month navigation
+        prevBtn.addEventListener('click', function() {
+            currentDate.setDate(currentDate.getDate() - 7);
+            updateCalendar(currentDate, isReverseOrder);
+            renderEvents();
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            currentDate.setDate(currentDate.getDate() + 7);
+            updateCalendar(currentDate, isReverseOrder);
+            renderEvents();
+        });
 
+        // Month dropdown
+        monthsDropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+            monthsDropdownMenu.classList.toggle('hidden');
+        });
+
+        monthOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const selectedMonth = parseInt(this.getAttribute('data-month'));
+                navigateToMonth(selectedMonth);
+                monthsDropdownMenu.classList.add('hidden');
+            });
+        });
+
+        // Filter and sort
+        filterButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            filterDropdown.classList.toggle('hidden');
+            sortDropdown.classList.add('hidden');
+        });
+
+        sortBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            sortDropdown.classList.toggle('hidden');
+            filterDropdown.classList.add('hidden');
+        });
+
+        filterli.forEach(li => {
+            li.addEventListener('click', function() {
+                currentFilter = this.getAttribute('data-filter');
+                renderEvents();
+                filterDropdown.classList.add('hidden');
+            });
+        });
+
+        sortOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                currentSort = this.getAttribute('data-sort');
+                isReverseOrder = (currentSort === 'date-desc');
+                updateCalendar(currentDate, isReverseOrder);
+                renderEvents();
+                sortDropdown.classList.add('hidden');
+                sortOptions.forEach(opt => opt.classList.remove('bg-gray-100'));
+                this.classList.add('bg-gray-100');
+            });
+        });
+
+        // Event form
+        addEventBtn.addEventListener('click', function() {
+            eventForm.classList.remove('hidden');
+        });
+
+        closeEventFormBtn.addEventListener('click', function() {
+            eventForm.classList.add('hidden');
+        });
+
+        eventFormElement.addEventListener('submit', handleEventFormSubmit);
+    }
+
+    // Calendar functions
     function updateCalendar(date, reverseOrder = false) {
         Monheader.textContent = getMonthName(date.getMonth()) + ' ' + date.getFullYear();
     
@@ -136,7 +168,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Utility functions
     function getMonthName(monthIndex) {
         const months = ['January', 'February', 'March', 'April', 'May', 'June',
             'July', 'August', 'September', 'October', 'November', 'December'];
@@ -149,12 +180,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function isSameDay(date1, date2) {
+        if (!date1 || !date2) return false;
         return date1.getDate() === date2.getDate() &&
-            date1.getMonth() === date2.getMonth() &&
-            date1.getFullYear() === date2.getFullYear();
+               date1.getMonth() === date2.getMonth() &&
+               date1.getFullYear() === date2.getFullYear();
     }
 
     function formatTime(timeStr) {
+        if (!timeStr) return '';
         const [hours, minutes] = timeStr.split(':');
         const hourNum = parseInt(hours, 10);
         const period = hourNum >= 12 ? 'PM' : 'AM';
@@ -162,60 +195,25 @@ document.addEventListener('DOMContentLoaded', function() {
         return `${displayHour}:${minutes} ${period}`;
     }
 
-    // Sort and Filter
-    const filterButton = document.getElementById('filterb');
-    const filterDropdown = document.getElementById('filterDropdown');
-    const filterli = filterDropdown.querySelectorAll('li');
-    const sortBtn = document.getElementById('sb');
-    const sortDropdown = document.getElementById('sortDropdown');
-    const sortOptions = document.querySelectorAll('.sort-option');
+    function navigateToMonth(monthIndex) {
+        const now = new Date();
+        let targetYear = now.getFullYear();
+        let targetMonth = monthIndex;
+        
+        if (monthIndex < now.getMonth()) {
+            targetYear++;
+        }
+        
+        currentDate = new Date(targetYear, targetMonth, 1);
+        updateCalendar(currentDate);
+        renderEvents();
+        
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                           'July', 'August', 'September', 'October', 'November', 'December'];
+        monthsDropdown.innerHTML = `<i class="fas fa-calendar-alt mr-1"></i> ${monthNames[monthIndex]}`;
+    }
 
-    filterButton.addEventListener('click', function(e) {
-        e.stopPropagation();
-        filterDropdown.classList.toggle('hidden');
-        sortDropdown.classList.add('hidden');
-    });
-
-    sortBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        sortDropdown.classList.toggle('hidden');
-        filterDropdown.classList.add('hidden');
-    });
-
-    document.addEventListener('click', function() {
-        filterDropdown.classList.add('hidden');
-        sortDropdown.classList.add('hidden');
-    });
-
-    filterDropdown.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
-
-    sortDropdown.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
-
-    filterli.forEach(li => {
-        li.addEventListener('click', function() {
-            currentFilter = this.getAttribute('data-filter');
-            renderEvents();
-            filterDropdown.classList.add('hidden');
-        });
-    });
-
-    sortOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            currentSort = this.getAttribute('data-sort');
-            isReverseOrder = (currentSort === 'date-desc');
-            updateCalendar(currentDate, isReverseOrder);
-            renderEvents();
-            sortDropdown.classList.add('hidden');
-            
-            sortOptions.forEach(opt => opt.classList.remove('bg-gray-100'));
-            this.classList.add('bg-gray-100');
-        });
-    });
-
+    // Event processing
     function processEvents() {
         let processedEvents = [...events];
         
@@ -279,170 +277,242 @@ document.addEventListener('DOMContentLoaded', function() {
         return processedEvents;
     }
 
-    // Event Form
-    const eventForm = document.getElementById('eForm1');
-    const addEventBtn = document.getElementById('eForm');
-    const closeEventFormBtn = document.getElementById('closeEventForm');
-    const eventFormElement = document.getElementById('addEventForm');
+    //handling form submission
 
-    addEventBtn.addEventListener('click', function() {
-        eventForm.classList.remove('hidden');
-    });
+async function handleEventFormSubmit(event) {
+    event.preventDefault();
 
-    closeEventFormBtn.addEventListener('click', function() {
-        eventForm.classList.add('hidden');
-    });
+    const title = document.getElementById('eventTitle').value;
+    const dateStr = document.getElementById('eventDate').value;
+    const startTime = document.getElementById('eventStartTime').value;
+    const endTime = document.getElementById('eventEndTime').value;
+    const location = document.getElementById('eventLocation').value;
+    const description = document.getElementById('eventDescription').value;
 
-    eventFormElement.addEventListener('submit', function(event) {
-        event.preventDefault();
+    if (!title || !dateStr || !startTime || !endTime) {
+        alert('Please fill all required fields');
+        return;
+    }
 
-        const title = document.getElementById('eventTitle').value;
-        const dateStr = document.getElementById('eventDate').value;
-        const startTime = document.getElementById('eventStartTime').value;
-        const endTime = document.getElementById('eventEndTime').value;
-        const location = document.getElementById('eventLocation').value;
-        const description = document.getElementById('eventDescription').value;
+    const [year, month, day] = dateStr.split('-');
+    const eventDate = new Date(year, month - 1, day);
+    eventDate.setHours(0, 0, 0, 0);
 
-        if (!title || !dateStr || !startTime || !endTime) {
-            alert('Please fill all required fields');
-            return;
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+    if (eventDate.getMonth() !== currentMonth || eventDate.getFullYear() !== currentYear) {
+        currentDate = new Date(eventDate);
+        updateCalendar(currentDate);
+    }
+
+    const [startHour, startMinute] = startTime.split(':').map(Number);
+    const [endHour, endMinute] = endTime.split(':').map(Number);
+
+    const startDateTime = new Date(eventDate);
+    startDateTime.setHours(startHour, startMinute);
+
+    const endDateTime = new Date(eventDate);
+    endDateTime.setHours(endHour, endMinute);
+
+    const duration = (endDateTime - startDateTime) / (1000 * 60);
+    if (startHour < 8 || endHour > 21 || (endHour === 21 && endMinute > 50) || duration > 600) {
+        alert('Events must be within working hours (8:00 AM - 9:50 PM) and less than 10 hours.');
+        return;
+    }
+
+    // Create the event object first
+    const newEvent = {
+        id: Date.now(), // Temporary ID
+        title,
+        date: eventDate,
+        startTime,
+        endTime,
+        duration,
+        location: location || 'Not specified',
+        description: description || 'No description',
+        type: 'custom',
+        marked: false
+    };
+
+    // Add to UI immediately
+    events.push(newEvent);
+    renderEvents();
+
+    try {
+        // Prepare form data
+        const formData = new FormData(eventFormElement);
+        
+        // Submit to server
+        const response = await fetch(eventFormElement.action, {
+            method: 'POST',
+            body: formData
+        });
+
+        // Handle both JSON and text responses
+        let result;
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            result = await response.json();
+        } else {
+            result = { success: true, message: await response.text() };
         }
 
-        const [year, month, day] = dateStr.split('-');
-        const eventDate = new Date(year, month - 1, day);
-        eventDate.setHours(0, 0, 0, 0);
-
-        const [startHour, startMinute] = startTime.split(':').map(Number);
-        const [endHour, endMinute] = endTime.split(':').map(Number);
-
-        const startDateTime = new Date(eventDate);
-        startDateTime.setHours(startHour, startMinute);
-
-        const endDateTime = new Date(eventDate);
-        endDateTime.setHours(endHour, endMinute);
-
-        const duration = (endDateTime - startDateTime) / (1000 * 60);
-        if (startHour < 8 || endHour > 21 || (endHour === 21 && endMinute > 50) || duration > 600) {
-            alert('Events must be within working hours (8:00 AM - 9:50 PM) and less than 10 hours.');
-            return;
+        if (!response.ok) {
+            throw new Error(result.message || 'Failed to save event');
         }
 
-        const newEvent = {
-            id: Date.now(),
-            title,
-            date: eventDate,
-            startTime,
-            endTime,
-            duration,
-            location: location || 'Not specified',
-            description: description || 'No description',
-            type: 'custom'
-        };
+        // If successful, update the event with the database ID if available
+        if (result.eventId) {
+            const eventIndex = events.findIndex(e => e.id === newEvent.id);
+            if (eventIndex !== -1) {
+                events[eventIndex].id = result.eventId;
+                events[eventIndex].type = 'database';
+            }
+        }
 
-        events.push(newEvent);
-        renderEvents();
+        console.log('Event saved successfully:', result);
+    } catch (error) {
+        console.error('Error saving event:', error);
+        // Optionally remove the event from UI if save failed
+        const eventIndex = events.findIndex(e => e.id === newEvent.id);
+        if (eventIndex !== -1) {
+            events.splice(eventIndex, 1);
+            renderEvents();
+        }
+        alert('Error saving event: ' + error.message);
+    } finally {
         eventFormElement.reset();
         eventForm.classList.add('hidden');
-    });
+    }
+}
 
-    // Fetch Events
+
+
+
+
+
+    function calculateDuration(startTime, endTime) {
+        const [startH, startM] = startTime.split(':').map(Number);
+        const [endH, endM] = endTime.split(':').map(Number);
+        return (endH * 60 + endM) - (startH * 60 + startM);
+    }
+
+    // Data fetching
     async function fetchEvents() {
         try {
             showLoadingSpinner();
             const response = await fetch(API_URL);
-            if (!response.ok) throw new Error('Network response was not ok');
             
-            const apiEvents = await response.json();
-            const existingIds = new Set(events.map(e => e.id));
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             
-            apiEvents.forEach(apiEvent => {
+            const data = await response.json();
+            
+            if (!data || !data.success) {
+                throw new Error(data?.message || 'Invalid data format from server');
+            }
+            
+            // Clear existing events but keep local ones
+            const localEvents = events.filter(e => e.type === 'local');
+            events.length = 0;
+            events.push(...localEvents);
+            markedDates.length = 0;
+            
+            // Process database events with more flexible time parsing
+            data.events.forEach(dbEvent => {
                 try {
-                    let eventDate;
-                    if (apiEvent.Date.includes('T')) {
-                        eventDate = new Date(apiEvent.Date);
-                    } else {
-                        const dateParts = apiEvent.Date.split('-');
-                        eventDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+                    const eventDate = new Date(dbEvent.date);
+                    if (isNaN(eventDate.getTime())) {
+                        console.warn(`Invalid date for event ${dbEvent.id}: ${dbEvent.date}`);
+                        return;
                     }
+                    eventDate.setHours(0, 0, 0, 0);
                     
-                    let startTime = apiEvent.StartTime;
-                    let endTime = apiEvent.EndTime;
-                    
-                    if (startTime.includes(' ')) {
-                        const [time, period] = startTime.split(' ');
-                        let [hours, minutes] = time.split(':');
-                        if (period === 'PM' && hours < 12) hours = parseInt(hours) + 12;
-                        if (period === 'AM' && hours === '12') hours = '00';
-                        startTime = `${hours}:${minutes}`;
-                    }
-                    
-                    if (endTime.includes(' ')) {
-                        const [time, period] = endTime.split(' ');
-                        let [hours, minutes] = time.split(':');
-                        if (period === 'PM' && hours < 12) hours = parseInt(hours) + 12;
-                        if (period === 'AM' && hours === '12') hours = '00';
-                        endTime = `${hours}:${minutes}`;
-                    }
-                    
-                    const [startH, startM] = startTime.split(':').map(Number);
-                    const [endH, endM] = endTime.split(':').map(Number);
-                    const duration = (endH * 60 + endM) - (startH * 60 + startM);
-                    
-                    if (!existingIds.has(apiEvent.ID)) {
-                        events.push({
-                            id: apiEvent.ID,
-                            title: apiEvent.EventTitle,
-                            date: eventDate,
-                            startTime: startTime,
-                            endTime: endTime,
-                            duration: duration,
-                            location: apiEvent.Location || 'Not specified',
-                            description: apiEvent.Description || 'No description',
-                            marked: apiEvent.Marked || false,
-                            type: 'api'
-                        });
+                    // Normalize time format (HH:MM)
+                    const normalizeTime = (time) => {
+                        if (!time) return '00:00';
+                        // Handle various time formats including AM/PM
+                        const timeStr = time.toString().toUpperCase();
+                        const hasAM = timeStr.includes('AM');
+                        const hasPM = timeStr.includes('PM');
                         
-                        if (apiEvent.Marked) {
-                            const markedDate = new Date(eventDate);
-                            markedDate.setHours(0, 0, 0, 0);
-                            if (!markedDates.some(d => d.getTime() === markedDate.getTime())) {
-                                markedDates.push(markedDate);
-                            }
-                        }
+                        let [hours, minutes] = timeStr.replace(/[AP]M/, '').split(':').map(part => parseInt(part.trim()) || 0);
+                        
+                        if (hasPM && hours < 12) hours += 12;
+                        if (hasAM && hours === 12) hours = 0;
+                        
+                        hours = Math.min(23, Math.max(0, hours));
+                        minutes = Math.min(59, Math.max(0, minutes));
+                        
+                        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+                    };
+                    
+                    const startTime = normalizeTime(dbEvent.startTime);
+                    const endTime = normalizeTime(dbEvent.endTime);
+                    const duration = calculateDuration(startTime, endTime);
+                    
+                    events.push({
+                        id: dbEvent.id,
+                        title: dbEvent.title,
+                        date: eventDate,
+                        startTime: startTime,
+                        endTime: endTime,
+                        duration: duration,
+                        location: dbEvent.location || 'Not specified',
+                        description: dbEvent.description || 'No description',
+                        marked: Boolean(dbEvent.marked),
+                        type: 'database'
+                    });
+                    
+                    if (dbEvent.marked) {
+                        const markedDate = new Date(eventDate);
+                        markedDate.setHours(0, 0, 0, 0);
+                        markedDates.push(markedDate);
                     }
                 } catch (e) {
-                    console.error('Error processing API event:', apiEvent, e);
+                    console.error('Error processing event:', dbEvent, e);
                 }
             });
             
+            updateCalendar(currentDate, isReverseOrder);
             renderEvents();
             updateSmallCalendar();
+            
         } catch (error) {
-            console.error('Error fetching events:', error);
-            alert('Failed to load events from server');
+            console.error('Fetch error:', {
+                error: error,
+                message: error.message,
+                stack: error.stack
+            });
+            alert(`Failed to load events: ${error.message}`);
         } finally {
             hideLoadingSpinner();
         }
     }
 
-    // Event Rendering
+    // Rendering functions
     function renderEvents() {
         const existingEvents = document.querySelectorAll('.event-card, .event-cardlarge');
         existingEvents.forEach(event => event.remove());
-
-        const weekStart = new Date(currentDate);
-        weekStart.setHours(0, 0, 0, 0);
-        const weekEnd = new Date(weekStart);
-        weekEnd.setDate(weekStart.getDate() + 6);
-
+    
+        const displayedDates = [];
+        for (let i = 0; i < dateSquares.length; i++) {
+            const squareDate = new Date(dateSquares[i].dataset.date);
+            squareDate.setHours(0, 0, 0, 0);
+            displayedDates.push(squareDate);
+        }
+    
         const processedEvents = processEvents();
-        const weekEvents = processedEvents.filter(event => {
+        
+        // Filter events that match any of the displayed dates
+        const eventsToShow = processedEvents.filter(event => {
             const eventDate = new Date(event.date);
             eventDate.setHours(0, 0, 0, 0);
-            return eventDate >= weekStart && eventDate <= weekEnd;
+            return displayedDates.some(displayedDate => isSameDay(displayedDate, eventDate));
         });
-
-        weekEvents.forEach(event => createTimeChartEvent(event));
+    
+        eventsToShow.forEach(event => createTimeChartEvent(event));
     }
 
     function createTimeChartEvent(event) {
@@ -482,7 +552,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const isShortEvent = durationMinutes <= 60;
         const eventElement = document.createElement('div');
-        eventElement.className = `${isShortEvent ? 'event-card group' : 'event-cardlarge'} ${event.type === 'api' ? 'api-event' : 'local-event'}`;
+        eventElement.className = `${isShortEvent ? 'event-card group' : 'event-cardlarge'} ${
+            event.type === 'database' ? 'database-event' : 'local-event'
+        }`;
+        
         eventElement.style.gridColumn = gridColumn;
         eventElement.style.gridRow = `${gridRowStart} / span ${rowSpan}`;
         eventElement.style.minHeight = `${rowSpan * 30}px`;
@@ -503,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
         timeChart.appendChild(eventElement);
     }
 
-    // Event Details Popup
+    // Event details popup
     const detailsPopup = document.createElement('div');
     detailsPopup.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden';
     detailsPopup.innerHTML = `
@@ -534,7 +607,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="mt-6 flex justify-end space-x-3">
                 <button id="close-details" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Close</button>
                 <button id="delete-event" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Delete</button>
-                <button id="mark-event" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-red-600">Mark Event</button>
+                <button id="mark-event" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Mark Event</button>
             </div>
         </div>
     `;
@@ -558,88 +631,23 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('details-location').textContent = event.location || 'Not specified';
         document.getElementById('details-description').textContent = event.description || 'No description';
         
-        const existingSource = document.querySelector('#event-source');
-        if (existingSource) existingSource.remove();
-        
-        const detailsSource = document.createElement('div');
-        detailsSource.id = 'event-source';
-        detailsSource.innerHTML = `
-            <label class="block text-sm font-medium text-gray-700">Source:</label>
-            <p class="mt-1 ${event.type === 'api' ? 'text-blue-500' : 'text-green-500'}">
-                ${event.type === 'api' ? 'Server (API)' : 'Local (Browser)'}
-            </p>
-        `;
-        document.querySelector('#details-description').after(detailsSource);
-        
         const deleteBtn = document.getElementById('delete-event');
-        if (event.type === 'api') {
-            deleteBtn.textContent = 'Delete';
-            deleteBtn.classList.replace('bg-red-500', 'bg-gray-400');
-            deleteBtn.onclick = function() {
-                alert('API events cannot be deleted');
-            };
-        } else {
-            deleteBtn.textContent = 'Delete';
-            deleteBtn.classList.replace('bg-gray-400', 'bg-red-500');
-            deleteBtn.onclick = function() {
-                if (confirm('Are you sure you want to delete this event?')) {
-                    const index = events.findIndex(e => e.id === event.id);
-                    if (index !== -1) {
-                        events.splice(index, 1);
-                        const eventDate = new Date(event.date);
-                        eventDate.setHours(0, 0, 0, 0);
-                        markedDates = markedDates.filter(d => {
-                            const markedDate = new Date(d);
-                            markedDate.setHours(0, 0, 0, 0);
-                            return markedDate.getTime() !== eventDate.getTime();
-                        });
-                        renderEvents();
-                        updateSmallCalendar();
-                        detailsPopup.classList.add('hidden');
-                    }
-                }
-            };
-        }
-        
         const markBtn = document.getElementById('mark-event');
-        if (event.type === 'api') {
-            markBtn.textContent = event.marked ? 'Unmark Event' : 'Mark Event';
-            markBtn.classList.toggle('bg-green-500', !event.marked);
-            markBtn.classList.toggle('bg-yellow-500', event.marked);
-            markBtn.onclick = function() {
-                alert('API events cannot be marked/unmarked');
-            };
-        } else {
-            markBtn.textContent = event.marked ? 'Unmark Event' : 'Mark Event';
-            markBtn.classList.toggle('bg-green-500', !event.marked);
-            markBtn.classList.toggle('bg-yellow-500', event.marked);
-            markBtn.onclick = function() {
-                const eventDate = new Date(event.date);
-                eventDate.setHours(0, 0, 0, 0);
-                
-                if (event.marked) {
-                    markedDates = markedDates.filter(d => {
-                        const markedDate = new Date(d);
-                        markedDate.setHours(0, 0, 0, 0);
-                        return markedDate.getTime() !== eventDate.getTime();
-                    });
-                    event.marked = false;
-                } else {
-                    if (!markedDates.some(d => {
-                        const markedDate = new Date(d);
-                        markedDate.setHours(0, 0, 0, 0);
-                        return markedDate.getTime() === eventDate.getTime();
-                    })) {
-                        markedDates.push(eventDate);
-                    }
-                    event.marked = true;
-                }
-                
-                updateSmallCalendar();
-                renderEvents();
-                detailsPopup.classList.add('hidden');
-            };
-        }
+        
+        // Setup delete button
+        deleteBtn.onclick = function() {
+            if (confirm('Are you sure you want to delete this event?')) {
+                deleteEvent(event);
+            }
+        };
+        
+        // Setup mark button
+        markBtn.textContent = event.marked ? 'Unmark Event' : 'Mark Event';
+        markBtn.classList.toggle('bg-green-500', !event.marked);
+        markBtn.classList.toggle('bg-yellow-500', event.marked);
+        markBtn.onclick = function() {
+            toggleEventMark(event);
+        };
 
         document.getElementById('close-details').onclick = function() {
             detailsPopup.classList.add('hidden');
@@ -648,143 +656,170 @@ document.addEventListener('DOMContentLoaded', function() {
         detailsPopup.classList.remove('hidden');
     }
 
-    detailsPopup.addEventListener('click', function(e) {
-        if (e.target === detailsPopup) {
-            detailsPopup.classList.add('hidden');
-        }
-    });
-
-    // Small Calendar
-    const prevMonthBtn = document.getElementById('prev-month');
-    const nextMonthBtn = document.getElementById('next-month');
-    const calendarMonth = document.getElementById('calendar-month');
-    const calendarDays = document.getElementById('calendar-days');
-    const highlightBtn = document.getElementById('highlight-button');
-    const currentDate2 = new Date();
-    let displayedMonth = currentDate2.getMonth();
-    let displayedYear = currentDate2.getFullYear();
-
-    updateMonthDisplay();
-    renderCalendar();
-
-    prevMonthBtn.addEventListener('click', () => {
-        displayedMonth--;
-        if (displayedMonth < 0) {
-            displayedMonth = 11;
-            displayedYear--;
-        }
-        updateMonthDisplay();
-        renderCalendar();
-        updateSmallCalendar();
-    });
-
-    nextMonthBtn.addEventListener('click', () => {
-        displayedMonth++;
-        if (displayedMonth > 11) {
-            displayedMonth = 0;
-            displayedYear++;
-        }
-        updateMonthDisplay();
-        renderCalendar();
-        updateSmallCalendar();
-    });
-
-    highlightBtn.addEventListener('click', function() {
-        const eventDateElement = document.querySelector('.event-date');
-        if (!eventDateElement) return;
-        const eventDate = new Date(eventDateElement.textContent);
-        if (isNaN(eventDate.getTime())) return;
-        markedDates.push({
-            date: eventDate.getDate(),
-            month: eventDate.getMonth(),
-            year: eventDate.getFullYear()
-        });
-        if (eventDate.getMonth() !== displayedMonth || eventDate.getFullYear() !== displayedYear) {
-            displayedMonth = eventDate.getMonth();
-            displayedYear = eventDate.getFullYear();
-            updateMonthDisplay();
-        }
-        renderCalendar();
-    });
-
-    function updateMonthDisplay() {
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 
-                       'July', 'August', 'September', 'October', 'November', 'December'];
-        calendarMonth.textContent = `${months[displayedMonth]} ${displayedYear}`;
-    }
-
-    function updateSmallCalendar() {
-        const dayElements = document.querySelectorAll('#calendar-days li:not(.previous-month)');
-        dayElements.forEach(dayElement => {
-            dayElement.classList.remove('bg-[#bda887]', 'text-black', 'rounded-full');
-            const dayNumber = parseInt(dayElement.textContent.trim());
-            if (isNaN(dayNumber)) return;
-            const dayDate = new Date(displayedYear, displayedMonth, dayNumber);
-            dayDate.setHours(0, 0, 0, 0);
-            const hasEvent = events.some(event => {
-                const eventDate = new Date(event.date);
-                eventDate.setHours(0, 0, 0, 0);
-                return eventDate.getTime() === dayDate.getTime();
+async function deleteEvent(event) {
+    if (!confirm('Are you sure you want to delete this event?')) return;
+    
+    try {
+        showLoadingSpinner();
+        
+        let response;
+        if (event.type === 'database') {
+            response = await fetch('includes/formhandlerMiddleDelete.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `id=${encodeURIComponent(event.id)}`
             });
-            const isMarked = markedDates.some(d => {
+            
+            // Check if response is JSON
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                const text = await response.text();
+                throw new Error('Server returned non-JSON response');
+            }
+            
+            const result = await response.json();
+            if (!response.ok || !result.success) {
+                throw new Error(result.message || 'Delete failed');
+            }
+        }
+        
+        // Remove from local state
+        const index = events.findIndex(e => e.id === event.id);
+        if (index !== -1) {
+            events.splice(index, 1);
+            const eventDate = new Date(event.date);
+            eventDate.setHours(0, 0, 0, 0);
+            markedDates = markedDates.filter(d => {
                 const markedDate = new Date(d);
                 markedDate.setHours(0, 0, 0, 0);
-                return markedDate.getTime() === dayDate.getTime();
+                return markedDate.getTime() !== eventDate.getTime();
             });
-            if (hasEvent || isMarked) {
-                dayElement.classList.add('bg-[#bda887]', 'text-black', 'rounded-full');
+            renderEvents();
+            updateSmallCalendar();
+        }
+        
+        detailsPopup.classList.add('hidden');
+    } catch (error) {
+        console.error('Delete error:', error);
+        alert('Failed to delete event: ' + error.message);
+    } finally {
+        hideLoadingSpinner();
+    }
+}
+async function toggleEventMark(event) {
+    try {
+        showLoadingSpinner();
+        const newMarkedStatus = !event.marked;
+        
+        // Update the event's marked status immediately
+        event.marked = newMarkedStatus;
+        
+        // Get the normalized date (time set to 00:00:00 for comparison)
+        const eventDate = new Date(event.date);
+        eventDate.setHours(0, 0, 0, 0);
+        
+        // Update markedDates array
+        if (newMarkedStatus) {
+            // Add to markedDates if not already present
+            if (!markedDates.some(d => {
+                const markedDate = new Date(d);
+                markedDate.setHours(0, 0, 0, 0);
+                return markedDate.getTime() === eventDate.getTime();
+            })) {
+                markedDates.push(eventDate);
             }
-        });
-    }
-
-    function renderCalendar() {
-        const firstDayOfMonth = new Date(displayedYear, displayedMonth, 1);
-        const daysInMonth = new Date(displayedYear, displayedMonth + 1, 0).getDate();
-        const startDayOfWeek = firstDayOfMonth.getDay();
-        const lastDayOfPrevMonth = new Date(displayedYear, displayedMonth, 0).getDate();
-
-        calendarDays.innerHTML = '';
-
-        for (let i = 0; i < startDayOfWeek; i++) {
-            const day = lastDayOfPrevMonth - startDayOfWeek + i + 1;
-            calendarDays.appendChild(createDayElement(day, true));
-        }
-
-        for (let day = 1; day <= daysInMonth; day++) {
-            const isCurrentDay = day === currentDate2.getDate() && 
-                               displayedMonth === currentDate2.getMonth() && 
-                               displayedYear === currentDate2.getFullYear();
-            const isMarked = markedDates.some(event => 
-                event.date === day && 
-                event.month === displayedMonth && 
-                event.year === displayedYear);
-            calendarDays.appendChild(createDayElement(day, false, isCurrentDay, isMarked));
-        }
-
-        const totalCells = Math.ceil((daysInMonth + startDayOfWeek) / 7) * 7;
-        const nextMonthDays = totalCells - (daysInMonth + startDayOfWeek);
-        for (let i = 1; i <= nextMonthDays; i++) {
-            calendarDays.appendChild(createDayElement(i, true));
-        }
-    }
-
-    function createDayElement(day, isOtherMonth, isCurrentDay = false, isMarked = false) {
-        const dayElement = document.createElement('li');
-        dayElement.textContent = day;
-        if (isOtherMonth) {
-            dayElement.className = 'previous-month text-gray-400';
         } else {
-            dayElement.className = 'day';
-            if (isCurrentDay) {
-                dayElement.classList.add('text-[#1d76c9]', 'font-bold');
+            // Remove from markedDates
+            markedDates = markedDates.filter(d => {
+                const markedDate = new Date(d);
+                markedDate.setHours(0, 0, 0, 0);
+                return markedDate.getTime() !== eventDate.getTime();
+            });
+        }
+        
+        // For database events, update on server
+        if (event.type === 'database') {
+            const response = await fetch('includes/formhandlerMiddleMARK.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `id=${encodeURIComponent(event.id)}&marked=${newMarkedStatus ? '1' : '0'}`
+            });
+            
+            // Check if response is JSON
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                const text = await response.text();
+                throw new Error('Server returned non-JSON response');
             }
-            if (isMarked) {
-                dayElement.classList.add('bg-[#bda887]', 'text-black', 'rounded-full');
+            
+            const result = await response.json();
+            if (!response.ok || !result.success) {
+                // Revert changes if server update failed
+                event.marked = !newMarkedStatus;
+                if (newMarkedStatus) {
+                    markedDates = markedDates.filter(d => {
+                        const markedDate = new Date(d);
+                        markedDate.setHours(0, 0, 0, 0);
+                        return markedDate.getTime() !== eventDate.getTime();
+                    });
+                } else {
+                    markedDates.push(eventDate);
+                }
+                throw new Error(result.message || 'Update failed');
             }
         }
-        return dayElement;
+        
+        // Update UI
+        updateSmallCalendar();
+        renderEvents();
+        detailsPopup.classList.add('hidden');
+    } catch (error) {
+        console.error('Mark error:', error);
+        alert('Failed to update event: ' + error.message);
+    } finally {
+        hideLoadingSpinner();
     }
+}
 
-    // Initialize
-    updateSmallCalendar();
+    // Small calendar functions
+
+    function updateSmallCalendar() {
+    const dayElements = document.querySelectorAll('#calendar-days li:not(.previous-month)');
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    dayElements.forEach(dayElement => {
+        // Reset classes
+        dayElement.className = 'day';
+        
+        const dayNumber = parseInt(dayElement.textContent.trim());
+        if (isNaN(dayNumber)) return;
+        
+        const dayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), dayNumber);
+        dayDate.setHours(0, 0, 0, 0);
+        
+        // Highlight current day (light blue)
+        if (dayDate.getTime() === today.getTime()) {
+            dayElement.classList.add('bg-blue-200');
+        }
+        
+        // Check if this date is in markedDates
+        const isMarked = markedDates.some(markedDate => {
+            const d = new Date(markedDate);
+            d.setHours(0, 0, 0, 0);
+            return d.getTime() === dayDate.getTime();
+        });
+        
+        // Only apply marked styling if explicitly marked
+        if (isMarked) {
+            dayElement.classList.add('bg-[#bda887]', 'text-black', 'rounded-full');
+        }
+    });
+}
+
+
 });

@@ -41,10 +41,22 @@
                     <h1 id="LOG" class="text-lg font-bold">UoB | Students' Hub</h1>
                   </div>
 
-                    <div class="flex gap-3 mr-auto">  <a href="../../index.html" class="flex  items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden"><span >Home</span>
-                            <div ></div>
-                         <span ></span>
-                        </a>
+                    <div class="flex gap-3 mr-auto"> 
+                      
+                    
+                   
+
+                   <a href="#" class="flex items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden" onclick="navigateTo('../../index.html')">
+                   <span>Home</span>
+                   <div></div>
+                   <span></span>
+                  </a>
+
+                  <script>
+                 function navigateTo(url) {
+                 window.location.href = url;
+                 return false; // Prevents default anchor behavior 
+                 } </script>
 
                         <div class="relative group Dropdown">
                             <a href="#" class="flex items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
@@ -65,17 +77,57 @@
                           </div>
                         </div>
 
-                        <a href="#" class="flex  items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
-                            <span >Profile</span>
+                        <a href="#" id="loginLink" class="flex  items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                            <span >Login</span>
                             <div ></div>
                             <span ></span>
                         </a>
 
-                        <a href="#" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
-                            <span>Help</span>
+                        <a href="#"  id="signupLink"  class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                            <span>Sign-up</span>
                             <div ></div>
                             <span ></span>
                         </a>
+<a href="#" id="logoutLink" class="flex items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden hidden">
+    <span>Logout</span>
+    <div></div>
+    <span></span>
+</a>
+                        <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+<!-- Login Modal -->
+<div id="loginModal" class="fixed text-black z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg w-80 hidden">
+  <h2 class="text-xl font-semibold mb-4">Login</h2>
+  <form id="loginForm" class="space-y-4" action="includes/auth.php" method="POST">
+    <input type="email" name="email" placeholder="Email" required class="w-full px-3 py-2 text-black border rounded focus:outline-none focus:ring focus:border-blue-300">
+    <input type="password" name="password" placeholder="Password" required class="w-full px-3 text-black  py-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
+    <button type="submit" class="w-full bg-[#04437e] text-white py-2 rounded hover:bg-blue-800">Login</button>
+  </form>
+</div>
+
+<!-- Register Modal -->
+<div id="registerModal" class="fixed text-black z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg w-80 hidden">
+  <h2 class="text-xl font-semibold mb-4">Sign Up</h2>
+  <form id="registerForm" class="space-y-4" action="includes/auth.php" method="POST">
+    <input type="text" name="academic_id" placeholder="Academic ID" required 
+           class="w-full px-3 py-2 text-black  border rounded focus:outline-none focus:ring focus:border-blue-300">
+    <input type="text" name="username" placeholder="Username" required 
+           class="w-full px-3 py-2 border text-black  rounded focus:outline-none focus:ring focus:border-blue-300">
+    <input type="email" name="email" placeholder="Email" required 
+           class="w-full px-3 py-2 border text-black rounded focus:outline-none focus:ring focus:border-blue-300">
+    <input type="password" name="password" placeholder="Password" required 
+           class="w-full px-3 py-2 border text-black  rounded focus:outline-none focus:ring focus:border-blue-300">
+    <button type="submit" class="w-full bg-[#04437e] text-white py-2 rounded hover:bg-blue-800">
+      Register
+    </button>
+  </form>
+  <button class="close-modal mt-4 text-[#04437e] hover:underline w-full">Close</button>
+</div>
+
+
+
+
+
                     </div>
 
 
@@ -92,7 +144,7 @@
                          <button class="btn">
                           <svg class="icon" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 2.5a5.5 5.5 0 0 1 3.096 10.047 9.005 9.005 0 0 1 5.9 8.181.75.75 0 1 1-1.499.044 7.5 7.5 0 0 0-14.993 0 .75.75 0 0 1-1.5-.045 9.005 9.005 0 0 1 5.9-8.18A5.5 5.5 0 0 1 12 2.5ZM8 8a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"
-                            ><a href="../../index.html"></a></path>
+                            ></path>
                           </svg>
                         </button>
                     </div>
@@ -264,11 +316,11 @@
       </div>
   </section>
 
-  <div class="flex justify-center">
+<div class="flex justify-center">
     <section class="sched-temp mt-3 md:w-[90%] lg:w-[80%] flex justify-center shadow-lg">
     <div class="w-full max-w-4xl overflow-x-auto">
       <table class="table-oc" id="course-schedule-table">
-        <!-- Table Header= THEAD -->
+        <!-- Table Header -->
         <thead>
           <tr class="shdr">
             <th scope="col" class="sday" data-day="sunday">U</th>
@@ -279,25 +331,28 @@
           </tr>
         </thead>
        
-        <!-- Table Body= TBODY-->
+        <!-- Table Body - 8 empty rows -->
         <tbody id="schedule-body">
-          <!-- Empty row template for adding new courses -->
-          <tr class="row empty-row-template " data-time="template">
-            <td class="cell" data-day="sunday" data-time="template"></td>
-            <td class="cell" data-day="monday" data-time="template"></td>
-            <td class="cell" data-day="tuesday" data-time="template"></td>
-            <td class="cell" data-day="wednesday" data-time="template"></td>
-            <td class="cell" data-day="thursday" data-time="template"></td>
+          <!-- Rows 1-8 -->
+          <?php for($i=1; $i<=8; $i++): ?>
+          <tr class="row" data-row-id="<?= $i ?>">
+            <td class="cell" data-day="sunday" data-cell-id="U<?= $i ?>"></td>
+            <td class="cell" data-day="monday" data-cell-id="M<?= $i ?>"></td>
+            <td class="cell" data-day="tuesday" data-cell-id="T<?= $i ?>"></td>
+            <td class="cell" data-day="wednesday" data-cell-id="W<?= $i ?>"></td>
+            <td class="cell" data-day="thursday" data-cell-id="H<?= $i ?>"></td>
           </tr>
+          <?php endfor; ?>
         </tbody>
       </table>
     </div>
   </section>
 </div>
     
+<!-- Buttons -->
 <section class="mt-4 mb-6 px-3">
   <div class="flex flex-wrap gap-2 justify-center">
-    <button title="Add course" class="design-btn mx-3 my-2 courseTablebtn" id="add-course-btn" data-action="add" >
+    <button title="Add course" class="design-btn mx-3 my-2 courseTablebtn" id="add-course-btn" data-action="add">
       <span>Add</span>
     </button>
     <button title="Delete course" class="design-btn mx-3 my-2 courseTablebtn" id="delete-course-btn" data-action="delete">
@@ -309,33 +364,29 @@
   </div>
 </section>
 
-<!-- Course Modal for Add/Edit -->
-<div id="course-modal" class=" hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+<!-- Course Modal -->
+<div id="course-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
   <div class="bg-white rounded-lg p-6 w-96">
     <h2 class="text-xl font-bold mb-4" id="modal-title">Add Course</h2>
     <form id="course-form">
       <input type="hidden" id="course-id">
+      <input type="hidden" id="cell-id">
+
       <div class="mb-4">
         <label class="block text-sm font-medium mb-1">Course Code</label>
-        <input type="text" id="course-code" class="w-full px-3 py-2 border rounded">
+        <input type="text" id="course-code" name="course_code" class="w-full px-3 py-2 border rounded" required>
       </div>
       <div class="mb-4">
         <label class="block text-sm font-medium mb-1">Day</label>
-        <select id="course-day" class="w-full px-3 py-2 border rounded">
-          <option value="sunday">Sunday (U)</option>
-          <option value="monday">Monday (M)</option>
-          <option value="tuesday">Tuesday (T)</option>
-          <option value="wednesday">Wednesday (W)</option>
-          <option value="thursday">Thursday (H)</option>
-        </select>
+        <input type="text" id="course-day" class="w-full px-3 py-2 border rounded bg-gray-100" readonly>
       </div>
       <div class="mb-4">
-        <label class="block text-sm font-medium mb-1">Time</label>
-        <input type="time" id="course-time" class="w-full px-3 py-2 border rounded">
+        <label class="block text-sm font-medium mb-1">Start Time</label>
+        <input type="time" id="course-time" name="start_time" class="w-full px-3 py-2 border rounded" required>
       </div>
       <div class="mb-4">
         <label class="block text-sm font-medium mb-1">Location</label>
-        <input type="text" id="course-location" class="w-full px-3 py-2 border rounded">
+        <input type="text" id="course-location" name="location" class="w-full px-3 py-2 border rounded" required>
       </div>
       <div class="flex justify-end space-x-3">
         <button type="button" id="cancel-course-btn" class="px-4 py-2 bg-gray-200 rounded">Cancel</button>
@@ -344,6 +395,7 @@
     </form>
   </div>
 </div>
+
   <!--We added data actiopn for js-->
  
     </section>
@@ -494,41 +546,41 @@
   <div class="absolute right-0 mt-2 z-10 bg-white rounded-lg shadow-xl p-6 w-80 hidden" id="eForm1">
     <h2 class="text-xl font-bold text-black mb-4">Add New Event</h2>
     
-    <form id="addEventForm" class="space-y-2">
+    <form id="addEventForm" class="space-y-2" action="includes/formhandlerMiddle.php" method="POST">
       <div>
         <label class="block text-sm font-medium text-[#001f3f] mb-1">Event Date:</label>
-        <input type="date" required id="eventDate"
+        <input type="date" required id="eventDate" name="EventDate"
                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887]" placeholder="DD/MM/YYYY">
       </div>
       
       <div class="grid grid-cols-2 gap-4">
         <div>
           <label class="block text-sm font-medium text-[#001f3f] mb-1">Start Time:</label>
-          <input type="time" required id="eventStartTime"
+          <input type="time" required id="eventStartTime" name="EventStartTime"
                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887]">
         </div>
         <div>
           <label class="block text-sm font-medium text-[#001f3f] mb-1">End Time:</label>
-          <input type="time" required id="eventEndTime"
+          <input type="time" required id="eventEndTime"  name="EventEndTime"
                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887]">
         </div>
       </div>
       
       <div>
         <label class="block text-sm font-medium text-[#001f3f] mb-1">Event Title:</label>
-        <input type="text" required id="eventTitle"
+        <input type="text" required id="eventTitle" name="EventTitle"
                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887]" placeholder="Enter event title">
       </div>
       
       <div>
         <label class="block text-sm font-medium text-[#001f3f] mb-1">Location:</label>
-        <input type="text"  id="eventLocation"
+        <input type="text"  id="eventLocation" name="EventLocation"
                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887]" placeholder="e.g. S40-2086">
       </div>
       
       <div>
         <label class="block text-sm font-medium text-[#001f3f] mb-1">Description (Optional):</label>
-        <textarea id="eventDescription" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887] h-20" placeholder="Add any additional details"></textarea>
+        <textarea id="eventDescription" name="EventDes" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#bda887] h-20" placeholder="Add any additional details"></textarea>
       </div>
       
       <div class="flex justify-end space-x-3 pt-2">
@@ -668,12 +720,10 @@
 
 
 
-
-<script src="MIDDLESEC.js"></script>
-<script src="../Events Calendar/COMMENTS.js"></script>
-<script src="../Events Calendar/SCHED.JS"></script>
-
-
+<script src="MIDDLESEC.js" defer></script>
+<script src="../Events Calendar/COMMENTS.js" defer></script>
+<script src="../Events Calendar/SCHED.JS" defer></script>
+<script src="../Events Calendar/loginSign.js" defer></script>
 
 </body>
 </html>
