@@ -1,193 +1,177 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Constants
+
+    //For comments, I did not have time to add crud operations for them but I already worked on two other things like the middle section calrndar and the schedule 
+    //I could not add a search functionality, but i added authentication, basic one.
     const MAX_VISIBLE_CHARS = 30;
-    
-    // DOM Elements
     const commentsContainer = document.getElementById('commentsContainer');
     const commentInput = document.getElementById('commentInput');
     const postButton = document.getElementById('postComment');
     
-    // Track which comments have been liked to prevent multiple increments
-    const likedComments = new Set();
+    // Load existing comments from server
+    loadComments();
     
-    // Initialize existing comments
-    initExistingComments();
-    
-    // Event Listeners
     postButton.addEventListener('click', addNewComment);
     commentInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') addNewComment();
     });
     
-    // Functions
-    function initExistingComments() {
-        // Initialize "Read more" functionality for existing comments
-        const comments = commentsContainer.querySelectorAll('[id^="comment-"]');
-        comments.forEach(comment => {
-            const commentId = comment.id.split('-')[1];
-            const textElement = document.getElementById(`comment-${commentId}-text`);
-            const fullText = textElement.textContent;
+    async function loadComments() {
+        try {
+            const response = await fetch('includes/comments.php?action=get_comments');
+            const data = await response.json();
             
-            if (fullText.length > MAX_VISIBLE_CHARS) {
-                textElement.dataset.fullText = fullText;
-                textElement.textContent = truncateText(fullText, MAX_VISIBLE_CHARS);
-                
-                // Add event listener to "Read more" button
-                const readMoreBtn = document.getElementById(`comment-${commentId}-read-more`);
-                readMoreBtn.addEventListener('click', function() {
-                    toggleReadMore(commentId);
-                });
-            } else {
-                // Hide "Read more" button if not needed
-                const readMoreBtn = document.getElementById(`comment-${commentId}-read-more`);
-                readMoreBtn.style.visibility = 'hidden';
+            if (data.success && data.comments) {
+                renderComments(data.comments);
             }
-            
-            // Add event listener to "Like" button
-            const likeBtn = document.getElementById(`comment-${commentId}-like`);
-            likeBtn.addEventListener('click', function() {
-                if (!likedComments.has(commentId)) {
-                    likeComment(commentId);
-                    likedComments.add(commentId);
-                }
-            });
-            
-            // Add event listener to "Reply" button
-            const replyBtn = document.getElementById(`comment-${commentId}-reply`);
-            replyBtn.addEventListener('click', function() {
-                replyToComment(commentId);
-            });
-        });
+        } catch (error) {
+            console.error('Error loading comments:', error);
+        }
     }
     
-    function addNewComment() {
-        const commentText = commentInput.value.trim();
-        if (!commentText) return;
+    function renderComments(comments) {
+        commentsContainer.innerHTML = '';
         
-        // Create unique ID for new comment
-        const commentId = Date.now();
-        const now = new Date();
-        const timeString = formatTimeAgo(now);
-        const randomUserId = '2022' + Math.floor(Math.random() * 90000 + 10000).toString();
-        
-        // Create comment HTML
-        const commentHTML = `
-            <div class="mb-1 mt-4" id="comment-${commentId}">
-                <div class="flex items-start mx-auto">
-                    <img src="../Images/pfp.png" class="w-8 h-8 rounded-full object-cover mr-3 mt-1">
-                    <div class="flex-1">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-[0.87em] text-[black]" id="comment-${commentId}-user">${randomUserId}</h3>
-                            <span class="text-xs text-[#bda887]" id="comment-${commentId}-time">${timeString}</span>
-                        </div>
-                        <p class="mt-0.59 text-[black] text-[0.8em]" id="comment-${commentId}-text">${truncateText(commentText, MAX_VISIBLE_CHARS)}</p>
-                        <div class="flex justify-between items-center mt-2">
-                            <div class="flex items-center">
-                                <button class="flex items-center text-xs text-[#04437e] hover:text-[#C80000] mr-3" id="comment-${commentId}-like">
-                                    <svg class="w-3.5 h-3.5 mr-1 fill-none stroke-current stroke-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 21s-6-5.5-9-9c-2.5-3.5-1.5-7.5 2-9 2.5-1.5 5.5-.5 7 2 1.5-2.5 4.5-3.5 7-2 3.5 1.5 4.5 5.5 2 9-3 3.5-9 9-9 9z"></path>
-                                    </svg>
-                                    <span class="text-[#C80000]"><small id="comment-${commentId}-like-count">0</small></span>
-                                </button>
-                                <button class="text-xs text-[#bda887] hover:text-[#C80000]" id="comment-${commentId}-reply">
-                                    Reply
-                                </button>
+        comments.forEach(comment => {
+            const isLongComment = comment.content.length > MAX_VISIBLE_CHARS;
+            const displayText = isLongComment 
+                ? comment.content.substring(0, MAX_VISIBLE_CHARS) + '...' 
+                : comment.content;
+            
+            const commentHTML = `
+                <div class="mb-1 mt-4" id="comment-${comment.id}">
+                    <div class="flex items-start mx-auto">
+                        <img src="../Images/pfp.png" class="w-8 h-8 rounded-full object-cover mr-3 mt-1">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-[0.87em] text-[black]">${comment.username}</h3>
+                                <span class="text-xs text-[#bda887]">${formatTimeAgo(comment.created_at)}</span>
                             </div>
-                            ${commentText.length > MAX_VISIBLE_CHARS ? 
-                                `<button class="text-xs text-[#bda887] hover:text-[#C80000]" id="comment-${commentId}-read-more">
-                                    Read more
-                                </button>` : 
-                                `<button class="text-xs text-[#bda887] hover:text-[#C80000] opacity-0 cursor-default" id="comment-${commentId}-read-more" style="visibility: hidden;">
-                                    Read more
-                                </button>`}
+                            <p class="mt-0.59 text-[black] text-[0.8em]" id="comment-text-${comment.id}">
+                                ${displayText}
+                            </p>
+                            <div class="flex justify-between items-center mt-2">
+                                <div class="flex items-center">
+                                    <button class="flex items-center text-xs text-[#04437e] hover:text-[#C80000] mr-3 like-btn" data-comment-id="${comment.id}">
+                                        <svg class="w-3.5 h-3.5 mr-1 ${comment.liked ? 'fill-current text-[#C80000]' : 'fill-none'} stroke-current stroke-2" viewBox="0 0 24 24">
+                                            <path d="M12 21s-6-5.5-9-9c-2.5-3.5-1.5-7.5 2-9 2.5-1.5 5.5-.5 7 2 1.5-2.5 4.5-3.5 7-2 3.5 1.5 4.5 5.5 2 9-3 3.5-9 9-9 9z"></path>
+                                        </svg>
+                                        <span class="text-[#C80000]"><small class="like-count">${comment.like_count}</small></span>
+                                    </button>
+                                    <button class="text-xs text-[#bda887] hover:text-[#C80000] reply-btn" data-comment-id="${comment.id}">
+                                        Reply
+                                    </button>
+                                </div>
+                                ${isLongComment ? 
+                                    `<button class="text-xs text-[#bda887] hover:text-[#C80000] read-more-btn" data-comment-id="${comment.id}" data-expanded="false">
+                                        Read more
+                                    </button>` : ''}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="border-t border-black my-2"></div>
-        `;
-        
-        // Insert new comment before the input area
-        const inputContainer = document.getElementById('commentsContainer');
-        inputContainer.insertAdjacentHTML('beforeend', commentHTML);
-        
-        // Store full text if truncated
-        if (commentText.length > MAX_VISIBLE_CHARS) {
-            const textElement = document.getElementById(`comment-${commentId}-text`);
-            textElement.dataset.fullText = commentText;
+                <div class="border-t border-black my-2"></div>
+            `;
             
-            // Add event listener to "Read more" button
-            const readMoreBtn = document.getElementById(`comment-${commentId}-read-more`);
-            readMoreBtn.addEventListener('click', function() {
-                toggleReadMore(commentId);
-            });
-        }
-        
-        // Add event listener to "Like" button
-        const likeBtn = document.getElementById(`comment-${commentId}-like`);
-        likeBtn.addEventListener('click', function() {
-            if (!likedComments.has(commentId)) {
-                likeComment(commentId);
-                likedComments.add(commentId);
+            commentsContainer.insertAdjacentHTML('beforeend', commentHTML);
+            
+            // Add event listeners
+            const readMoreBtn = commentsContainer.querySelector(`.read-more-btn[data-comment-id="${comment.id}"]`);
+            if (readMoreBtn) {
+                readMoreBtn.addEventListener('click', () => toggleReadMore(comment.id, comment.content));
             }
+            
+            const likeBtn = commentsContainer.querySelector(`.like-btn[data-comment-id="${comment.id}"]`);
+            likeBtn.addEventListener('click', () => likeComment(comment.id));
+            
+            const replyBtn = commentsContainer.querySelector(`.reply-btn[data-comment-id="${comment.id}"]`);
+            replyBtn.addEventListener('click', () => replyToComment(comment.id, comment.username));
         });
-        
-        // Add event listener to "Reply" button
-        const replyBtn = document.getElementById(`comment-${commentId}-reply`);
-        replyBtn.addEventListener('click', function() {
-            replyToComment(commentId);
-        });
-        
-        // Clear input and scroll to new comment
-        commentInput.value = '';
-        commentsContainer.scrollTop = commentsContainer.scrollHeight;
     }
     
-    function toggleReadMore(commentId) {
-        const textElement = document.getElementById(`comment-${commentId}-text`);
-        const readMoreBtn = document.getElementById(`comment-${commentId}-read-more`);
-        const fullText = textElement.dataset.fullText;
+    async function addNewComment() {
+        const commentText = commentInput.value.trim();
+        if (!commentText) return;
         
-        if (readMoreBtn.textContent.trim() === 'Read more') {
+        try {
+            const response = await fetch('includes/comments.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'add_comment',
+                    content: commentText,
+                    username: 'Anonymous'
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                commentInput.value = '';
+                loadComments(); // Refresh comments from server
+            }
+        } catch (error) {
+            console.error('Error adding comment:', error);
+        }
+    }
+    
+    async function likeComment(commentId) {
+        try {
+            const response = await fetch('includes/comments.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'like_comment',
+                    comment_id: commentId
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                // Update UI
+                const likeBtn = document.querySelector(`.like-btn[data-comment-id="${commentId}"]`);
+                const likeCount = likeBtn.querySelector('.like-count');
+                const heartIcon = likeBtn.querySelector('svg');
+                
+                likeCount.textContent = data.new_count || (parseInt(likeCount.textContent) + 1);
+                heartIcon.classList.add('fill-current', 'text-[#C80000]');
+                heartIcon.classList.remove('fill-none');
+            }
+        } catch (error) {
+            console.error('Error liking comment:', error);
+        }
+    }
+    
+    function toggleReadMore(commentId, fullText) {
+        const textElement = document.getElementById(`comment-text-${commentId}`);
+        const readMoreBtn = document.querySelector(`.read-more-btn[data-comment-id="${commentId}"]`);
+        const isExpanded = readMoreBtn.dataset.expanded === 'true';
+        
+        if (isExpanded) {
+            textElement.textContent = fullText.substring(0, MAX_VISIBLE_CHARS) + '...';
+            readMoreBtn.textContent = 'Read more';
+            readMoreBtn.dataset.expanded = 'false';
+        } else {
             textElement.textContent = fullText;
             readMoreBtn.textContent = 'Read less';
-            
-            // Scroll to show the expanded comment
-            setTimeout(() => {
-                textElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 10);
-        } else {
-            textElement.textContent = truncateText(fullText, MAX_VISIBLE_CHARS);
-            readMoreBtn.textContent = 'Read more';
+            readMoreBtn.dataset.expanded = 'true';
         }
     }
     
-    function likeComment(commentId) {
-        const likeCountElement = document.getElementById(`comment-${commentId}-like-count`);
-        const likeBtn = document.getElementById(`comment-${commentId}-like`);
-        const heartIcon = likeBtn.querySelector('svg');
-        
-        let count = parseInt(likeCountElement.textContent);
-        likeCountElement.textContent = count + 1; // Increment by 1 only
-        
-        // Change heart color to red
-        heartIcon.classList.add('fill-current', 'text-[#C80000]');
-        heartIcon.classList.remove('fill-none');
-    }
-    
-    function replyToComment(commentId) {
-        const username = document.getElementById(`comment-${commentId}-user`).textContent;
+    function replyToComment(commentId, username) {
         commentInput.value = `@${username} `;
         commentInput.focus();
     }
     
-    function truncateText(text, maxLength) {
-        return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
-    }
-    
-    function formatTimeAgo(date) {
+    function formatTimeAgo(timestamp) {
         const now = new Date();
-        const diff = now - date;
+        const commentDate = new Date(timestamp);
+        const diff = now - commentDate;
+        
         const seconds = Math.floor(diff / 1000);
         const minutes = Math.floor(seconds / 60);
         const hours = Math.floor(minutes / 60);
@@ -198,6 +182,4 @@ document.addEventListener('DOMContentLoaded', function() {
         if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
         return 'Just now';
     }
-
 });
-    

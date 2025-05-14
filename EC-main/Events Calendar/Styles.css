@@ -317,7 +317,7 @@ div.Dropdown:hover #MN {
 .shdr {
   
   background-color: #fcfbf6;
-  border-bottom: 2px solid #202020;
+  border-bottom: 2px solid #afafaf;
 }
 
 .sday {
@@ -325,7 +325,7 @@ div.Dropdown:hover #MN {
   text-align: center;
   font-size: 0.75rem;
   color: #bda887;
-  border-right: 1px solid #202020;
+  border-right: 1px solid #afafaf;
   font-weight: 600;
 }
 .sday:last-child{
@@ -333,7 +333,7 @@ div.Dropdown:hover #MN {
 }
 
 .row {
-  border-bottom:  1px solid #202020;
+  border-bottom:  1px solid #afafaf;
 }
 .row:last-child {
   border-bottom: none;
@@ -345,7 +345,7 @@ div.Dropdown:hover #MN {
   width: 20%;
   padding: 0;
   vertical-align: top;
-  border-right:  1px solid #202020;
+  border-right:  1px solid #afafaf;
 }
 
 .cell:last-child {
@@ -722,4 +722,13 @@ footer {
 
 .empty-cell {
   background-color: #f8f9fa;
+}
+.database-event {
+    background-color: #f0f9ff; /* light blue */
+    border-left: 4px solid #3b82f6; /* blue-500 */
+}
+
+.local-event {
+    background-color: #f0fdf4; /* light green */
+    border-left: 4px solid #22c55e; /* green-500 */
 }
