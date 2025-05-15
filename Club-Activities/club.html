@@ -99,9 +99,9 @@
   </div>
 
   <div class="options">
-    <button class="filter-btn">Create a Club</button>
-    <button class="filter-btn">Lead a Club</button>
-    <button class="filter-btn">Advise a Club</button>
+    <a href="create_club.html" class="filter-btn">Create a Club</a>
+    <a href="lead_club.html" class="filter-btn">Lead a Club</a>
+    <a href="advise_club.html" class="filter-btn">Advise a Club</a>
   </div>
 
   <section class="clubs-section">
@@ -118,7 +118,7 @@
         </select>
       </div>
 
-      <div class="list">
+      <div class="list" id="dynamic-club-list">
         <div class="list-content">
           <div class="image-container">
             <img class="picturelist" src="pictures/chess.jpg" alt="Chess Club">
@@ -158,32 +158,43 @@
           <p>Architecture Club</p>
           <button class="list-button">Learn More</button>
         </div>
+        <div id="loading-state" style="text-align: center; padding: 20px;">
+          <p>Loading clubs...</p>
+        </div>
+        <div id="error-state" style="text-align: center; padding: 20px; color: red; display: none;">
+          <p>Failed to load clubs. Please try again later.</p>
+        </div>
       </div>
+      
   </section>
 
-  <section class="event-calendar">
-    <h2>Upcoming events</h2>
-    <div class="event-items">
-      <div class="event-content">
-        <p class="event-date">April 16, 2025</p>
-        <h3>Campus Political Debate</h3>
-        <p class="Event-details">Join us now and learn about the political History of the campus!</p>
+  <div class="event-content">
+    <p class="event-date">April 16, 2025</p>
+    <h3>Campus Political Debate</h3>
+    <p class="Event-details">Join us now and learn about the political History of the campus!</p>
+    <div class="filter-btn-container">
         <button class="filter-btn">Learn More</button>
-      </div>
-      <div class="event-content">
-        <p class="event-date">April 17, 2025</p>
-        <h3>Campus Science Community</h3>
-        <p class="Event-details">Join us now and learn about new science concepts!</p>
-        <button class="filter-btn">Learn More</button>
-      </div>
-      <div class="event-content">
-        <p class="event-date">April 18, 2025</p>
-        <h3>Campus Plant club</h3>
-        <p class="Event-details">Join us now and learn about the political History of the campus!</p>
-        <button class="filter-btn">Learn More</button>
-      </div>
+        <span class="tooltip-text">Click to see event details!</span>
     </div>
-  </section>
+</div>
+<div class="event-content">
+    <p class="event-date">April 17, 2025</p>
+    <h3>Campus Science Community</h3>
+    <p class="Event-details">Join us now and learn about new science concepts!</p>
+    <div class="filter-btn-container">
+        <button class="filter-btn">Learn More</button>
+        <span class="tooltip-text">Discover science insights!</span>
+    </div>
+</div>
+<div class="event-content">
+    <p class="event-date">April 18, 2025</p>
+    <h3>Campus Plant club</h3>
+    <p class="Event-details">Join us now and learn about the political History of the campus!</p>
+    <div class="filter-btn-container">
+        <button class="filter-btn">Learn More</button>
+        <span class="tooltip-text">Explore the world of plants!</span>
+    </div>
+</div>
 
   <section class="comments-block">
     <h2>What our Students Think!</h2>
