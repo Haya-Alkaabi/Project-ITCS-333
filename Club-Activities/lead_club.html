@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead a Club - UoB Students' Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="ss.css" rel="stylesheet">
+    </head>
+<body class="overflow-x-hidden">
+
+    <header>
+        </header>
+
+    <main class="container mx-auto mt-10 px-4">
+        <div class="registration-form">
+            <h2 class="text-2xl font-bold text-center mb-6">Lead an Existing Club</h2>
+            <p class="text-center mb-8">Interested in taking a leadership role in an established club? Fill out the form below.</p>
+            <form id="leadClubForm">
+                <div class="form-section">
+                    <h3>Your Information</h3>
+                    <div class="form-group">
+                        <label for="leaderName">Full Name:</label>
+                        <input type="text" id="leaderName" name="leaderName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentId">Student ID:</label>
+                        <input type="text" id="studentId" name="studentId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="leaderEmail">Email Address:</label>
+                        <input type="email" id="leaderEmail" name="leaderEmail" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Club & Role Information</h3>
+                    <div class="form-group">
+                        <label for="existingClubName">Name of the Club you want to lead:</label>
+                        <input type="text" id="existingClubName" name="existingClubName" required>
+                         </div>
+                    <div class="form-group">
+                        <label for="desiredRole">Desired Role (e.g., President, Treasurer):</label>
+                        <input type="text" id="desiredRole" name="desiredRole" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="leadershipExperience">Briefly describe your relevant experience or motivation:</label>
+                        <textarea id="leadershipExperience" name="leadershipExperience" rows="4" required></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="filter-btn w-full">Apply for Leadership</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        </footer>
+    <script src="clubscript.js"></script>
+</body>
+</html>

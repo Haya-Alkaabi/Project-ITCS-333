@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advise a Club - UoB Students' Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="ss.css" rel="stylesheet">
+    </head>
+<body class="overflow-x-hidden">
+
+    <header>
+        </header>
+
+    <main class="container mx-auto mt-10 px-4">
+        <div class="registration-form">
+            <h2 class="text-2xl font-bold text-center mb-6">Become a Club Advisor</h2>
+            <p class="text-center mb-8">Faculty and staff members can play a vital role in guiding student clubs. Express your interest below.</p>
+            <form id="adviseClubForm">
+                <div class="form-section">
+                    <h3>Advisor Information</h3>
+                    <div class="form-group">
+                        <label for="advisorName">Full Name:</label>
+                        <input type="text" id="advisorName" name="advisorName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Department/Office:</label>
+                        <input type="text" id="department" name="department" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="advisorEmail">Email Address:</label>
+                        <input type="email" id="advisorEmail" name="advisorEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="advisorPhone">Phone Number (Optional):</label>
+                        <input type="tel" id="advisorPhone" name="advisorPhone">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Advising Interest</h3>
+                     <div class="form-group">
+                        <label for="clubToAdvise">Specific Club(s) you're interested in advising (if any):</label>
+                        <input type="text" id="clubToAdvise" name="clubToAdvise">
+                        <small class="block mt-1 text-xs text-gray-500">If open to advising any club, you can leave this blank or mention general areas of interest.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="advisingExperience">Briefly describe your relevant experience or areas of expertise you can offer:</label>
+                        <textarea id="advisingExperience" name="advisingExperience" rows="4" required></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="filter-btn w-full">Submit Interest</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        </footer>
+    <script src="clubscript.js"></script>
+</body>
+</html>

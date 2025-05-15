@@ -1,0 +1,186 @@
+<?php
+// api/registrations.php
+
+function handleRegistrationRequest($method, $path_parts, $input, $db) {
+    $registration = new Registration($db);
+    $clubModel = new Club($db); 
+c
+    switch ($method) {
+        case 'POST':
+            $required_fields = ['firstName', 'lastName', 'studentId', 'email', 'primaryClubId', 'reasonToJoin', 'terms'];
+            $errors = [];
+            foreach ($required_fields as $field) {
+                if ($field === 'terms') {c
+                    if (!isset($input[$field]) || filter_var($input[$field], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) !== true) {
+                        $errors[] = "Agreement to terms is required.";
+                    }
+                } elseif (empty($input[$field])) {
+                    $errors[] = ucfirst(preg_replace('/(?<!^)[A-Z]/', ' $0', $field)) . " is required.";
+                }
+            }
+            if (!empty($input['email']) && !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
+                $errors[] = "Invalid email format.";
+            }
+            if (!empty($input['primaryClubId']) && !$clubModel->readOne($input['primaryClubId'])) {
+                $errors[] = "Primary club ID is invalid.";
+            }
+            if (!empty($input['secondaryClubId']) && !$clubModel->readOne($input['secondaryClubId'])) {
+                $errors[] = "Secondary club ID is invalid.";
+            }
+            if (empty($errors) && !empty($input['studentId']) && !empty($input['email'])) {
+                if ($registration->exists($input['studentId'], $input['email'])) {
+                    $errors[] = "Student ID or Email already registered.";
+                }
+            }
+
+            if (!empty($errors)) {
+                http_response_code(400);
+                echo json_encode(['status' => 'error', 'message' => 'Validation failed.', 'errors' => $errors]);
+                return;
+            }
+
+            $registration->firstName = $input['firstName'];
+            $registration->lastName = $input['lastName'];
+            $registration->studentId = $input['studentId'];
+            $registration->email = $input['email'];
+            $registration->phone = isset($input['phone']) ? $input['phone'] : null;
+            $registration->primaryClubId = $input['primaryClubId'];
+            $registration->secondaryClubId = isset($input['secondaryClubId']) && !empty($input['secondaryClubId']) ? $input['secondaryClubId'] : null;
+            $registration->experience = isset($input['experience']) ? $input['experience'] : null;
+            $registration->reasonToJoin = $input['reasonToJoin'];
+            $registration->agreedToTerms = filter_var($input['terms'], FILTER_VALIDATE_BOOLEAN);
+
+            if ($registration->create()) {
+                http_response_code(201);
+                echo json_encode(['status' => 'success', 'message' => 'Registration successful.', 'registrationId' => $registration->id]);
+            } else {
+                http_response_code(503);
+                echo json_encode(['status' => 'error', 'message' => 'Unable to create registration.']);
+            }
+            break;
+
+        case 'GET':
+            if (isset($path_parts[2]) && !empty($path_parts[2]) && is_numeric($path_parts[2])) {
+                $registration_id = intval($path_parts[2]);
+                if ($registration->readOne($registration_id)) {
+                    $reg_item = ["id" => $registration->id, "firstName" => $registration->firstName, "lastName" => $registration->lastName, "studentId" => $registration->studentId, "email" => $registration->email, "phone" => $registration->phone, "primaryClubId" => $registration->primaryClubId, "secondaryClubId" => $registration->secondaryClubId, "experience" => $registration->experience, "reasonToJoin" => $registration->reasonToJoin, "agreedToTerms" => $registration->agreedToTerms, "registrationDate" => $registration->registrationDate, "lastUpdated" => $registration->lastUpdated];
+                    http_response_code(200);
+                    echo json_encode($reg_item);
+                } else {
+                    http_response_code(404);
+                    echo json_encode(["status" => "error", "message" => "Registration not found."]);
+                }
+            } else {
+                $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+                $limit = isset($_GET['limit']) ? max(1, intval($_GET['limit'])) : 10;
+                $searchTerm = isset($_GET['search']) ? $_GET['search'] : null;
+                $clubFilter = isset($_GET['club']) ? $_GET['club'] : null;
+
+                $result = $registration->read($page, $limit, $searchTerm, $clubFilter);
+                $stmt = $result['data'];
+                $total_rows = $result['total'];
+                $num_fetched = $stmt->rowCount();
+
+                $registrations_arr = ["records" => [], "pagination" => ["currentPage" => $page, "itemsPerPage" => $limit, "totalItems" => $total_rows, "totalPages" => ceil($total_rows / $limit)]];
+                if ($num_fetched > 0) {
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        extract($row);
+                        $registrations_arr["records"][] = ["id" => (int)$id, "firstName" => $firstName, "lastName" => $lastName, "studentId" => $studentId, "email" => $email, "phone" => $phone, "primaryClubId" => $primaryClubId, "primaryClubName" => $primaryClubName ?? null, "secondaryClubId" => $secondaryClubId, "secondaryClubName" => $secondaryClubName ?? null, "experience" => $experience, "reasonToJoin" => $reasonToJoin, "agreedToTerms" => (bool)$agreedToTerms, "registrationDate" => $registrationDate];
+                    }
+                }
+                http_response_code(200);
+                echo json_encode($registrations_arr);
+            }
+            break;
+
+        case 'PUT':
+            if (!isset($path_parts[2]) || empty($path_parts[2]) || !is_numeric($path_parts[2])) {
+                http_response_code(400);
+                echo json_encode(['status' => 'error', 'message' => 'Registration ID required for update.']);
+                return;
+            }
+            $registration->id = intval($path_parts[2]);
+            $tempReg = new Registration($db);
+            if (!$tempReg->readOne($registration->id)) {
+                 http_response_code(404);
+                 echo json_encode(['status' => 'error', 'message' => 'Registration not found for update.']);
+                 return;
+            }
+
+            $required_fields_update = ['firstName', 'lastName', 'studentId', 'email', 'primaryClubId', 'reasonToJoin', 'terms'];
+            $errors_update = [];
+            // Basic validation, ensure all required fields for an update are present in $input
+            foreach ($required_fields_update as $field) {
+                 if ($field === 'terms') {
+                    if (!isset($input[$field])) $errors_update[] = "Terms agreement status required.";
+                 } elseif (!isset($input[$field]) || $input[$field] === '') {
+                    $errors_update[] = ucfirst(preg_replace('/(?<!^)[A-Z]/', ' $0', $field)) . " required for update.";
+                 }
+            }
+             if (isset($input['terms']) && filter_var($input['terms'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) === null) {
+                $errors_update[] = "Invalid value for 'terms'.";
+            }
+            if (!empty($input['email']) && !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) $errors_update[] = "Invalid email format.";
+            if (!empty($input['primaryClubId']) && !$clubModel->readOne($input['primaryClubId'])) $errors_update[] = "Primary club ID invalid.";
+            if (!empty($input['secondaryClubId']) && !$clubModel->readOne($input['secondaryClubId'])) $errors_update[] = "Secondary club ID invalid.";
+            if (empty($errors_update) && !empty($input['studentId']) && !empty($input['email'])) {
+                if ($registration->exists($input['studentId'], $input['email'], $registration->id)) {
+                    $errors_update[] = "Student ID or Email already registered by another user.";
+                }
+            }
+
+            if (!empty($errors_update)) {
+                http_response_code(400);
+                echo json_encode(['status' => 'error', 'message' => 'Validation failed for update.', 'errors' => $errors_update]);
+                return;
+            }
+
+            $registration->firstName = $input['firstName'];
+            $registration->lastName = $input['lastName'];
+            $registration->studentId = $input['studentId'];
+            $registration->email = $input['email'];
+            $registration->phone = isset($input['phone']) ? $input['phone'] : $tempReg->phone;
+            $registration->primaryClubId = $input['primaryClubId'];
+            $registration->secondaryClubId = isset($input['secondaryClubId']) && !empty($input['secondaryClubId']) ? $input['secondaryClubId'] : $tempReg->secondaryClubId;
+            $registration->experience = isset($input['experience']) ? $input['experience'] : $tempReg->experience;
+            $registration->reasonToJoin = $input['reasonToJoin'];
+            $registration->agreedToTerms = filter_var($input['terms'], FILTER_VALIDATE_BOOLEAN);
+
+            if ($registration->update()) {
+                http_response_code(200);
+                echo json_encode(['status' => 'success', 'message' => 'Registration updated.']);
+            } else {
+                http_response_code(200);
+                echo json_encode(['status' => 'info', 'message' => 'Unable to update registration or no changes made.']);
+            }
+            break;
+
+        case 'DELETE':
+            if (!isset($path_parts[2]) || empty($path_parts[2]) || !is_numeric($path_parts[2])) {
+                http_response_code(400);
+                echo json_encode(['status' => 'error', 'message' => 'Registration ID required for deletion.']);
+                return;
+            }
+            $registration->id = intval($path_parts[2]);
+            $tempRegCheck = new Registration($db);
+            if (!$tempRegCheck->readOne($registration->id)) {
+                 http_response_code(404);
+                 echo json_encode(['status' => 'error', 'message' => 'Registration not found for deletion.']);
+                 return;
+            }
+            if ($registration->delete()) {
+                http_response_code(200);
+                echo json_encode(['status' => 'success', 'message' => 'Registration deleted.']);
+            } else {
+                http_response_code(503);
+                echo json_encode(['status' => 'error', 'message' => 'Unable to delete registration.']);
+            }
+            break;
+
+        default:
+            http_response_code(405);
+            echo json_encode(["status" => "error", "message" => "Method not allowed for registrations."]);
+            break;
+    }
+}
+?>
