@@ -1,3 +1,6 @@
+// Update the API base URL
+const API_BASE_URL = '../backend/controllers/itemsController.php';
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form');
     const submitBtn = document.querySelector('.SubmitBtn');
@@ -24,9 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.ok) {
                 alert('Item added successfully!');
                 // Clear cache and force refresh
-                localStorage.removeItem('marketplaceItems');
+                localStorage.removeItem('marketitems');
                 sessionStorage.setItem('forceRefresh', 'true');
-                window.location.href = `St_mkt_place.html?refresh=${Date.now()}`;
+                window.location.href = `St_mkt_place.php?refresh=${Date.now()}`;
             } else {
                 throw new Error(`API request failed with status ${response.status}`);
             }
@@ -75,23 +78,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     async function submitToApi(formData) {
-        const apiUrl = 'https://680d0e83c47cb8074d8f6cb6.mockapi.io/items';
         
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        });
-        
-        if (!response.ok) {
-            const errorDetails = await response.text();
-            console.error('API Error:', errorDetails);
-            throw new Error(`API request failed: ${errorDetails}`);
+        try {
+            const formDataObj = new FormData();
+            const itemImage = document.getElementById('itemImage').files[0];
+            formDataObj.append('itemImage', itemImage);
+
+            // Add other form data
+            Object.keys(formData).forEach(key => {
+                formDataObj.append(key, formData[key]);
+            });
+
+            const response = await fetch(API_BASE_URL, {
+                method: 'POST',
+                body: formDataObj
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`API request failed: ${errorText}`);
+            }
+
+            return response;
+        } catch (error) {
+            console.error('Submission error:', error);
+            throw error;
         }
-        
-        return response;
     }
        
     function validatePersonalData() {

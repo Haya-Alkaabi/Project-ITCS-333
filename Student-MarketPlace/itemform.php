@@ -11,26 +11,26 @@
 <body>
     <div class="container">
         <header>Add Item</header>
-        <form action="#">
+        <form action="../backend/controllers/itemsController.php" method="post" enctype="multipart/form-data">
             <div class="form item">
                 <div class="details personal">
                     <span class="title">Personal Data</span>
                     <div class="fields">
                         <div class="input-field">
                             <label for = "fullName">Full Name</label>
-                            <input type="text" id = "fullName" placeholder="Enter your name" required>
+                            <input type="text" id ="fullName" name="author" placeholder="Enter your name" required>
                         </div>
                         <div class="input-field">
                             <label for="studentId">ID</label>
-                            <input type="number" id="studentId" placeholder="Enter your ID" required>
+                            <input type="number" id="studentId" name="student_id" placeholder="Enter your ID" required>
                         </div>
                         <div class="input-field">
                             <label for="studentEmail">Email</label>
-                            <input type="text" id="studentEmail" placeholder="e.g. 202201234@stu.uob.edu.bh" required>
+                            <input type="text" id="studentEmail" placeholder="e.g. 202201234@stu.uob.edu.bh" required name="email">
                         </div>
                         <div class="input-field">
                             <label for="mobileNumber">Mobile Number</label>
-                            <input type="number" id="mobileNumber" placeholder="Enter mobile number" required>
+                            <input type="number" id="mobileNumber" placeholder="Enter mobile number" required name="contact">
                         </div>
                         <div class="input-field">
                             <label for="college">
@@ -51,7 +51,7 @@
                         </div>
                         <div class="input-field">
                             <label for="major">Major</label>
-                            <input type="text" id="major" placeholder="Enter your Major" required>
+                            <input type="text" id="major" name="major" placeholder="Enter your Major" required>
                         </div>
                     </div>
                 </div>
@@ -60,34 +60,34 @@
                     <div class="fields">
                         <div class="input-field">
                             <label for="itemName">Item Name</label>
-                            <input type="text" id="itemName" placeholder="Enter Item name" required>
+                            <input type="text" id="itemName" name="title" placeholder="Enter Item name" required>
                         </div>
                         <div class="input-field">
                             <label for="itemType">Type</label>
-                            <input type="text" id="itemType" placeholder="Enter type of the item" required>
+                            <input type="text" id="itemType" name="category" placeholder="Enter type of the item" required>
                         </div>
                         <div class="input-field">
                             <label for="itemImage">Upload an image of the item</label>
-                            <input type="file" id="itemImage" accept="image/*" required>
+                            <input type="file" id="itemImage" name="itemImage" accept="image/*" required>
                         </div>
                         <div class="input-field">
                             <label for="itemBrief">Brief</label>
-                            <input type="text" id="itemBrief" placeholder="Enter a brief discruption" required>
+                            <input type="text" id="itemBrief" name="overview" placeholder="Enter a brief discruption" required>
                         </div>
                         <div class="input-field">
                             <label for="itemPrice">Price</label>
-                            <input type="number" id="itemPrice" placeholder="Enter items' price" required>
+                            <input type="number" id="itemPrice" name="price" placeholder="Enter items' price" required>
                         </div>
                         <div class="input-field">
                             <label for="itemQuantity">Avaliable Quantity</label>
-                            <input type="Number" id="itemQuantity" placeholder="Enter the avaliable Quantity" required>
+                            <input type="Number" id="itemQuantity" name="quantity" placeholder="Enter the avaliable Quantity" required>
                         </div>
                     </div>
                     <div class="buttons">
                         <button class="SubmitBtn">
                             <span class="btnText">Submit</span>
                         </button>
-                        <button class="CancelBtn" onclick="window.location.href='St_mkt_place.html'">
+                        <button class="CancelBtn" onclick="window.location.href='St_mkt_place.php'">
                             <span class="btnText">Cancel</span>
                         </button>
                     </div>

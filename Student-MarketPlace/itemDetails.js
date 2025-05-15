@@ -1,97 +1,156 @@
+const API_BASE_URL_REVIEW = '../backend/controllers/reviewsController.php';
+const API_BASE_URL = '../backend/controllers/itemsController.php';
+
+function displayError(message, containerId = 'detail-container') {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = `
+        <div class="error bg-red-100 border-red-400 text-red-700 p-4 rounded">
+            ${message}
+        </div>
+    `;
+}
+
 document.addEventListener("DOMContentLoaded", async function() {
-    // Get item ID from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const itemId = urlParams.get('id');
-    const itemDataEncoded = urlParams.get('data');
-
-    // Load item data
-    let itemData;
     try {
-        if (itemDataEncoded) {
-            itemData = JSON.parse(decodeURIComponent(itemDataEncoded));
-        } else if (itemId) {
-            // Try to fetch from API if no encoded data
-            const response = await fetch(`https://680d0e83c47cb8074d8f6cb6.mockapi.io/items/${itemId}`);
-            if (response.ok) {
-                itemData = await response.json();
-            }
-        }
+        // Get ID from URL
+        const itemId = new URLSearchParams(window.location.search).get('id');
+        if (!itemId) throw new Error('Missing item ID');
 
-        if (!itemData) {
-            throw new Error("Item data not available");
-        }
+        // Try to load from sessionStorage first
+        const storedItem = JSON.parse(sessionStorage.getItem('selectedItem'));
 
-        // Populate item details
+        // 3. Load item data
+        const itemData = storedItem?.id == itemId ? storedItem : await loadItemFromAPI(itemId);
+        if (!itemData) throw new Error('Item not found');
+
+        // 4. Display the item
         populateItemDetails(itemData);
 
-        // Set up review form
-        document.getElementById('review-form').addEventListener('submit', async (e) => {
+        // 5. Load reviews
+        await loadReviewsForItem(itemId); // Load reviews specifically for this itemawait loadAndDisplayReviews(itemId);
+
+        // 6. Setup review form
+        document.getElementById('review-form')?.addEventListener('submit', async (e) => {
             e.preventDefault();
-            await handleReviewSubmission(itemData.id);
+            await submitReview(itemId);
         });
 
     } catch (error) {
-        console.error("Error loading item details:", error);
-        alert("Failed to load item details. Please try again.");
+        displayError(error.message);
+        console.error('Initialization error:', error);
     }
-});
+    });
 
-// Populate item details on the page
-function populateItemDetails(item) {
-    document.getElementById('detailImage').src = item.image || 'img/default-item.png';
-    document.getElementById('itemName').textContent = item.title || 'Untitled Item';
-    document.getElementById('itemOwner').textContent = `By ${item.author || 'Unknown'}`;
-    document.getElementById('itemPrice').textContent = `Price: ${item.price || '0.00'} BD`;
-    document.getElementById('itemFormat').textContent = `Format: ${item.format || 'Unknown'}`;
-    document.getElementById('itemContact').textContent = `Contact No: ${item.contact || 'Not provided'}`;
-    
-    // Set overview text (preserving any existing HTML structure)
-    const overviewElement = document.getElementById('itemOverview');
-    if (overviewElement) {
-        overviewElement.textContent = item.overview || 'No description available';
+    // new helper function
+async function loadItemFromAPI(itemId) {
+    const response = await fetch(`${API_BASE_URL}?id=${itemId}`);
+    if (!response.ok) throw new Error('Failed to fetch item');
+    return await response.json();
     }
 
-    // Load reviews if they exist
-    if (Array.isArray(item.customerReviews)) {
-        renderReviews(item.customerReviews);
-    } else {
-        document.getElementById('reviews-container').innerHTML = 
-            '<p class="text-gray-500 text-center">No reviews yet</p>';
+async function loadReviewsForItem(itemId) {
+    try {
+        const response = await fetch(`${API_BASE_URL_REVIEW}?item_id=${itemId}`);
+        const data = await response.json();
+
+        if (data.reviews && data.reviews.length > 0) {
+            renderReviews(data.reviews, data.average_rating || 0);
+        } else {
+            document.getElementById('reviews-container').innerHTML = 
+                '<p class="text-gray-500">No reviews yet</p>';
+        }
+    } catch (error) {
+        console.error('Failed to load reviews:', error);
+        displayError('Failed to load reviews', 'reviews-container');
     }
 }
 
-// Handle review submission
-async function handleReviewSubmission(itemId) {
+async function loadAndDisplayReviews(itemId) {
+    try {
+        const response = await fetch(`${API_BASE_URL_REVIEW}?item_id=${itemId}`);
+        if (!response.ok) throw new Error('Failed to load reviews');
+
+        const { reviews = [], average_rating = 0 } = await response.json();
+        renderReviews(reviews, average_rating);
+    } catch (error) {
+        displayError('Failed to load reviews', 'reviews-container');
+    }
+    }
+
+function renderReviews(reviews, averageRating) {
+    const reviewsContainer = document.getElementById('reviews-container');
+    const ratingContainer = document.getElementById('average-rating');
+
+    // Update average rating display
+    if (ratingContainer) {
+        ratingContainer.innerHTML = `
+            <span class="text-2xl font-bold">${averageRating.toFixed(1)}</span>
+            <span class="text-yellow-400">${'★'.repeat(Math.round(averageRating))}${'☆'.repeat(5 - Math.round(averageRating))}</span>
+            <span class="text-gray-500">(${reviews.length} reviews)</span>
+        `;
+    }
+
+    // Render individual reviews
+    reviewsContainer.innerHTML = reviews.map(review => `
+        <div class="mb-4 p-4 bg-white rounded-lg shadow">
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-semibold">${review.reviewer_name || 'Anonymous'}</span>
+                <span class="text-yellow-400">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</span>
+            </div>
+            <p class="text-gray-700">${review.review_text}</p>
+            <p class="text-xs text-gray-500 mt-2">
+                ${new Date(review.created_at).toLocaleDateString()}
+            </p>
+        </div>
+    `).join('');
+}
+
+async function submitReview(itemId) {
     const reviewText = document.getElementById('review-text').value.trim();
+    const rating = document.querySelector('input[name="rating"]:checked')?.value || 5;
+    const ID = new URLSearchParams(window.location.search).get('id');
+
+
     if (!reviewText) {
-        alert('Please write a review before submitting.');
+        alert('Please write your review before submitting');
         return;
     }
 
     const submitBtn = document.querySelector('#review-form button[type="submit"]');
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...';
 
     try {
-        // Create new review object
-        const newReview = {
-            text: reviewText,
-            date: new Date().toISOString(),
-            reviewer: "User" // You can replace with actual user data
-        };
+        const response = await fetch(API_BASE_URL_REVIEW, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                item_id: ID,
+                review_text: reviewText,
+                rating: parseInt(rating),
+                reviewer_name: "Anonymous"
+            })
+        });
 
-        // 1. Add to UI immediately (optimistic update)
-        addReviewToUI(newReview);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-        // 2. Clear the form
+        const responseData = await response.json();
+        
+        // Clear form
         document.getElementById('review-text').value = '';
-
-        // 3. Update the API
-        await updateItemReviews(itemId, newReview);
-
-        // Show success message
-        alert('Thank you for your review!');
-
+        document.getElementById('review-form').reset();
+        
+        // Update reviews display directly with returned data
+        if (responseData.reviews && responseData.average_rating) {
+            renderReviews(responseData.reviews, responseData.average_rating);
+        }
+        
     } catch (error) {
         console.error('Error submitting review:', error);
         alert('Failed to submit review. Please try again.');
@@ -99,6 +158,25 @@ async function handleReviewSubmission(itemId) {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Submit Review';
     }
+}
+
+// Populate item details on the page
+function populateItemDetails(item) {
+    const detailImage = document.getElementById('detailImage');
+    const itemName = document.getElementById('itemName');
+    const itemOwner = document.getElementById('itemOwner');
+    const itemPrice = document.getElementById('itemPrice');
+    const itemFormat = document.getElementById('itemFormat');
+    const itemContact = document.getElementById('itemContact');
+    const itemOverview = document.getElementById('itemOverview');
+
+    if (detailImage) detailImage.src = item.image || 'img/default-item.png';
+    if (itemName) itemName.textContent = item.title || 'Untitled Item';
+    if (itemOwner) itemOwner.textContent = `By ${item.author || 'Unknown'}`;
+    if (itemPrice) itemPrice.textContent = `Price: ${item.price || '0.00'} BD`;
+    if (itemFormat) itemFormat.textContent = `Format: ${item.format || 'Unknown'}`;
+    if (itemContact) itemContact.textContent = `Contact No: ${item.contact || 'Not provided'}`;
+    if (itemOverview) itemOverview.textContent = item.overview || 'No description available';
 }
 
 // Add a review to the UI
@@ -125,7 +203,7 @@ function addReviewToUI(review) {
 // Update item reviews in the API
 async function updateItemReviews(itemId, newReview) {
     // 1. Get current item data
-    const response = await fetch(`https://680d0e83c47cb8074d8f6cb6.mockapi.io/items/${itemId}`);
+    const response = await fetch(`API_BASE_URL_review?item_id=${itemId}`);
     if (!response.ok) throw new Error('Failed to fetch item data');
     
     const item = await response.json();
@@ -139,7 +217,7 @@ async function updateItemReviews(itemId, newReview) {
     item.customerReviews.unshift(newReview);
     
     // 4. Update item in API
-    const updateResponse = await fetch(`https://680d0e83c47cb8074d8f6cb6.mockapi.io/items/${itemId}`, {
+    const updateResponse = await fetch(`../backend/controllers/reviewsController.php?item_id=${itemId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -157,10 +235,22 @@ async function updateItemReviews(itemId, newReview) {
 // Render all reviews
 function renderReviews(reviews) {
     const reviewsContainer = document.getElementById('reviews-container');
+
+    if (!reviews || reviews.length === 0) {
+        reviewsContainer.innerHTML = '<p class="text-gray-500 text-center">No reviews yet</p>';
+        return;
+    }
+
     reviewsContainer.innerHTML = reviews.map(review => `
         <div class="w-64 p-4 bg-gray-50 rounded-lg border border-gray-200">
-            <p class="text-gray-700 italic">"${review.text || review}"</p>
-            ${review.date ? `<p class="text-xs text-gray-500 mt-1">${new Date(review.date).toLocaleDateString()}</p>` : ''}
+            <p class="font-semibold">${review.reviewer_name || 'Anonymous'}</p>
+            <div class="flex items-center mb-2">
+                ${'★'.repeat(review.rating || 5)}${'☆'.repeat(5 - (review.rating || 5))}
+            </div>
+            <p class="text-gray-700 italic">"${review.review_text}"</p>
+            <p class="text-xs text-gray-500 mt-1">
+                ${new Date(review.created_at).toLocaleDateString()}
+            </p>
         </div>
     `).join('');
 }

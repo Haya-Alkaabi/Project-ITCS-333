@@ -32,7 +32,7 @@
                 <nav >
                     <div >  
                         <div class="flex gap-3 mr-auto">  
-                            <a href="..\index.html" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                            <a href="..\index.php" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
                                 <span >Home</span>
                                 <div ></div>
                                 <span ></span>
@@ -53,7 +53,7 @@
                                     <a href="..\course-notes-work\coursenotes.html">Course Notes</a>
                                     <a href="..\course-reviews\CampusNews.html">Campus News</a>
                                     <a href="..\Club-Activities\club.html">Club Activities</a>
-                                    <a href="St_mkt_place.html">Student Marketplace</a>
+                                    <a href="St_mkt_place.php">Student Marketplace</a>
                                 </div>
                             </div>
         
@@ -90,7 +90,7 @@
             <div class="upper my-3 mx-8 text-black">
                 <button 
                     class="Back_button hover:text-[#c8102e]"
-                    onclick="window.location.href='St_mkt_place.html'"
+                    onclick="window.location.href='St_mkt_place.php'"
                 >
                     back to gallery
                 </button>
@@ -112,15 +112,7 @@
                     <div class="mt-4">
                         <h3 class="font-semibold text-base md:text-lg mb-2">OverView:</h3>
                         <p class="text-sm md:text-base text-gray-700" id="itemOverview">
-                            ITNE341 Network Security Course Notes – Quick Overview<br><br>
-                            These concise and focused notes cover all key topics from the ITNE341 Network Security course, including:<br><br>
-                            - Network threats & attacks (e.g., DDoS, malware, phishing)<br>
-                            - Cryptography fundamentals (symmetric/asymmetric encryption, hashing)<br>
-                            - Security protocols (SSL/TLS, IPsec, VPNs)<br>
-                            - Firewalls, IDS/IPS, and access control<br>
-                            - Wireless & cloud security risks<br>
-                            - Best practices for secure network design<br><br>
-                            Perfect for exam prep, assignments, and quick revision—aligned with the ITNE341 curriculum to help you master core concepts efficiently.
+                            ITNE341 Network Security Course Notes – Quick Overview These concise and focused notes cover all key topics from the ITNE341 Network Security course, including:- Network threats & attacks (e.g., DDoS, malware, phishing)- Cryptography fundamentals (symmetric/asymmetric encryption, hashing)- Security protocols (SSL/TLS, IPsec, VPNs)- Firewalls, IDS/IPS, and access control- Wireless & cloud security risks- Best practices for secure network design Perfect for exam prep, assignments, and quick revision—aligned with the ITNE341 curriculum to help you master core concepts efficiently.
                         </p>
                     </div>
                 </div>
@@ -149,9 +141,9 @@
                 <!-- Comment submission form -->
                 <div class="max-w-2xl mx-auto mb-8 p-4 bg-gray-50 rounded-lg">
                     <h2 class="text-lg font-semibold text-blue-800 mb-3">Add your review</h2>
-                    <form id="review-form" class="space-y-3">
+                    <form id="review-form" class="space-y-3" action="../backend/controllers/reviewsController.php" method="post" enctype="multipart/form-data">
                         <div>
-                            <textarea id="review-text" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Write your review here..."></textarea>
+                            <textarea name="review_text" id="review-text" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Write your review here..."></textarea>
                         </div>
                         <div class="flex justify-end">
                             <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
@@ -199,7 +191,7 @@
                 <div class="md:w-1/3" id="TTL">
                     <h2 class="text-xl font-bold mb-4">Quick Links</h2>
                     <ul class="space-y-2">
-                    <li><a href="..\index.html" class="hover:text-[#f80000]">Home</a></li>
+                    <li><a href="..\index.php" class="hover:text-[#f80000]">Home</a></li>
                     <li><a href="https://www.uob.edu.bh/admission-requirements/" target="_blank" class="hover:text-[#f80000]">Join UOB</a></li>
                     <li><a href="https://www.uob.edu.bh/current-students/" target="_blank" class="hover:text-[#f80000]">Current Students</a></li>
                     <li><a href="https://www.uob.edu.bh/future-students/" target="_blank"class="hover:text-[#f80000]">Future Students</a></li>

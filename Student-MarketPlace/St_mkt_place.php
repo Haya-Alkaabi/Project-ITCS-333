@@ -32,7 +32,7 @@
                 <nav >
                     <div >  
                         <div class="flex gap-3 mr-auto">  
-                            <a href="..\index.html" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
+                            <a href="..\index.php" class="flex flex-col items-center py-2 px-4 lg:py-3 lg:px-10 relative group overflow-hidden">
                                 <span >Home</span>
                                 <div ></div>
                                 <span ></span>
@@ -53,7 +53,7 @@
                                     <a href="..\course-notes-work\coursenotes.html">Course Notes</a>
                                     <a href="..\course-reviews\CampusNews.html">Campus News</a>
                                     <a href="..\Club-Activities\club.html">Club Activities</a>
-                                    <a href="Student-MarketPlace/St_mkt_place.html">Student Marketplace</a>
+                                    <a href="Student-MarketPlace/St_mkt_place.php">Student Marketplace</a>
                                 </div>
                             </div>
         
@@ -94,7 +94,7 @@
                         <p id="greeting_p">Your one-stop hub for buying, selling, and sharing used books, notes, and study resources. Save money, find what you need, and help fellow students!</p>
                     </div>
                     <div class="greeting_button_group">
-                        <a href="itemform.html">
+                        <a href="itemform.php">
                             <button class="greeting_buttons" >Add an item</button>
                         </a>
                         <a href="#Search-bar">
@@ -165,7 +165,7 @@
                       </div>
                       
                       <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4 card-wrapper hover:cursor-pointer">
-                        <div class="card"  data-category="notes" data-price="5.00" onclick="window.location.href='itemDetail.html'">
+                        <div class="card"  data-category="notes" data-price="5.00" onclick="window.location.href='itemDetail.php'">
                             <div class="w-full h-48 flex items-center justify-center bg-gray-100">
                                     <img 
                                     src="img/NE341.png" 
@@ -254,7 +254,7 @@
             <div class="md:w-1/3" id="TTL">
                 <h2 class="text-xl font-bold mb-4">Quick Links</h2>
                 <ul class="space-y-2">
-                <li><a href="..\index.html" class="hover:text-[#f80000]">Home</a></li>
+                <li><a href="..\index.php" class="hover:text-[#f80000]">Home</a></li>
                 <li><a href="https://www.uob.edu.bh/admission-requirements/" target="_blank" class="hover:text-[#f80000]">Join UOB</a></li>
                 <li><a href="https://www.uob.edu.bh/current-students/" target="_blank" class="hover:text-[#f80000]">Current Students</a></li>
                 <li><a href="https://www.uob.edu.bh/future-students/" target="_blank"class="hover:text-[#f80000]">Future Students</a></li>
