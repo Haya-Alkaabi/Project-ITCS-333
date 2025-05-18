@@ -12,7 +12,7 @@ class Review
     {
         try {
             $sql = "INSERT INTO course_reviews (course_code, reviewer_name, rating, review_text, category, created_at)
-                VALUES (:course_code, :reviewer_name, :rating, :review_text, :category, NOW())";
+                    VALUES (:course_code, :reviewer_name, :rating, :review_text, :category, datetime('now'))";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([
                 ':course_code' => $course_code,
@@ -27,6 +27,7 @@ class Review
             return ['success' => false, 'message' => 'Database error: ' . $e->getMessage()];
         }
     }
+
 
 
     // Read all (with filters & pagination)

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const reviewForm = document.getElementById('reviewForm');//The form to add a new review
     const addReviewForm = document.getElementById('addReviewForm'); // The form element itself
     const cancelReviewButton = document.getElementById('cancelReview');
-    const commentsContainer = document.querySelector('aside'); 
+    const commentsContainer = document.querySelector('aside');
     const commentInput = document.querySelector('aside input[placeholder="Add a comment..."]');
     const postCommentButton = document.querySelector('aside button.background-dark-blue');
     let comments = []; // Array to store comments
@@ -43,22 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
             // Clear only the existing comment articles
             const existingComments = commentsContainer.querySelectorAll('article');
             existingComments.forEach(comment => comment.remove());
-    
+
             const commentsHeading = commentsContainer.querySelector('#comments-heading');
-    
+
             comments.forEach((comment, index) => {
                 const commentArticle = document.createElement('article');
                 commentArticle.classList.add('background-white', 'padding-all-small', 'border-rounded-small', 'margin-bottom-small', 'layout-flex', 'items-center-vertical', 'justify-between'); // Added flex layout
                 const commentParagraph = document.createElement('p');
                 commentParagraph.textContent = `student ${index + 1}: ${comment}`;
                 commentArticle.appendChild(commentParagraph);
-    
+
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
                 deleteButton.classList.add('background-red-dark', 'text-pure-white', 'padding-vertical-tiny', 'padding-horizontal-small', 'border-rounded-small', 'text-smaller');
                 deleteButton.dataset.index = index; // Store the index
                 commentArticle.appendChild(deleteButton);
-    
+
                 if (commentsHeading && commentsHeading.nextSibling) {
                     commentsContainer.insertBefore(commentArticle, commentsHeading.nextSibling);
                 } else if (commentsHeading) {
@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const indexToDelete = parseInt(event.target.dataset.index);
                 if (!isNaN(indexToDelete) && indexToDelete >= 0 && indexToDelete < comments.length) {
                     comments.splice(indexToDelete, 1); // Remove the comment from the array
-                    saveComments(); // Update localStorage
-                    renderComments(); // Rerender the comments
+                    saveComments();
+                    renderComments();
                 }
             }
         });
@@ -100,19 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Event listener for the "Post" button ---
     if (postCommentButton) {
-        console.log('Post button element found.'); 
+        console.log('Post button element found.');
         postCommentButton.addEventListener('click', () => {
-            console.log('Post button was clicked!'); // for checking
+            console.log('Post button was clicked!');
             const commentText = commentInput.value.trim();
             if (commentText) {
                 comments.push(commentText);
-                saveComments(); // Save comments to localStorage
+                saveComments();
                 renderComments();
-                commentInput.value = ''; // Clear the input field
+                commentInput.value = '';
             }
         });
     } else {
-        console.log('Post button element NOT found.'); 
+        console.log('Post button element NOT found.');
     }
 
     // --- Initialize Comments ---
@@ -120,108 +120,134 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Course Categories Mapping ---
     const courseCategories = {
-      "Computer Programming I": "Information System",
-      "Network Security III": "Information System",
-      "CyberEthics IIV": "Information System",
-      "Calculus I": "Mathematics",
-      "Calculus II": "Mathematics",
-      "Calculus III": "Mathematics",
-      "Mechanics of Materials II": "Engineering",
-      "Highway Engineering III": "Engineering",
-      "Hydraulics IIV": "Engineering"
+        "Computer Programming I": "Information System",
+        "Network Security III": "Information System",
+        "CyberEthics IIV": "Information System",
+        "Calculus I": "Mathematics",
+        "Calculus II": "Mathematics",
+        "Calculus III": "Mathematics",
+        "Mechanics of Materials II": "Engineering",
+        "Highway Engineering III": "Engineering",
+        "Hydraulics IIV": "Engineering"
     };
-   
+
     // --- Display Loading State ---
     function displayLoading() {
-      if (reviewsGridContainer) {
-        reviewsGridContainer.innerHTML = '<p>Loading reviews...</p>';
-      }
+        if (reviewsGridContainer) {
+            reviewsGridContainer.innerHTML = '<p>Loading reviews...</p>';
+        }
     }
-    
+
     // --- Clear Loading State ---
     function clearLoading() {
-      if (reviewsGridContainer) {
-        reviewsGridContainer.innerHTML = '';
-      }
+        if (reviewsGridContainer) {
+            reviewsGridContainer.innerHTML = '';
+        }
     }
 
     // --- Transform Fetched Review Data ---
     function transformReviewData(data) {
-      const courses = Object.keys(courseCategories);
-      const reviewers = ["Aldana", "saud", "Shikha", "Hamad", "Omayma", "Khalid", "Fajer", "Fahad", "Maria", "Aziz","kalifa","sultan","Ameena","Reem","Shahad","Noor"];
-      const numberOfReviewsPerCourse = 3;
-  
-      const transformedData = [];
-      let idCounter = 1;
-  
-      courses.forEach(course => {
-        for (let i = 0; i < numberOfReviewsPerCourse; i++) {
-          transformedData.push({
-            id: idCounter++,
-            course: course,
-            reviewer: reviewers[Math.floor(Math.random() * reviewers.length)],
-            rating: Math.floor(Math.random() * 5) + 1,
-            text: data[Math.floor(Math.random() * data.length)].body,
-            date: new Date().toLocaleDateString(),
-          });
+        const courses = Object.keys(courseCategories);
+        const reviewers = ["Aldana", "saud", "Shikha", "Hamad", "Omayma", "Khalid", "Fajer", "Fahad", "Maria", "Aziz", "kalifa", "sultan", "Ameena", "Reem", "Shahad", "Noor"];
+        const numberOfReviewsPerCourse = 3;
+
+        const transformedData = [];
+        let idCounter = 1;
+
+        courses.forEach(course => {
+            for (let i = 0; i < numberOfReviewsPerCourse; i++) {
+                transformedData.push({
+                    id: idCounter++,
+                    course: course,
+                    reviewer: reviewers[Math.floor(Math.random() * reviewers.length)],
+                    rating: Math.floor(Math.random() * 5) + 1,
+                    text: data[Math.floor(Math.random() * data.length)].body,
+                    date: new Date().toLocaleDateString(),
+                });
+            }
+        });
+        // Shuffle the array to randomize the order of reviews
+        for (let i = transformedData.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [transformedData[i], transformedData[j]] = [transformedData[j], transformedData[i]];
         }
-      });
-     // Shuffle the array to randomize the order of reviews
-      for (let i = transformedData.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [transformedData[i], transformedData[j]] = [transformedData[j], transformedData[i]];
-      }
-  
-      return transformedData.slice(0, 27);
+
+        return transformedData.slice(0, 27);
     }
 
     // --- Populate Course Filter Options ---
     function populateCourseFilter(reviews) {
-      if (!categoryFilter) return;
-      categoryFilter.innerHTML = '<option value="">Category</option>';
-  
-      const uniqueCategories = [...new Set(Object.values(courseCategories))];
-  
-      uniqueCategories.forEach(category => {
-        const option = document.createElement('option');
-        option.value = category;
-        option.textContent = category;
-        categoryFilter.appendChild(option);
-      });
+        if (!categoryFilter) return;
+        categoryFilter.innerHTML = '<option value="">Category</option>';
+
+        const uniqueCategories = [...new Set(Object.values(courseCategories))];
+
+        uniqueCategories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category;
+            option.textContent = category;
+            categoryFilter.appendChild(option);
+        });
     }
-    
+
     // --- Fetch Reviews from API ---
     async function fetchReviews() {
-      displayLoading();
-      try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/comments');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        displayLoading();
+        try {
+            const response = await fetch('api.php');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log('API response:', data);
+            clearLoading();
+            if (data.success) {
+                allReviews = data.reviews.map(review => {
+                    return {
+                        id: review.id,
+                        course: review.course_name ?? review.course ?? 'Unknown Course',
+                        reviewer: review.reviewer ?? review.reviewer_name ?? 'Anonymous',
+                        rating: parseInt(review.rating) || 0,
+                        text: review.comment ?? review.review_text ?? 'No review text',
+                        date: review.created_at ?? '',
+                        category: review.category ?? 'Uncategorized'
+                    };
+                });                                                         
+                renderCurrentPage(allReviews);
+                updatePagination(allReviews);
+                populateCourseFilter(allReviews);
+            } else {
+                displayError(data.message);
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            displayError('Failed to load reviews from the server.');
         }
-        const data = await response.json();
-        const transformedData = transformReviewData(data.slice(0, 27));
-        clearLoading();
-        allReviews = transformedData;
-        renderCurrentPage(allReviews);
-        updatePagination(allReviews);
-        populateCourseFilter(allReviews);
-      } catch (error) {
-        console.error('Fetch error:', error);
-        displayError(error.message);
-      }
     }
-   
-     // --- Render Reviews to the Grid ---
+
+    // --- Display Error Message ---
+    function displayError(message) {
+        if (reviewsGridContainer) {
+            reviewsGridContainer.innerHTML = `<p class="error-message">${message}</p>`;
+        }
+    }
+
+    // --- Render Reviews to the Grid ---
     function renderReviews(reviews) {
         if (!reviewsGridContainer) return;
         reviewsGridContainer.innerHTML = '';
+    
         reviews.forEach(review => {
+            const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+            const ratingValue = parseFloat(review.rating).toFixed(1);
+    
             const reviewArticle = document.createElement('article');
             reviewArticle.classList.add('background-white', 'padding-all-large', 'border-rounded-medium', 'shadow-light');
+    
             reviewArticle.innerHTML = `
                 <div class="layout-flex items-center-vertical margin-bottom-small">
-                    <span class="text-gold">${'★'.repeat(review.rating)}</span><span class="text-gray-medium">${'★'.repeat(5 - review.rating)}</span>
-                    <span class="text-gray-medium margin-left-tiny">${review.rating}.0</span>
+                    <span class="text-gold">${stars}</span>
+                    <span class="text-gray-medium margin-left-tiny">${ratingValue}</span>
                 </div>
                 <h3 class="text-normal text-semi-bold margin-bottom-small">${review.course}</h3>
                 <button class="background-gold text-pure-white padding-vertical-small padding-horizontal-large border-rounded-small view-review-button" data-review-id="${review.id}">View Review</button>
@@ -237,25 +263,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="edit-form hidden mt-2">
                     <label for="edit-reviewer-${review.id}" class="block text-gray-700 text-sm font-bold mb-2">Your Name:</label>
-                    <input type="text" id="edit-reviewer-${review.id}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="${review.reviewer}">
+                    <input type="text" id="edit-reviewer-${review.id}" value="${review.reviewer}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    
                     <label for="edit-course-${review.id}" class="block text-gray-700 text-sm font-bold mb-2">Course Name:</label>
-                    <input type="text" id="edit-course-${review.id}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="${review.course}">
+                    <input type="text" id="edit-course-${review.id}" value="${review.course}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    
                     <label for="edit-rating-${review.id}" class="block text-gray-700 text-sm font-bold mb-2">Rating (1-5):</label>
-                    <input type="number" id="edit-rating-${review.id}" min="1" max="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="${review.rating}">
+                    <input type="number" id="edit-rating-${review.id}" value="${review.rating}" min="1" max="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    
                     <label for="edit-text-${review.id}" class="block text-gray-700 text-sm font-bold mb-2">Review:</label>
                     <textarea id="edit-text-${review.id}" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">${review.text}</textarea>
+    
                     <div class="mt-2">
                         <button class="background-gold hover:bg-gold-700 text-white font-bold py-2 px-4 border-rounded-small focus:outline-none focus:shadow-outline save-edit-button" data-review-id="${review.id}">Save Changes</button>
                         <button class="background-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 border-rounded-small focus:outline-none focus:shadow-outline cancel-edit-button" data-review-id="${review.id}">Cancel</button>
                     </div>
                 </div>
             `;
+    
             reviewsGridContainer.appendChild(reviewArticle);
         });
     }
 
-
-       // --- Event listener for "View Review" button ---
+    // --- Event listener for "View Review" button ---
     reviewsGridContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('view-review-button')) {
             const reviewId = parseInt(event.target.dataset.reviewId);
@@ -263,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (reviewDetails && reviewDetails.classList.contains('review-details')) {
                 reviewDetails.classList.toggle('hidden');
                 event.target.textContent = reviewDetails.classList.contains('hidden') ? 'View Review' : 'Hide Details';
-                // Hide edit form if it was open for this review
+
                 const editForm = reviewDetails.nextElementSibling;
                 if (editForm && editForm.classList.contains('edit-form')) {
                     editForm.classList.add('hidden');
@@ -277,13 +307,32 @@ document.addEventListener('DOMContentLoaded', () => {
     reviewsGridContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('delete-review-button')) {
             const reviewIdToDelete = parseInt(event.target.dataset.reviewId);
-            if (!isNaN(reviewIdToDelete)) {
-                allReviews = allReviews.filter(review => review.id !== reviewIdToDelete);
-                saveReviews();
-                applyFiltersAndSort();
+            if (!isNaN(reviewIdToDelete) && confirm('Are you sure you want to delete this review?')) {
+                deleteReview(reviewIdToDelete);
             }
         }
     });
+
+    // --- Function to handle deleting a review via API ---
+    async function deleteReview(reviewId) {
+        try {
+            const response = await fetch(`api.php?id=${reviewId}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            if (data.success) {
+                allReviews = allReviews.filter(review => review.id !== reviewId);
+                applyFiltersAndSort(); // Re-render the reviews
+                alert(data.message);
+            } else {
+                alert(`Error deleting review: ${data.message}`);
+            }
+        } catch (error) {
+            console.error('Could not delete review:', error);
+            alert('Failed to delete review.');
+        }
+    }
 
     // --- Event listener for "Edit" button ---
     reviewsGridContainer.addEventListener('click', (event) => {
@@ -295,7 +344,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (reviewDetails && editForm && editForm.classList.contains('edit-form')) {
                 reviewDetails.classList.add('hidden');
                 editForm.classList.remove('hidden');
-                // Optional scroll to the edit form
                 editForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
         }
@@ -318,12 +366,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Event listener for "Save Changes" button in edit form ---
     reviewsGridContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('save-edit-button')) {
-                console.log('Save Changes button clicked!')
+            console.log('Save Changes button clicked!');
             const reviewIdToUpdate = parseInt(event.target.dataset.reviewId);
             if (!isNaN(reviewIdToUpdate)) {
-                // Find the corresponding review in the allReviews array
                 const reviewIndex = allReviews.findIndex(review => review.id === reviewIdToUpdate);
-            
+
                 if (reviewIndex !== -1) {
                     // Get the updated values from the input fields
                     const editForm = event.target.closest('.edit-form');
@@ -333,18 +380,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     const reviewTextInput = editForm.querySelector(`#edit-text-${reviewIdToUpdate}`);
 
                     if (reviewerNameInput && courseNameInput && ratingInput && reviewTextInput) {
-                        allReviews[reviewIndex].reviewer = reviewerNameInput.value.trim();
-                        allReviews[reviewIndex].course = courseNameInput.value.trim();
-                        allReviews[reviewIndex].rating = parseInt(ratingInput.value);
-                        allReviews[reviewIndex].text = reviewTextInput.value.trim();
+                        const updatedReviewData = {
+                            id: reviewIdToUpdate,
+                            course_name: courseNameInput.value.trim(),
+                            reviewer: reviewerNameInput.value.trim(),
+                            rating: parseInt(ratingInput.value),
+                            comment: reviewTextInput.value.trim()
+                        };
 
-                        // Save the updated reviews to localStorage
-                        saveReviews();
+                        // Send the updated data to the server
+                        updateReviewOnServer(reviewIdToUpdate, updatedReviewData);
 
-                        // Re-render the reviews to display the changes
-                        applyFiltersAndSort();
-
-                        // Hide the edit form and show the review details
+                        // Hide the edit form and show the review details on the client-side immediately
                         const reviewDetails = editForm.previousElementSibling;
                         editForm.classList.add('hidden');
                         reviewDetails.classList.remove('hidden');
@@ -355,79 +402,110 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-   // --- Update Pagination Controls ---
-    function updatePagination(reviews) {
-      if (!paginationContainer) return;
-      const totalPages = Math.ceil(reviews.length / reviewsPerPage); // Calculate the total number of pages
-      paginationContainer.innerHTML = ''; // Clear existing pagination links
-  
-      const prevLink = document.createElement('a'); // Create "Previous" link
-      prevLink.href = '#';
-      prevLink.classList.add('page-number', 'prev');
-      prevLink.textContent = 'Previous';
-      prevLink.addEventListener('click', () => {
-        if (currentPage > 1) {
-          currentPage--;
-          renderCurrentPage(reviews);
-          updatePagination(reviews);
-        }
-      });
-      paginationContainer.appendChild(prevLink);
-  
-      for (let i = 1; i <= totalPages; i++) {
-        const pageLink = document.createElement('a');
-        pageLink.href = '#';
-        pageLink.classList.add('page-number');
-        pageLink.textContent = i;
-        if (i === currentPage) {
-          pageLink.classList.add('current');
-        }
-        pageLink.addEventListener('click', () => {
-          currentPage = i;
-          renderCurrentPage(reviews);
-          updatePagination(reviews);
-        });
-        paginationContainer.appendChild(pageLink);
+    // --- Function to update a review on the server ---
+    async function updateReviewOnServer(reviewId, reviewData) {
+        try {
+            const response = await fetch(`api.php?id=${reviewId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(reviewData),
+            });
 
-         // Add ellipses for large number of pages
-        if (totalPages > 5 && i === 2 && currentPage > 3) {
-          const dots = document.createElement('span');
-          dots.classList.add('page-number', 'dots');
-          dots.textContent = '...';
-          paginationContainer.appendChild(dots);
-          i = totalPages - 2;
-        } else if (totalPages > 5 && i === totalPages - 2 && currentPage < totalPages - 2) {
-          const dots = document.createElement('span');
-          dots.classList.add('page-number', 'dots');
-          dots.textContent = '...';
-          paginationContainer.appendChild(dots);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.success) {
+                alert('Review updated successfully on the server!');
+                // Re-fetch reviews to update the local allReviews array
+                fetchReviews();
+            } else {
+                alert(`Error updating review on the server: ${data.message}`);
+            }
+
+        } catch (error) {
+            console.error('Could not update review on the server:', error);
+            alert('Failed to update review on the server.');
         }
-      }
-  
-      const nextLink = document.createElement('a');
-      nextLink.href = '#';
-      nextLink.classList.add('page-number', 'next');
-      nextLink.textContent = 'Next';
-      nextLink.addEventListener('click', () => {
-        if (currentPage < totalPages) {
-          currentPage++;
-          renderCurrentPage(reviews);
-          updatePagination(reviews);
+    }
+
+    // --- Update Pagination Controls ---
+    function updatePagination(reviews) {
+        if (!paginationContainer) return;
+        const totalPages = Math.ceil(reviews.length / reviewsPerPage); // Calculate the total number of pages
+        paginationContainer.innerHTML = '';
+
+        const prevLink = document.createElement('a'); // Create "Previous" link
+        prevLink.href = '#';
+        prevLink.classList.add('page-number', 'prev');
+        prevLink.textContent = 'Previous';
+        prevLink.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderCurrentPage(reviews);
+                updatePagination(reviews);
+            }
+        });
+        paginationContainer.appendChild(prevLink);
+
+        for (let i = 1; i <= totalPages; i++) {
+            const pageLink = document.createElement('a');
+            pageLink.href = '#';
+            pageLink.classList.add('page-number');
+            pageLink.textContent = i;
+            if (i === currentPage) {
+                pageLink.classList.add('current');
+            }
+            pageLink.addEventListener('click', () => {
+                currentPage = i;
+                renderCurrentPage(reviews);
+                updatePagination(reviews);
+            });
+            paginationContainer.appendChild(pageLink);
+
+            // Add ellipses for large number of pages
+            if (totalPages > 5 && i === 2 && currentPage > 3) {
+                const dots = document.createElement('span');
+                dots.classList.add('page-number', 'dots');
+                dots.textContent = '...';
+                paginationContainer.appendChild(dots);
+                i = totalPages - 2;
+            } else if (totalPages > 5 && i === totalPages - 2 && currentPage < totalPages - 2) {
+                const dots = document.createElement('span');
+                dots.classList.add('page-number', 'dots');
+                dots.textContent = '...';
+                paginationContainer.appendChild(dots);
+            }
         }
-      });
-      paginationContainer.appendChild(nextLink);
+
+        const nextLink = document.createElement('a');
+        nextLink.href = '#';
+        nextLink.classList.add('page-number', 'next');
+        nextLink.textContent = 'Next';
+        nextLink.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderCurrentPage(reviews);
+                updatePagination(reviews);
+            }
+        });
+        paginationContainer.appendChild(nextLink);
     }
 
 
     // --- Render Reviews for the Current Page ---
     function renderCurrentPage(reviews) {
-      const startIndex = (currentPage - 1) * reviewsPerPage;
-      const endIndex = startIndex + reviewsPerPage;
-      const currentReviews = reviews.slice(startIndex, endIndex);
-      renderReviews(currentReviews);
+        const startIndex = (currentPage - 1) * reviewsPerPage;
+        const endIndex = startIndex + reviewsPerPage;
+        const currentReviews = reviews.slice(startIndex, endIndex);
+        renderReviews(currentReviews);
     }
-  
-     // --- Get Course Level from Course Name ---
+
+    // --- Get Course Level from Course Name ---
     function getCourseLevel(courseName) {
         const romanMap = { "I": 1, "II": 2, "III": 3, "IIV": 4 };
         const parts = courseName.split(/[\s]+/);
@@ -440,57 +518,59 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return 1; // Default to level 1
     }
-    
-  
+
+
     // --- Search Functionality ---
     if (searchInput) {
-      searchInput.addEventListener('input', (event) => {
-        const searchTerm = event.target.value.toLowerCase();
-        const filteredReviews = allReviews.filter(review =>
-          review.course.toLowerCase().includes(searchTerm) ||
-          review.text.toLowerCase().includes(searchTerm)
-        );
-        currentPage = 1;
-        renderCurrentPage(filteredReviews);
-        updatePagination(filteredReviews);
-      });
+        searchInput.addEventListener('input', (event) => {
+            const searchTerm = event.target.value.toLowerCase();
+            const filteredReviews = allReviews.filter(review =>
+                review.course.toLowerCase().includes(searchTerm) ||
+                review.text.toLowerCase().includes(searchTerm)
+            );
+            currentPage = 1;
+            renderCurrentPage(filteredReviews);
+            updatePagination(filteredReviews);
+        });
     }
-    
+
     // --- Sort Reviews ---
     if (sortByFilter) {
         console.log('sortByFilter event listener is being attached.');
         sortByFilter.addEventListener('change', applyFiltersAndSort);
     }
-  
+
     // --- Filter by Category ---
     if (categoryFilter) {
         categoryFilter.addEventListener('change', () => {
             applyFiltersAndSort();
-            
         });
     }
-  
+
     // --- Apply Filters and Sorting ---
     function applyFiltersAndSort() {
         const selectedCategory = categoryFilter ? categoryFilter.value : "";
         const sortByValue = sortByFilter ? sortByFilter.value : "sort";
-
+    
         let filteredAndSortedReviews = [...allReviews];
-
+    
+        // ✅ Safe and case-insensitive category match
         if (selectedCategory) {
-            filteredAndSortedReviews = filteredAndSortedReviews.filter(review => courseCategories[review.course] === selectedCategory);
+            filteredAndSortedReviews = filteredAndSortedReviews.filter(
+                review => review.category?.toLowerCase() === selectedCategory.toLowerCase()
+            );
         }
-
+    
         if (sortByValue === 'rating') {
             filteredAndSortedReviews.sort((a, b) => b.rating - a.rating);
         } else if (sortByValue === 'level') {
             filteredAndSortedReviews.sort((a, b) => getCourseLevel(a.course) - getCourseLevel(b.course));
         }
-
+    
         currentPage = 1;
         renderCurrentPage(filteredAndSortedReviews);
         updatePagination(filteredAndSortedReviews);
-    }
+    }    
 
     // --- Load Reviews from localStorage ---
     function loadReviews() {
@@ -517,7 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Event listener for submitting the add review form ---
     if (addReviewForm) {
-         addReviewForm.addEventListener('submit', (event) => {
+        addReviewForm.addEventListener('submit', async (event) => {
             event.preventDefault();
 
             const reviewerNameInput = document.getElementById('reviewerName');
@@ -532,67 +612,49 @@ document.addEventListener('DOMContentLoaded', () => {
             const rating = parseInt(ratingInput.value);
             const category = categorySelect.value;
 
-            let isValid = true;
-            const errorMessages = [];
+            if (reviewerName && courseName && reviewText && !isNaN(rating) && rating >= 1 && rating <= 5 && category) {
+                const newReviewData = {
+                    course_code: courseName,
+                    reviewer_name: reviewerName,
+                    rating: rating,
+                    review_text: reviewText,
+                    category: category
+                };
 
-            if (!reviewerName) {
-                isValid = false;
-                errorMessages.push("Please enter your name.");
-            }
-            if (!courseName) {
-                isValid = false;
-                errorMessages.push("Please enter a course name.");
-            }
-            if (!category) {
-                isValid = false;
-                errorMessages.push("Please select a category.");
-            }
-            if (!reviewText) {
-                isValid = false;
-                errorMessages.push("Please enter your review.");
-            }
-            if (isNaN(rating) || rating < 1 || rating > 5) {
-                isValid = false;
-                errorMessages.push("Please enter a rating between 1 and 5.");
-            }
+                try {
+                    const response = await fetch('api.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(newReviewData),
+                    });
 
-            if (!isValid) {
-                alert(errorMessages.join('\n'));
-                return;
-            }
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
 
-            // Create a new review object
-            const newReview = {
-                id: Date.now(),
-                course: courseName,
-                reviewer: reviewerName,
-                rating: rating,
-                text: reviewText,
-                date: new Date().toLocaleDateString()
-            };
-            allReviews.unshift(newReview);
-            // Update the course Categories object if the new course doesn't exist
-            if (!courseCategories[courseName]) {
-                courseCategories[courseName] = category;
-                populateCourseFilter(allReviews); 
-            }
-            saveReviews(); // Save the updated reviews to localStorage
-            currentPage = 1;
-            applyFiltersAndSort();
+                    const data = await response.json();
 
-            reviewForm.classList.add('hidden');
-            addReviewForm.reset();
+                    if (data.success) {
+                        alert('Review added successfully!');
+                        reviewForm.classList.add('hidden');
+                        addReviewForm.reset();
+                        fetchReviews(); // Re-fetch reviews to update the list
+                    } else {
+                        alert(`Error adding review: ${data.message}`);
+                    }
+
+                } catch (error) {
+                    console.error('Could not add review:', error);
+                    alert('Failed to add review.');
+                }
+            } else {
+                alert('Please fill in all review details and select a category.');
+            }
         });
     }
-    
-    // --- Initial Load and Setup ---
-    loadReviews();
-    if (allReviews.length === 0) {
-        fetchReviews(); // Fetch reviews from the API if none are in local storage
-    } else {
-        renderCurrentPage(allReviews);
-        updatePagination(allReviews);
-        populateCourseFilter(allReviews);
-    }
-    loadComments();  // Load comments from local storage
+
+    // Initial fetch of reviews on page load
+    fetchReviews();
 });

@@ -1,23 +1,13 @@
 <?php
 class Database
 {
-    private $host = 'localhost';
-    private $db_name = 'campus_hub';
-    private $username = 'user';
-    private $password = '';
-
+    private $db_file = __DIR__ . '/data/course_reviews.db';
     public $conn;
 
     public function connect()
     {
-        $this->conn = null;
-
         try {
-            $this->conn = new PDO(
-                "mysql:host={$this->host};dbname={$this->db_name}",
-                $this->username,
-                $this->password
-            );
+            $this->conn = new PDO('sqlite:' . $this->db_file);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo json_encode(['success' => false, 'message' => 'Database Error: ' . $e->getMessage()]);
