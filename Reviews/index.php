@@ -1,3 +1,3 @@
 <?php
-require('test.html');
+require('rev.html');
 ?>
