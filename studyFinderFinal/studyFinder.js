@@ -2,7 +2,7 @@
 
    document.addEventListener('DOMContentLoaded', () => {
     /* ───────────────────────── CONSTANTS ───────────────────────── */
-    const API_URL = 'https://jsonplaceholder.typicode.com/posts';
+const API_URL = 'https://study-group-backend--shaimaalrishany.repl.co/api/study_groups.php';
     const ITEMS_PER_PAGE = 6;
   
     /* ───────────────────── ELEMENT REFERENCES ──────────────────── */
@@ -39,21 +39,41 @@
   
         const data = await res.json();
         /* Map placeholder schema → ours & slice to 24 posts for demo */
-        studyGroups = data.slice(0, 24).map(p => ({
-          id:        p.id,
-          title:     p.title,
-          body:      p.body,
-          subject:   randomSubject(),      // mock subject
-          location:  'Zoom',
-          meeting:   'TBD',
-          contact:   'contact@example.com'
-        }));
+      studyGroups = data.map(p => ({
+  id:        p.id,
+  title:     p.name,  // ← استخدم 'name' كما في db
+  subject:   p.subject,
+  meeting:   p.meeting_details,
+  contact:   p.contact_email,
+  body:      p.meeting_details  // أو وصف مخصص
+}));
+
       } catch (err) {
         console.error(err);
         /* Fallback: static demo data */
         studyGroups = demoData();
       }
       refreshDerivedState();
+
+  const deleteBtn = document.createElement('button');
+deleteBtn.textContent = '🗑️ Delete';
+deleteBtn.className = 'delete-btn';
+deleteBtn.onclick = async () => {
+  if (confirm('Are you sure you want to delete this group?')) {
+    try {
+      const res = await fetch(`${API_URL}?id=${group.id}`, { method: 'DELETE' });
+      const result = await res.json();
+      alert(result.message);
+      fetchGroups(); // لإعادة التحميل بعد الحذف
+    } catch (err) {
+      alert('❌ Failed to delete.');
+    }
+  }
+};
+
+card.appendChild(deleteBtn); // أو append للعنصر المناسب في الكرت
+
+
     }
   
     /* ---------- refreshDerivedState ---------- */
@@ -111,14 +131,16 @@
         'bg-white p-5 rounded-lg shadow hover:shadow-md transition';
   
       card.innerHTML = `
-        <span class="inline-block text-xs bg-gray-200 px-2 py-0.5 rounded
-                     mb-2">${g.subject}</span>
-        <h3 class="text-xl font-semibold mb-1">${g.title}</h3>
-        <p  class="text-sm text-gray-600 mb-3">${g.body}</p>
-        <a  href="studyDetail.html" data-id="${g.id}"
-            class="text-blue-600 hover:underline text-sm">View Details</a>
-      `;
-  
+  <span class="inline-block text-xs bg-gray-200 px-2 py-0.5 rounded mb-2">${g.subject}</span>
+  <h3 class="text-xl font-semibold mb-1">${g.title}</h3>
+  <p  class="text-sm text-gray-600 mb-3">${g.body}</p>
+  <button onclick="deleteGroup(${p.id})">🗑️ Delete</button>
+
+  <a  href="studyDetail.html" data-id="${g.id}" class="text-blue-600 hover:underline text-sm">View Details</a>
+  <button onclick="deleteGroup(${g.id})" class="text-red-600 text-sm ml-4 hover:underline">🗑 Delete</button>
+
+`;
+
       /* store selection → localStorage */
       card.querySelector('a').addEventListener('click', () => {
         localStorage.setItem('selectedGroup', JSON.stringify(g));
@@ -130,7 +152,8 @@
     /* ---------- buildPagination ---------- */
     function buildPagination () {
       pagination.innerHTML = '';
-  
+  <button onclick="deleteGroup(${p.id})">🗑️ Delete</button>
+
       const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
   
       /* Prev */
@@ -181,12 +204,16 @@
       const subjects = Array.from(new Set(studyGroups.map(g => g.subject))).sort();
       subjectFilter.innerHTML = '<option>All</option>' +
         subjects.map(s => `<option>${s}</option>`).join('');
+        <button onclick="deleteGroup(${p.id})">🗑️ Delete</button>
+
     }
   
     /* ---------- showLoading ---------- */
     function showLoading () {
       grid.innerHTML =
         '<div class="col-span-full text-center py-10 font-semibold">Loading…</div>';
+        <button onclick="deleteGroup(${p.id})">🗑️ Delete</button>
+
     }
   
     /* ---------- addSubjectFilter ---------- */
@@ -262,3 +289,14 @@
     });
   }
   
+  async function deleteGroup(id) {
+  if (!confirm('Are you sure?')) return;
+  try {
+    const res = await fetch(`${API_URL}?id=${id}`, { method: 'DELETE' });
+    const result = await res.json();
+    alert(result.message);
+    fetchGroups(); // إعادة تحميل القائمة
+  } catch (err) {
+    alert('❌ Failed to delete.');
+  }
+}
